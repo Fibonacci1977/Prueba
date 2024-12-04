@@ -1,0 +1,11 @@
+# Configuración de Java
+
+## Configuración de Java
+
+Para ejecutar el programa Java, usted necesita
+
+* Descargar e instalar JDK (a partir de )
+* Acarza el camino del Jdk/bin Directory
+* Crear el programa de java
+
+**Variable camino**La variable de ruta se establece para proporcionar ruta para todas las herramientas de java como java, javac, javap, javah, tarro, espectador de applet que se utilizan en la programación de java. Todas estas herramientas están disponibles en , así que configuramos la ruta hasta carpetas de basura.**Variable de claseLa** **lib/rt.jarJDK Folder HierarchyC:-Regram Files-Java-jdk1.8.0-102-bin**Esta carpeta contiene herramientas como java, javac, javap, javah, jar, appletviewer, etc.**C: Archivos de programas,Java-jre1.8.0o102olib**Esta carpeta contiene **rt.jarPor qué monte el camino?**&#x50;ara ejecutar programas basados en la consola de java en entornos de ventanas tenemos que utilizar **javac**. Desde entonces, **javac**El siguiente error de programación es general para todos los programadores de java cuando compilan cualquier programa de java sin configurar la ruta.**'javac'** **no se reconoce como un comando interno o externo, programa operable o archivo por lotes.**&#x43;uando usted consigue este tipo de error, entonces su sistema operativo no puede encontrar el compilador de java ). Para resolver este error, es necesario establecer la variable PATH.**Javac** , etc. Todas estas herramientas se utilizan para un propósito diferente.**Cómo establecer el camino y el camino de clase**Vine al icono de mi ordenador y haz clic con el botón en las propiedades opción---haga clic en la configuración del sistema - Haga **C:--Sarches-Java-jdk1.8.0-102-bin)**&#x44;e nuevo poner un punto y coma más al final y pegar el camino de la lib.(**C:-ProgramaFiles-Java-jre1.8.0-102-lib)**&#x48;as terminado con la puesta en camino.Reinicia tu sistema**Cómo comprobar si la java está instalada en su computadora?**&#x41;ns-Open comando prompt-type -Ejava . . . . . . . . . . . . . .Si java está correctamente instalado entonces obtendrás algo como estoversión java "1.8.0o144"Java(TM) SE Runtime Environment (construye 1.8.0-144-b01)Java HotSpot(TM) 64-Bit Server VM (construido 25.144-b01, modo mixto)Todo está hecho. Es hora de escribir el programa
