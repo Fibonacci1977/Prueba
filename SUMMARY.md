@@ -45,7 +45,7 @@
     * [Paginación OracleDB con Atributos simples](javaee/jpa/paginacin-d7a-oracledb-con-atributos-simples.md)
   * [Herramientas](javaee/herramientas/README.md)
     * [Herramientas de desarrollo](javaee/herramientas/herramientas-de-desarrollo.md)
-  * [Page 1](javaee/page-1.md)
+  * [Bibliografia](javaee/bibliografia.md)
 * [Frameworks](frameworks/README.md)
   * [Struts 2](frameworks/struts-2.md)
   * [JSF](frameworks/jsf.md)
