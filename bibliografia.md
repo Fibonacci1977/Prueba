@@ -83,3 +83,13 @@
 {% embed url="https://poliformat.upv.es/access/content/group/OCW_6069_2008/" %}
 
 {% embed url="https://www.jmdoudoux.fr/accueil_java.htm" %}
+
+{% embed url="https://corejava25hours.com/category/%F0%9F%92%BB-java-in-25-hours-28-steps/" %}
+
+{% embed url="https://corejava25hours.com/category/%F0%9F%92%BB-advance-java-in-16-steps-servlet-and-jsp/" %}
+
+{% embed url="https://corejava25hours.com/category/%F0%9F%92%BB-hibernate-in-10-steps/" %}
+
+{% embed url="https://corejava25hours.com/category/%F0%9F%92%BB-spring-framework-in-9-steps/" %}
+
+{% embed url="https://corejava25hours.com/category/spring-boot-in-13-steps/" %}
