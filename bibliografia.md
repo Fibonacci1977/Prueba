@@ -59,3 +59,5 @@
 {% embed url="http://www.lcc.uma.es/~galvez/ftp/libros/Anotaciones.pdf" %}
 
 {% embed url="https://uploads.teachablecdn.com/sFca9JhWSLihfQ3PIXB7_Java+2D+Graphics.pdf" %}
+
+{% embed url="https://zetcode.com/java/" %}
