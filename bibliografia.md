@@ -26,6 +26,8 @@
 
 {% embed url="https://www.tutorialspoint.com/java/index.htm" %}
 
+{% embed url="https://www.w3schools.com/java/default.asp" %}
+
 {% embed url="https://www.geeksforgeeks.org/java/java/" %}
 
 {% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
