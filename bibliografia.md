@@ -117,3 +117,7 @@
 {% embed url="https://www.packtpub.com/en-us/learning/how-to-tutorials/dwr-java-ajax-user-interface-basic-elements-part-1?srsltid=AfmBOorPzfeAStixHZN7irfbOfbiYBeUuDJce3VgmVwk9CLwJf6eSdav" %}
 
 {% embed url="https://www.packtpub.com/en-us/learning/how-to-tutorials/dwr-java-ajax-user-interface-basic-elements-part-2?srsltid=AfmBOorPzfeAStixHZN7irfbOfbiYBeUuDJce3VgmVwk9CLwJf6eSdav" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PL90IZGdahYmeq6PP1yev-A0ihv-j_xK7u" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PL90IZGdahYmcEnxxd1WmsPRhYmr21PwHj" %}
