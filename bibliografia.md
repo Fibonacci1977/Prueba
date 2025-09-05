@@ -30,6 +30,8 @@
 
 {% embed url="https://www.geeksforgeeks.org/java/java/" %}
 
+{% embed url="https://javadoc.io/doc/javax/javaee-web-api/latest/index.html" %}
+
 {% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
 
 {% embed url="https://www.tutorialesprogramacionya.com/javaya/" %}
