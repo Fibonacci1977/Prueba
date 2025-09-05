@@ -93,3 +93,9 @@
 {% embed url="https://corejava25hours.com/category/%F0%9F%92%BB-spring-framework-in-9-steps/" %}
 
 {% embed url="https://corejava25hours.com/category/spring-boot-in-13-steps/" %}
+
+{% embed url="https://code.makery.ch/library/javafx-tutorial/" %}
+
+{% embed url="https://www.jairogarciarincon.com/clase/interfaces-de-usuario-con-java-swing" %}
+
+{% embed url="https://www.jairogarciarincon.com/clase/interfaces-de-usuario-con-javafx" %}
