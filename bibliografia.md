@@ -81,3 +81,5 @@
 {% embed url="https://cruzado.info/tutojava/Index.htm" %}
 
 {% embed url="https://poliformat.upv.es/access/content/group/OCW_6069_2008/" %}
+
+{% embed url="https://www.jmdoudoux.fr/accueil_java.htm" %}
