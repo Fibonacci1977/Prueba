@@ -6,6 +6,8 @@
 
 {% embed url="https://www.javaguides.net/" %}
 
+{% embed url="https://devdocs.io/" %}
+
 {% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
 
 {% embed url="https://www.tutorialesprogramacionya.com/javaya/" %}
