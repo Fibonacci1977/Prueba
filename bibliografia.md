@@ -8,6 +8,10 @@
 
 {% embed url="https://bibliotecadigital.utn.edu.ec/download/files/original/e66e408ffacdfefc16d90f02fdce6b8b94a74ab7.pdf" %}
 
+{% embed url="https://www.mfbarcell.es/docencia_uned/fund_inf_ing/libros/-%20Como%20Programar%20en%20Java%20Deitel.pdf" %}
+
+{% embed url="https://maycolmo.github.io/pe/java.pdf" %}
+
 {% embed url="https://www.javaguides.net/" %}
 
 {% embed url="https://devdocs.io/" %}
