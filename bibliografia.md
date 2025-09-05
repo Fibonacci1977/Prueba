@@ -38,6 +38,10 @@
 
 {% embed url="https://javadoc.io/doc/javax/javaee-web-api/latest/index.html" %}
 
+{% embed url="https://www.javatutoriales.com/" %}
+
+{% embed url="https://pablomonteserin.com/curso/" %}
+
 {% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
 
 {% embed url="https://www.tutorialesprogramacionya.com/javaya/" %}
