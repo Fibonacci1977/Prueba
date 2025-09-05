@@ -8,6 +8,12 @@
 
 {% embed url="https://devdocs.io/" %}
 
+{% embed url="https://www.tpointtech.com/java-tutorial" %}
+
+{% embed url="https://www.tutorialspoint.com/java/index.htm" %}
+
+{% embed url="https://www.geeksforgeeks.org/java/java/" %}
+
 {% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
 
 {% embed url="https://www.tutorialesprogramacionya.com/javaya/" %}
