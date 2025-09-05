@@ -131,3 +131,7 @@
 {% embed url="https://www.youtube.com/playlist?list=PLGIvoD9Ur9I3m4aUs9XAc3AmVtDrtBqQU" %}
 
 {% embed url="https://github.com/codejava-official" %}
+
+{% embed url="https://dev.java/learn/" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PL3q75E52kEopESpQaq-yUT7E5sVVyabOo" %}
