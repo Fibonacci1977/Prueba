@@ -8,6 +8,8 @@
 
 {% embed url="https://uneweb.edu.ve/tuto-docs/java-web-services.pdf" %}
 
+{% embed url="https://javajeecastellano.wordpress.com/" %}
+
 {% embed url="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Java/Java%20Ebooks/Java%203D.pdf" %}
 
 {% embed url="https://web.seducoahuila.gob.mx/biblioweb/upload/CursoJava.pdf" %}
