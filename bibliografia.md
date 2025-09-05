@@ -5,3 +5,5 @@
 {% embed url="https://web.seducoahuila.gob.mx/biblioweb/upload/CursoJava.pdf" %}
 
 {% embed url="https://www.javaguides.net/" %}
+
+{% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
