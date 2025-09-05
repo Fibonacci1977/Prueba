@@ -1,6 +1,10 @@
 # Bibliografia
 
+
+
 {% embed url="https://uneweb.edu.ve/tuto-docs/java-web-services.pdf" %}
+
+{% embed url="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Java/Java%20Ebooks/Java%203D.pdf" %}
 
 {% embed url="https://web.seducoahuila.gob.mx/biblioweb/upload/CursoJava.pdf" %}
 
@@ -61,3 +65,9 @@
 {% embed url="https://uploads.teachablecdn.com/sFca9JhWSLihfQ3PIXB7_Java+2D+Graphics.pdf" %}
 
 {% embed url="https://zetcode.com/java/" %}
+
+{% embed url="https://lc.fie.umich.mx/~rochoa/Manuales/JAVA/MANUAL_3D.pdf" %}
+
+{% embed url="https://lc.fie.umich.mx/~rochoa/Manuales/JAVA/SWING_2D.pdf" %}
+
+{% embed url="https://users.dcc.uchile.cl/~lmateu/CC60H/" %}
