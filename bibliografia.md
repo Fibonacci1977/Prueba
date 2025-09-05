@@ -6,6 +6,10 @@
 
 {% embed url="https://pablomonteserin.com/curso/struts-2/" %}
 
+{% embed url="https://holamundojava.blogspot.com/" %}
+
+{% embed url="https://www.guj.com.br/c/programacao/java/7" %}
+
 {% embed url="https://uneweb.edu.ve/tuto-docs/java-web-services.pdf" %}
 
 {% embed url="https://javajeecastellano.wordpress.com/" %}
