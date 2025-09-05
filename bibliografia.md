@@ -4,6 +4,8 @@
 
 {% embed url="https://labex.io/es/tutorials/category/java" %}
 
+{% embed url="https://pablomonteserin.com/curso/struts-2/" %}
+
 {% embed url="https://uneweb.edu.ve/tuto-docs/java-web-services.pdf" %}
 
 {% embed url="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Java/Java%20Ebooks/Java%203D.pdf" %}
