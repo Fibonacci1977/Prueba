@@ -71,3 +71,9 @@
 {% embed url="https://lc.fie.umich.mx/~rochoa/Manuales/JAVA/SWING_2D.pdf" %}
 
 {% embed url="https://users.dcc.uchile.cl/~lmateu/CC60H/" %}
+
+{% embed url="http://profesores.elo.utfsm.cl/~agv/elo330/2s05/projects/CesarVasquez/sitio_web/" %}
+
+{% embed url="https://poliformat.upv.es/access/content/group/OCW_5294_2008/MIW/" %}
+
+{% embed url="https://ocw.uc3m.es/mod/page/view.php?id=4971" %}
