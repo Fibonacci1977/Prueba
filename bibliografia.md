@@ -39,3 +39,5 @@
 {% embed url="https://www.java4s.com/" %}
 
 [https://www.frojasg1.com:8443/downloads\_web/downloadServletv3?file=textCrypt.v1.7\&origin=lawebdelprogramador\&language=Espanyol](https://www.frojasg1.com:8443/downloads_web/downloadServletv3?file=textCrypt.v1.7\&origin=lawebdelprogramador\&language=Espanyol)
+
+{% embed url="https://riptutorial.com/java" %}
