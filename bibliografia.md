@@ -77,3 +77,7 @@
 {% embed url="https://poliformat.upv.es/access/content/group/OCW_5294_2008/MIW/" %}
 
 {% embed url="https://ocw.uc3m.es/mod/page/view.php?id=4971" %}
+
+{% embed url="https://cruzado.info/tutojava/Index.htm" %}
+
+{% embed url="https://poliformat.upv.es/access/content/group/OCW_6069_2008/" %}
