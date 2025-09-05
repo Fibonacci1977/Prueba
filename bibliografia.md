@@ -10,6 +10,10 @@
 
 {% embed url="https://www.mfbarcell.es/docencia_uned/fund_inf_ing/libros/-%20Como%20Programar%20en%20Java%20Deitel.pdf" %}
 
+{% embed url="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Java/Desarrollo%20Web%20con%20Java%20desde%20Cero.pdf" %}
+
+{% embed url="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Java/Java300algo.pdf" %}
+
 {% embed url="https://maycolmo.github.io/pe/java.pdf" %}
 
 {% embed url="https://www.javaguides.net/" %}
