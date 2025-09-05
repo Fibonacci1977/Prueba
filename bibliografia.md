@@ -18,6 +18,8 @@
 
 {% embed url="https://www.javaguides.net/" %}
 
+{% embed url="https://www.arquitecturajava.com/" %}
+
 {% embed url="https://devdocs.io/" %}
 
 {% embed url="https://www.tpointtech.com/java-tutorial" %}
