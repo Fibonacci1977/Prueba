@@ -113,3 +113,7 @@
 {% embed url="https://www.jairogarciarincon.com/clase/interfaces-de-usuario-con-java-swing" %}
 
 {% embed url="https://www.jairogarciarincon.com/clase/interfaces-de-usuario-con-javafx" %}
+
+{% embed url="https://www.packtpub.com/en-us/learning/how-to-tutorials/dwr-java-ajax-user-interface-basic-elements-part-1?srsltid=AfmBOorPzfeAStixHZN7irfbOfbiYBeUuDJce3VgmVwk9CLwJf6eSdav" %}
+
+{% embed url="https://www.packtpub.com/en-us/learning/how-to-tutorials/dwr-java-ajax-user-interface-basic-elements-part-2?srsltid=AfmBOorPzfeAStixHZN7irfbOfbiYBeUuDJce3VgmVwk9CLwJf6eSdav" %}
