@@ -41,3 +41,7 @@
 [https://www.frojasg1.com:8443/downloads\_web/downloadServletv3?file=textCrypt.v1.7\&origin=lawebdelprogramador\&language=Espanyol](https://www.frojasg1.com:8443/downloads_web/downloadServletv3?file=textCrypt.v1.7\&origin=lawebdelprogramador\&language=Espanyol)
 
 {% embed url="https://riptutorial.com/java" %}
+
+{% embed url="http://www.lcc.uma.es/~galvez/ftp/libros/J2ME.pdf" %}
+
+{% embed url="http://www.lcc.uma.es/~galvez/ftp/libros/Compiladores.pdf" %}
