@@ -1,6 +1,8 @@
 # Bibliografia
 
+{% embed url="https://codigojava.online/" %}
 
+{% embed url="https://labex.io/es/tutorials/category/java" %}
 
 {% embed url="https://uneweb.edu.ve/tuto-docs/java-web-services.pdf" %}
 
