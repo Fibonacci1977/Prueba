@@ -4,6 +4,10 @@
 
 {% embed url="https://web.seducoahuila.gob.mx/biblioweb/upload/CursoJava.pdf" %}
 
+{% embed url="https://www.sietk.org/downloads/javabook.pdf" %}
+
+{% embed url="https://bibliotecadigital.utn.edu.ec/download/files/original/e66e408ffacdfefc16d90f02fdce6b8b94a74ab7.pdf" %}
+
 {% embed url="https://www.javaguides.net/" %}
 
 {% embed url="https://devdocs.io/" %}
