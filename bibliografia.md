@@ -7,3 +7,7 @@
 {% embed url="https://www.javaguides.net/" %}
 
 {% embed url="https://expertojavaua.github.io/expertojava.ua.es/experto/publico/index.html" %}
+
+{% embed url="https://www.tutorialesprogramacionya.com/javaya/" %}
+
+{% embed url="https://www.java4s.com/" %}
