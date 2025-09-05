@@ -121,3 +121,11 @@
 {% embed url="https://www.youtube.com/playlist?list=PL90IZGdahYmeq6PP1yev-A0ihv-j_xK7u" %}
 
 {% embed url="https://www.youtube.com/playlist?list=PL90IZGdahYmcEnxxd1WmsPRhYmr21PwHj" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PLrAw40DbN0l1QmIk6z0zsutBO3StnAafW" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PLGIvoD9Ur9I3KnM9ebo-28B5zWeZeF0as" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PLGIvoD9Ur9I0j2PhqnzyChmIskbmxuQq8" %}
+
+{% embed url="https://www.youtube.com/playlist?list=PLGIvoD9Ur9I3m4aUs9XAc3AmVtDrtBqQU" %}
