@@ -67,3 +67,57 @@ Referencias:\
 
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/205000/205649/67f2eca76c6e8-EjemploParaWindows-01.png" alt=""><figcaption></figcaption></figure>
+
+
+
+4- [Ejemplo para Linux - Java](https://www.lawebdelprogramador.com/codigo/Java/7570-Ejemplo-para-Linux-Java.html)
+
+\
+Ejemplo para Linux\
+Este es un simple ejercicio en Java que muestra cómo hacer "llamadas al sistema" en S.O. Linux.\
+Las funciones del lenguaje C que son invocadas desde el programa EjemploParaLinux.java son:\
+\* putenv()\
+\* system()\
+Es importante conocer que se debe descargar la biblioteca JNA desde GitHub para que sea incorporada al proyecto que Usted debe crear en Apache NetBeans IDE (Linux).\
+\
+Código fuente:\
+[https://github.com/torrentelinux/torrentarium/tree/master/base/fuente/Java/EjemploParaLinux](https://github.com/torrentelinux/torrentarium/tree/master/base/fuente/Java/EjemploParaLinux)\
+\
+Referencias:\
+[https://en.wikipedia.org/wiki/Java\_Native\_Access](https://en.wikipedia.org/wiki/Java_Native_Access)\
+[https://github.com/java-native-access/jna](https://github.com/java-native-access/jna)\
+
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/205000/205649/67f2ad713d90f-EjParaLinux-1.png" alt=""><figcaption></figcaption></figure>
+
+
+
+5- [ChessPDFBrowser](https://www.lawebdelprogramador.com/codigo/Java/4319-ChessPDFBrowser.html)
+
+\
+\
+Aplicación de ajedrez que permite trabajar con las partidas de los libros de ajedrez en PDF (siempre que los libros no sean escaneados y las partidas estén escritas en formato algebraico).\
+\
+La nueva versión (v1.26), también permite extraer partidas en notación algebraica de figuras\
+\
+También permite trabajar con listas de partidas leídas/escritas en formato PGN, y modificar los TAGs, NAGs y comentarios.\
+\
+Los árboles de variantes pueden se modificados realizando movimientos con las piezas situadas en un tablero.\
+\
+Permite trabajar con partidas incompletas (es decir, que empiecen en un movimiento posterior al inicial)\
+\
+\- Multi-idioma\
+\- Multi-precisión\
+\- Modo oscuro\
+\- Conexión con motores tipo UCI\
+\- OCR que convierte imágenes con una posición en un tablero, en una cadena estándar FEN\
+\
+Compatible con el JDK-17\
+\
+Vídeo de demostración de la nueva funcionalidad (v1.26)\
+(entrenamiento del reconocedor de figuras para la extracción de partidas en notación algebraica de figuras)\
+\
+[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FChessPdfBrowser%2Fv1.26.ES.02.extraer.partidas.notacion.algebraica.de.figuras.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FChessPdfBrowser%2Fv1.26.ES.02.extraer.partidas.notacion.algebraica.de.figuras.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)\
+
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/5a15e68e11207-chessPDF.jpg" alt=""><figcaption></figcaption></figure>
