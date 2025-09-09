@@ -122,5 +122,28 @@ Vídeo de demostración de la nueva funcionalidad (v1.26)\
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/5a15e68e11207-chessPDF.jpg" alt=""><figcaption></figcaption></figure>
 
-[https://frojasg1.com:8443/downloads\_web/downloadServletv3?file=ChessPDFbrowser.v1.30\&origin=lawebdelprogramador\&language=Espanyol\
-](https://frojasg1.com:8443/downloads_web/downloadServletv3?file=ChessPDFbrowser.v1.30\&origin=lawebdelprogramador\&language=Espanyol)
+{% embed url="https://frojasg1.com:8443/downloads_web/downloadServletv3?file=ChessPDFbrowser.v1.30&origin=lawebdelprogramador&language=Espanyol" %}
+
+
+
+6- [Llibrería para la extracción de texto y tablas de Pdfs](https://www.lawebdelprogramador.com/codigo/Java/7528-Llibreria-para-la-extraccion-de-texto-y-tablas-de-Pdfs.html)
+
+\
+\
+La aplicación de línea de comandos es un ejemplo de uso de la librería Java.\
+\
+La librería se basa en la librería de pdfbox, y funciona buscando el layout de cada página seleccionada del pdf, y buscando estructuras de tabla.\
+\
+Tras la llamada a la librería (a la que hay que pasar el archivo de pdf, y el rango de páginas), el resultado es una List\<PdfTextElement>.\
+\
+PdfTextElement es una interfaz que tiene dos implementaciones.\
+\* Un texto básico (fuera de las tablas)\
+\* Y un PdfTextTabulaElement, para estructura de tablas.\
+Esta implementación permite leer las dimensiones de la tabla y el texto de cada celda de la tabla.\
+\
+Es sólo una versión beta.\
+Si no te funciona con alguna tabla de tus PDFs, puedes escribir un comentario, y lo vemos
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/66ce56249aac3-pdf-table-extractor-example.v1.0.png" alt=""><figcaption></figcaption></figure>
+
+[https://frojasg1.com:8443/downloads\_web/downloadServletv3?file=pdf\_table\_extractor\_lib.v1.0\&origin=lawebdelprogramador\&language=Espanyol](https://frojasg1.com:8443/downloads_web/downloadServletv3?file=pdf_table_extractor_lib.v1.0\&origin=lawebdelprogramador\&language=Espanyol)
