@@ -146,4 +146,29 @@ Si no te funciona con alguna tabla de tus PDFs, puedes escribir un comentario, y
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/66ce56249aac3-pdf-table-extractor-example.v1.0.png" alt=""><figcaption></figcaption></figure>
 
-[https://frojasg1.com:8443/downloads\_web/downloadServletv3?file=pdf\_table\_extractor\_lib.v1.0\&origin=lawebdelprogramador\&language=Espanyol](https://frojasg1.com:8443/downloads_web/downloadServletv3?file=pdf_table_extractor_lib.v1.0\&origin=lawebdelprogramador\&language=Espanyol)
+{% embed url="https://frojasg1.com:8443/downloads_web/downloadServletv3?file=pdf_table_extractor_lib.v1.0&origin=lawebdelprogramador&language=Espanyol" %}
+
+7- [Conversaciones con la I.A.](https://www.lawebdelprogramador.com/codigo/Java/7526-Conversaciones-con-la-I.A.html)
+
+Aplicación en Java para chatear con la I.A. generativa Llama3.\
+\
+\* El usuario puede hablar al micrófono (speechToText), editar el texto reconocido y enviárselo a la I.A.\
+\
+\* La I.A. responde y el servidor va devolviendo esa respuesta en tiempo real, y las frases convertidas a audio (textToSpeech), y la aplicación las emite por el altavoz.\
+\
+La aplicación está preparada para que únicamente haya un usuario ocupando los recursos del servidor, por lo que si el servidor está ocupado, en teoría no te dejará conectar.\
+\
+Hay un vídeo de demostración que muestra el funcionamiento:\
+\
+[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fchat%2F20240815.Demo.Chat.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fchat%2F20240815.Demo.Chat.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)
+
+\
+
+
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+8- [Piano](https://www.lawebdelprogramador.com/codigo/Java/6452-Piano.html)
+
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+{% embed url="https://www.lawebdelprogramador.com/codigo/down.php?id=7899" %}
