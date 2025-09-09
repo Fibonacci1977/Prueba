@@ -171,4 +171,123 @@ Hay un vídeo de demostración que muestra el funcionamiento:\
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-{% embed url="https://www.lawebdelprogramador.com/codigo/down.php?id=7899" %}
+{% file src=".gitbook/assets/piano.rar" %}
+
+9- Vector
+
+```
+// Code
+package arreglos1;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class Arreglos1 {
+
+//realizar un program en java donde se ingrrese el nombre de un estudiante en un vector de tamaño ingresado por teclado
+//Ingresar la nota de dicho estudainte mostrar el promedio del estudiente en este caso todos los datos deberan ser ingresado
+// por teclado y no se podra ingresar numeros negativos, notas negativas ni tampoco, notas sobre 10
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+String estudiante;
+double promedio,suma=0;
+int tamaniovector;
+DecimalFormat formato = new DecimalFormat("0.00");
+System.out.println("Ingrese el nombre del estudiante:");
+estudiante = sc.next();
+System.out.println("Ingrese el tamaño del arreglo: ");
+tamaniovector=sc.nextInt();
+double vector[]= new double[tamaniovector];
+System.out.println("Ingrese las calificaciones en un rango de (0 - 10)");
+for (int i = 0; i<tamaniovector; i++){
+System.out.println("Ingrese la calificacion del estudiante: " +estudiante+ " en la posicion: "+(i+1));
+vector[i]=sc.nextDouble();
+if(vector[i]>= 0 && vector[i]<=10 ){
+
+}else{
+System.out.println("La calificacion que ingreso esta fuera del rango establecido. Intentelo de nuevo");
+i--;
+}
+}
+System.out.println("Califiaciones del estudiante: "+estudiante);
+for(int i = 0; i < tamaniovector;i++){
+System.out.print(vector[i]);
+System.out.print(" , ");
+}
+for(int i = 0; i<tamaniovector;i++){
+suma += vector[i];
+}
+promedio = suma/vector.length;
+System.out.println("");
+System.out.println("Suma: "+suma);
+System.out.println("Promedio: "+formato.format(promedio));
+}
+}
+```
+
+{% file src=".gitbook/assets/Arreglos1.rar" %}
+
+```
+// Some code
+package arreglos1;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+
+
+public class Arreglos1 {
+
+//realizar un program en java donde se ingrese el nombre de un estudiante en un vector de tamaño ingresado por teclado
+//Ingresar la nota de dicho estudiante mostrar el promedio del estudiante en este caso todos los datos deberan ser ingresado
+// por teclado y no se podra ingresar numeros negativos, notas negativas ni tampoco, notas sobre 10
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+String estudiante;
+double promedio,suma=0;
+int tamaniovector;
+DecimalFormat formato = new DecimalFormat("0.00");
+System.out.println("Ingrese el nombre del estudiante:");
+estudiante = sc.next();
+System.out.println("Ingrese el tamaño del arreglo: ");
+tamaniovector=sc.nextInt();
+double vector[]= new double[tamaniovector];
+System.out.println("Ingrese las calificaciones en un rango de (0 - 10)");
+for (int i = 0; i<tamaniovector; i++){
+System.out.println("Ingrese la calificacion del estudiante: " +estudiante+ " en la posicion: "+(i+1));
+vector[i]=sc.nextDouble();
+if(vector[i]>= 0 && vector[i]<=10 ){
+
+}else{
+System.out.println("La calificacion que ingreso esta fuera del rango establecido. Intentelo de nuevo");
+i--;
+}
+}
+System.out.println("Califiaciones del estudiante: "+estudiante);
+for(int i = 0; i < tamaniovector;i++){
+System.out.print(vector[i]);
+System.out.print(" , ");
+}
+for(int i = 0; i<tamaniovector;i++){
+suma += vector[i];
+}
+promedio = suma/vector.length;
+
+
+System.out.println("");
+System.out.println("Suma: "+suma);
+System.out.println("Promedio: "+formato.format(promedio));
+}
+}
+```
+
+10- [Graficador de Funciones](https://www.lawebdelprogramador.com/codigo/Java/7471-Graficador-de-Funciones.html)
+
+Este programa Grafica en el plano XY cualquier funcion del tipo Y = F(X). Tambien grafica la derivada y la Integral y calcula longitudes de la curva de la función y areas.\
+
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/389000/389452/6599876b7c020-GraficaFunciones.JPG" alt=""><figcaption></figcaption></figure>
+
+
+
+{% file src=".gitbook/assets/graficafunciones.rar" %}
