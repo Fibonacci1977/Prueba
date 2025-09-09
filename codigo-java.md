@@ -291,3 +291,29 @@ Este programa Grafica en el plano XY cualquier funcion del tipo Y = F(X). Tambie
 
 
 {% file src=".gitbook/assets/graficafunciones.rar" %}
+
+11- [Cálculo de las raíces reales de un polinomio](https://www.lawebdelprogramador.com/codigo/Java/7408-Calculo-de-las-raices-reales-de-un-polinomio.html)
+
+Las calculadoras de raíces de polinomios son un clásico en las carreras de informática.\
+\
+Esta es mi contribución a la solución al problema.\
+No es una solución muy eficiente, ya que en el peor caso la complejidad computacional es O(G^2), siendo G el grado del polinomio (en realidad incluso peor, ya que a mayor grado, se puede requerir mayor precisión para que se produzca convergencia)\
+Pero creo que hace el trabajo con efectividad\
+\
+El algoritmo se basa en el cálculo de las raíces de un polinomio, suponiendo conocidas las raíces de su función derivada\
+Bajo esa suposición, es muy sencillo calcular las raíces, ya que podemos conocer el límite del rango donde se encuentran todas las raíces\
+(Véase: [Propiedades de las raíces polinómicas](https://es.wikipedia.org/wiki/Propiedades_de_las_ra%C3%ADces_polin%C3%B3micas))\
+Y de esta manera, en combinación con las raíces de la función derivada, podemos delimitar el rango de cada una de las posibles raíces y, simplemente aplicando el teorema de Bolzano, podemos calcular los ceros\
+Pero ... necesitamos la función que estamos programando para calcular las raíces de la función derivada!\
+No hay problema: usamos recursividad, y la función recursiva (la que calcula las raíces de un polinomio), tiene un caso de terminación para el caso de un polinomio de grado cero (una constante), que supondremos que no tiene raíces.\
+Como la función derivada tiene un grado menos que el polinomio original entonces, aplicando la recursividad, llegaremos al cálculo de las raíces de un polinomio de grado cero, con solución trivial y problema solucionado\
+\
+Esta manera de proceder puede crear la necesidad de tener alta precisión en los cálculos, pero eso no es problema si usamos la clase BigDecimal de JavaArtículos de programación
+
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+{% file src=".gitbook/assets/20230805.PolynomialRoots.v1.0.7z" %}
