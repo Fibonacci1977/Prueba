@@ -121,3 +121,6 @@ Vídeo de demostración de la nueva funcionalidad (v1.26)\
 
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/5a15e68e11207-chessPDF.jpg" alt=""><figcaption></figcaption></figure>
+
+[https://frojasg1.com:8443/downloads\_web/downloadServletv3?file=ChessPDFbrowser.v1.30\&origin=lawebdelprogramador\&language=Espanyol\
+](https://frojasg1.com:8443/downloads_web/downloadServletv3?file=ChessPDFbrowser.v1.30\&origin=lawebdelprogramador\&language=Espanyol)
