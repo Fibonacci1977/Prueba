@@ -350,3 +350,27 @@ Si os ha gustado el efecto, os dejo un nuevo vídeo en el que se ve todo el proc
 {% file src=".gitbook/assets/20230802.Morphing.v1.1.part3.rar" %}
 
 {% file src=".gitbook/assets/20230802.Morphing.v1.1.part2.rar" %}
+
+
+
+13- [Bola de color](https://www.lawebdelprogramador.com/codigo/Java/7398-Bola-de-color.html)\
+\
+Esta sencilla aplicación pinta una bola sutilmente coloreada sobre las imágenes de un directorio por las que puedes navegar.\
+\
+Ha sido una excusa para integrar el JColorChooser en mis librerías:\
+\* Multi-precisión\
+\* Modo oscuro\
+\* Recuerda los últimos colores\
+\
+\
+Si quieres puedes ver el vídeo de demostración:\
+\
+[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FcolorBall%2FcolorBall.v1.0.demo.video.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FcolorBall%2FcolorBall.v1.0.demo.video.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/64b3fd6013997-color_ball.v1.0.png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+{% file src=".gitbook/assets/20230716.ColorBall.v1.0.7z" %}
