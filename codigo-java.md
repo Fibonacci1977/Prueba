@@ -318,3 +318,35 @@ Esta manera de proceder puede crear la necesidad de tener alta precisión en los
 
 
 {% file src=".gitbook/assets/20230805.PolynomialRoots.v1.0.7z" %}
+
+12-Código de Java - Editor de Morphing
+
+### [Editor de Morphing](https://www.lawebdelprogramador.com/codigo/Java/7217-Editor-de-Morphing.html)  1-Selecciona la imagen máster. 2-Crea la malla de triángulos. 3-Pon los vértices en la posición correcta de cada imagen.  Tras hacer esto, podrás guardar el proyecto y crear un vídeo de Morphing con el resultado.  Vídeo demostración: [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.how.to.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.how.to.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)  Vídeo creado con esta aplicación: [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.mp4%3Forigin%3Dlawebdelprogramador\&origin=web) 
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/62536fb706a81-MorphingEditor.v1.0.png" alt=""><figcaption></figcaption></figure>
+
+\
+
+
+<figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/64cab7dad0e0a-MorphingEditor.v1.1.394x600.png" alt=""><figcaption></figcaption></figure>
+
+La nueva versión de la aplicación hace uso de una librería de reconocimiento de caras (open source, pero no creada por mí) que está en un servidor externo, y se ayuda de esas detecciones de caras, para facilitar al usuario la elaboración de las mallas de triángulos en las que se basa el efecto de Morphing.\
+\
+Con esta mejora, se pueden crear proyectos de efectos de Morphing de 4 imágenes en 20 minutos, cuando antes te podías pasar por lo menos dos horas creando las mallas.\
+\
+\
+Os dejo un vídeo creado con la aplicación (dura menos de 15 segundos):\
+[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fv1.1\_morphingProjectEditor.ExampleMorphingVideo1.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fv1.1_morphingProjectEditor.ExampleMorphingVideo1.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)\
+\
+Si os ha gustado el efecto, os dejo un nuevo vídeo en el que se ve todo el proceso de creación desde cero el proyecto del vídeo anterior:\
+[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fv1.1\_morphingProjectEditor.CreatingANormalTransitionProject1FromScratch.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fv1.1_morphingProjectEditor.CreatingANormalTransitionProject1FromScratch.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)
+
+
+
+{% file src=".gitbook/assets/20230802.Morphing.v1.1.part1.rar" %}
+
+{% file src=".gitbook/assets/20230802.Morphing.v1.1.part4.rar" %}
+
+{% file src=".gitbook/assets/20230802.Morphing.v1.1.part3.rar" %}
+
+{% file src=".gitbook/assets/20230802.Morphing.v1.1.part2.rar" %}
