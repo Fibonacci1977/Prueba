@@ -66,6 +66,7 @@
   * [Oracle Weblogic Server](servidores-web/oracle-weblogic-server.md)
   * [Wildfly](servidores-web/wildfly.md)
   * [Websphere Application Server](servidores-web/websphere-application-server.md)
-* [Java FX](java-fx.md)
+* [Java FX](java-fx/README.md)
+  * [Page 1](java-fx/page-1.md)
 * [Bibliografia](bibliografia.md)
 * [Código Java](codigo-java.md)
