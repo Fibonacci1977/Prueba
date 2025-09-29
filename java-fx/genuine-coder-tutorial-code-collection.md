@@ -1,4 +1,4 @@
-# Page 1
+# Genuine Coder Tutorial Code Collection
 
 This repository contains general program examples that I use for my tutorial videos and blogs.
 
