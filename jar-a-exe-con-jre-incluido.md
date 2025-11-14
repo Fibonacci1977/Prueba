@@ -127,6 +127,10 @@ Convertir un archivo JAR a EXE facilita el acceso de los usuarios de Windows a t
 
 {% embed url="https://youtu.be/eeL8ptCq-yU" %}
 
-## Generar o crear Instalador SETUP para programas jar - Java
+## Generar o crear Instalador SETUP para programas jar - Java InnoSetup
 
 {% embed url="https://youtu.be/_N4MV7w75Uk" %}
+
+## Crear Setup con Advanced Installer 9.1
+
+{% embed url="https://youtu.be/ESOwlTMV0As" %}
