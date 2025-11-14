@@ -134,3 +134,7 @@ Convertir un archivo JAR a EXE facilita el acceso de los usuarios de Windows a t
 ## Crear Setup con Advanced Installer 9.1
 
 {% embed url="https://youtu.be/ESOwlTMV0As" %}
+
+[Crear Paquete Instalador utilizando la herramienta: Advanced Installer](https://www.youtube.com/watch?v=YpjdA3g-Lpg)
+
+{% embed url="https://youtu.be/YpjdA3g-Lpg" %}
