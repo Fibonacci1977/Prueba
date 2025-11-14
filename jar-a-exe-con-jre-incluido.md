@@ -126,3 +126,7 @@ Convertir un archivo JAR a EXE facilita el acceso de los usuarios de Windows a t
 ## ¿CÓMO CREAR UN INSTALADOR DE TU APLICACIÓN JAVA? | FÁCIL Y SENCILLO
 
 {% embed url="https://youtu.be/eeL8ptCq-yU" %}
+
+## Generar o crear Instalador SETUP para programas jar - Java
+
+{% embed url="https://youtu.be/_N4MV7w75Uk" %}
