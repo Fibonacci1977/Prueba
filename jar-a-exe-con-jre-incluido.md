@@ -139,7 +139,7 @@ Convertir un archivo JAR a EXE facilita el acceso de los usuarios de Windows a t
 
 {% embed url="https://youtu.be/YpjdA3g-Lpg" %}
 
-Para crear un paquete instalador de C++ con Advanced Installer, primero debes instalar la extensión de [Advanced Installer para Visual Studio](https://www.advancedinstaller.com/create-msi-installer-for-cpp-application-visual-studio.html) en Visual Studio. Luego, abre tu proyecto de C++, crea un nuevo "Setup Project" o usa la extensión directamente desde el IDE, y sigue los pasos de la interfaz de Advanced Installer para añadir los archivos de tu aplicación, definir las opciones de instalación, configurar los componentes y generar el paquete de instalación final (como un archivo .exe o .msi). This video demonstrates how to create an installer package using Advanced Installer:![Miniatura de vídeo relacionado](<.gitbook/assets/Miniatura de vídeo relacionado>)
+Para crear un paquete instalador de C++ con Advanced Installer, primero debes instalar la extensión de [Advanced Installer para Visual Studio](https://www.advancedinstaller.com/create-msi-installer-for-cpp-application-visual-studio.html) en Visual Studio. Luego, abre tu proyecto de C++, crea un nuevo "Setup Project" o usa la extensión directamente desde el IDE, y sigue los pasos de la interfaz de Advanced Installer para añadir los archivos de tu aplicación, definir las opciones de instalación, configurar los componentes y generar el paquete de instalación final (como un archivo .exe o .msi). This video demonstrates how to create an installer package using Advanced Installer:![Miniatura de vídeo relacionado](<.gitbook/assets/Miniatura de vídeo relacionado (1)>)
 
 {% embed url="https://youtu.be/YpjdA3g-Lpg" %}
 
@@ -165,7 +165,7 @@ Para crear un paquete instalador de C++ con Advanced Installer, primero debes in
 You can watch this video to learn how to create an installer in Visual Studio 2017:\
 
 
-<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado (1)" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado (1) (1)" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://youtu.be/bDlk8uE5YKM" %}
 
@@ -389,3 +389,33 @@ Su descarga está disponible de forma gratuita en el siguiente enlace:
 &#x20;
 
 De esta forma tenemos opciones para la creación de paquetes instaladores de Windows.
+
+[Creando Instalador para software Visual Basic 6](https://www.youtube.com/watch?v=fln6PDCZQYo)
+
+Para crear un instalador de una aplicación Visual Basic 6, debes usar el **Asistente de Distribución** dentro del propio IDE. Este asistente se encuentra en el menú "Complementos" y te guiará para empaquetar tu proyecto con el _runtime_ de Visual Basic y las DLLs necesarias. This video demonstrates the process of creating a setup for your Visual Basic 6 application:
+
+<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado" alt=""><figcaption></figcaption></figure>
+
+{% embed url="https://youtu.be/fln6PDCZQYo" %}
+
+1. **Accede al asistente:** Abre tu proyecto en Visual Basic 6 y ve a `Complementos` > `Administrador de complementos`. Asegúrate de que el "Distribución de Aplicaciones" esté habilitado.
+2. **Inicia el asistente:** Haz clic en el menú `Complementos` y selecciona la opción del **Asistente de Distribución**.
+3. **Selecciona "Empaquetar":** En el diálogo que aparece, elige la primera opción, "Empaquetar", para generar los archivos de instalación.
+4. **Configura las opciones:** Sigue los pasos del asistente para configurar el nombre del proyecto, la versión y los detalles de la aplicación.
+5. **Genera el paquete:** El asistente creará un archivo ejecutable y otros archivos de soporte que contienen todo lo necesario para instalar tu aplicación en otros ordenadores.&#x20;
+
+Consideraciones adicionales
+
+* **Runtime de Visual Basic 6:** El instalador debe incluir el _runtime_ de Visual Basic 6 para que la aplicación funcione correctamente en otros sistemas.
+* **Controles y DLLs:** Si tu aplicación utiliza controles o librerías de enlace dinámico (DLLs) adicionales, asegúrate de incluirlas en el paquete. El asistente de distribución te ayudará con esto.
+* **Versiones de Visual Basic:** La última versión oficial de Visual Basic 6 fue lanzada en 1998 y su soporte terminó en 2009.
+* **Compatibilidad:** Debido a que es un software antiguo, puede haber problemas de compatibilidad con sistemas operativos modernos, como Windows 10 u 11.
+* **Herramientas adicionales:** Puedes encontrar herramientas de terceros que facilitan la creación de instaladores, como la disponible en nuke.vbcorner.net.&#x20;
+
+## Aplicación de escritorio con php
+
+{% embed url="https://youtu.be/21miTEsnIFQ" %}
+
+## Las 10 herramientas imprescindibles para desarrolladores PHP
+
+{% embed url="https://youtu.be/rnBuovSUDck" %}
