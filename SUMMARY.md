@@ -71,3 +71,5 @@
 * [Bibliografia](bibliografia.md)
 * [Código Java](codigo-java.md)
 * [Jar a Exe con JRE incluido](jar-a-exe-con-jre-incluido.md)
+* [Webservices](webservices.md)
+* [RMI](rmi.md)
