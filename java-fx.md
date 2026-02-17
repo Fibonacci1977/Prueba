@@ -1286,8 +1286,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls DisplayingText
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra texto como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/javafx_window_displaying_text.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -1593,8 +1592,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls DrawingMultipleLin
 
 La ventana de salida del programa anterior se obtendrá como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/drawing_multiple_lines.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -1805,8 +1803,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls RectangleHouse
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra una casa como se muestra en la siguiente captura de pantalla.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/drawing_rectangle_house.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -1978,8 +1975,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls CSSRoundedRectangl
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un rectángulo redondeado como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/rounded_rectangle_css.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -2181,8 +2177,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls OlympicCircle
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un símbolo olímpico como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/olympic_circle.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -2399,8 +2394,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls PlanetOrbit
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra una órbita como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/drawing_orbit.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -2815,8 +2809,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls PolylineExample2
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra una polilínea de 4 vértices como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/drawing_polyline2.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -3037,8 +3030,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls CubicCurveEffect
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra una curva cúbica de Bézier como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/cubiccurve_effect.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -3257,8 +3249,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls QuadCurveEffect
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra una curva cuadrilátera de Bézier como se muestra en la siguiente captura de pantalla.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/quadcurve_effect.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -3550,8 +3541,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls ArcChord
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un arco como se muestra en la siguiente captura de pantalla.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/drawing_chord_arc.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -3743,8 +3733,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls SVGCurveExample
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un triángulo, que se dibuja analizando la ruta SVG como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/svgpath_curve.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -3906,8 +3895,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls StrokeTypeEllipse
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un triángulo con un tipo de trazo centrado como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/stroketype_inside.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -4341,8 +4329,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls StrokePolygonExamp
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un rectángulo con un trazo de color violeta como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/stroke_polygon.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -4511,8 +4498,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls StrokeLineJoinRect
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un triángulo con una línea de unión de trazo biselado como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/strokelinejoin_rectangle.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -4675,8 +4661,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls StrokeMiterLimitPo
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un triángulo con una unión de línea de trazo con un límite de inglete de 4 como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/strokemiterlimit_polygon.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -4848,8 +4833,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls SmoothExample
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra un círculo con un trazo suavizado como se muestra a continuación.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/smooth_output.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -4893,8 +4877,7 @@ La operación de intersección conserva los elementos comunes de dos o más conj
 
 La operación de resta, también conocida como operación de diferencia, resta los elementos de un conjunto de otro conjunto. Si algunos elementos no están presentes en el primer conjunto (el conjunto del que se resta otro conjunto), se ignoran. En JavaFX, un área de una forma 2D se resta del área de otra forma 2D siempre que se intersequen.
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/subtraction_introduction.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -5071,8 +5054,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls EllipseUnionOperat
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra el siguiente resultado:
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/ellipse_union.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -5247,8 +5229,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls EllipseIntersectio
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra el siguiente resultado:
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/ellipse_intersect.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -5425,7 +5406,6 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls EllipseSubtraction
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra el siguiente resultado:
 
-\
-
+<br>
 
 <figure><img src="https://www.tutorialspoint.com/javafx/images/ellipse_subtract.jpg" alt=""><figcaption></figcaption></figure>

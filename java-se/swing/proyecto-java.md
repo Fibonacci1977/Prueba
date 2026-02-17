@@ -16497,9 +16497,8 @@ Si llegaste hasta aquí **!felicidades!** aprendiste mucho sobre **LayoutManager
 
 ## Actividades
 
-Utiliza **GridBagLayout** para posicionar elementos dentro de tu proyecto y trata de situarlos dentro de un JScrollPane.\
-
+Utiliza **GridBagLayout** para posicionar elementos dentro de tu proyecto y trata de situarlos dentro de un JScrollPane.<br>
 
 ####
 
-\
+<br>

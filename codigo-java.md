@@ -64,8 +64,7 @@ Código fuente\
 \
 Referencias:\
 [https://en.wikipedia.org/wiki/Java\_Native\_Access](https://en.wikipedia.org/wiki/Java_Native_Access)\
-[https://github.com/java-native-access/jna](https://github.com/java-native-access/jna)\
-
+[https://github.com/java-native-access/jna](https://github.com/java-native-access/jna)<br>
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/205000/205649/67f2eca76c6e8-EjemploParaWindows-01.png" alt=""><figcaption></figcaption></figure>
 
@@ -86,8 +85,7 @@ Código fuente:\
 \
 Referencias:\
 [https://en.wikipedia.org/wiki/Java\_Native\_Access](https://en.wikipedia.org/wiki/Java_Native_Access)\
-[https://github.com/java-native-access/jna](https://github.com/java-native-access/jna)\
-
+[https://github.com/java-native-access/jna](https://github.com/java-native-access/jna)<br>
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/205000/205649/67f2ad713d90f-EjParaLinux-1.png" alt=""><figcaption></figcaption></figure>
 
@@ -118,8 +116,7 @@ Compatible con el JDK-17\
 Vídeo de demostración de la nueva funcionalidad (v1.26)\
 (entrenamiento del reconocedor de figuras para la extracción de partidas en notación algebraica de figuras)\
 \
-[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FChessPdfBrowser%2Fv1.26.ES.02.extraer.partidas.notacion.algebraica.de.figuras.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FChessPdfBrowser%2Fv1.26.ES.02.extraer.partidas.notacion.algebraica.de.figuras.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)\
-
+[https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FChessPdfBrowser%2Fv1.26.ES.02.extraer.partidas.notacion.algebraica.de.figuras.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2FChessPdfBrowser%2Fv1.26.ES.02.extraer.partidas.notacion.algebraica.de.figuras.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)<br>
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/5a15e68e11207-chessPDF.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -163,8 +160,7 @@ Hay un vídeo de demostración que muestra el funcionamiento:\
 \
 [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fchat%2F20240815.Demo.Chat.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fchat%2F20240815.Demo.Chat.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)
 
-\
-
+<br>
 
 <figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -284,8 +280,7 @@ System.out.println("Promedio: "+formato.format(promedio));
 
 10- [Graficador de Funciones](https://www.lawebdelprogramador.com/codigo/Java/7471-Graficador-de-Funciones.html)
 
-Este programa Grafica en el plano XY cualquier funcion del tipo Y = F(X). Tambien grafica la derivada y la Integral y calcula longitudes de la curva de la función y areas.\
-
+Este programa Grafica en el plano XY cualquier funcion del tipo Y = F(X). Tambien grafica la derivada y la Integral y calcula longitudes de la curva de la función y areas.<br>
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/389000/389452/6599876b7c020-GraficaFunciones.JPG" alt=""><figcaption></figcaption></figure>
 
@@ -321,12 +316,11 @@ Esta manera de proceder puede crear la necesidad de tener alta precisión en los
 
 12-Código de Java - Editor de Morphing
 
-### [Editor de Morphing](https://www.lawebdelprogramador.com/codigo/Java/7217-Editor-de-Morphing.html)  1-Selecciona la imagen máster. 2-Crea la malla de triángulos. 3-Pon los vértices en la posición correcta de cada imagen.  Tras hacer esto, podrás guardar el proyecto y crear un vídeo de Morphing con el resultado.  Vídeo demostración: [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.how.to.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.how.to.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)  Vídeo creado con esta aplicación: [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.mp4%3Forigin%3Dlawebdelprogramador\&origin=web) 
+### [Editor de Morphing](https://www.lawebdelprogramador.com/codigo/Java/7217-Editor-de-Morphing.html)  1-Selecciona la imagen máster. 2-Crea la malla de triángulos. 3-Pon los vértices en la posición correcta de cada imagen.  Tras hacer esto, podrás guardar el proyecto y crear un vídeo de Morphing con el resultado.  Vídeo demostración: [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.how.to.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.how.to.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)  Vídeo creado con esta aplicación: [https://frojasg1.com:8443/resource\_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.mp4%3Forigin%3Dlawebdelprogramador\&origin=web](https://frojasg1.com:8443/resource_counter/resourceCounter?operation=countAndForward\&url=https%3A%2F%2Ffrojasg1.com%2Fdemos%2Faplicaciones%2Fmorphing%2Fsolo.Modelos.mp4%3Forigin%3Dlawebdelprogramador\&origin=web)<br>
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/62536fb706a81-MorphingEditor.v1.0.png" alt=""><figcaption></figcaption></figure>
 
-\
-
+<br>
 
 <figure><img src="https://www.lawebdelprogramador.com/usr/176000/176201/64cab7dad0e0a-MorphingEditor.v1.1.394x600.png" alt=""><figcaption></figcaption></figure>
 

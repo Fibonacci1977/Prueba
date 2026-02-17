@@ -162,8 +162,7 @@ Para crear un paquete instalador de C++ con Advanced Installer, primero debes in
    * Una vez configurado, puedes compilar el proyecto para generar el paquete de instalación final.
    * Este paquete puede ser un archivo ejecutable (.exe) o un paquete MSI (Microsoft Installer).&#x20;
 
-You can watch this video to learn how to create an installer in Visual Studio 2017:\
-
+You can watch this video to learn how to create an installer in Visual Studio 2017:<br>
 
 <figure><img src=".gitbook/assets/Miniatura de vídeo relacionado (1) (1)" alt=""><figcaption></figcaption></figure>
 
@@ -173,8 +172,7 @@ You can watch this video to learn how to create an installer in Visual Studio 20
 
 No te pierdas la siguiente recopilación con las mejores [ herramientas](https://www.solvetic.com/page/recopilaciones/s/recopilacion/herramientas-para-crear-paquetes-instalados-windows) para crear paquetes instalados [ Windows](https://www.solvetic.com/page/recopilaciones/s/recopilacion/herramientas-para-crear-paquetes-instalados-windows). Mira, compara y selecciona el programa que mejor se adapte a tus necesidades.
 
-\
-
+<br>
 
 El mundo del software es bastante amplio y una de sus principales y más interesantes opciones radica en la opción de crear paquetes instaladores para sistemas operativos Windows ya que gracias a ello tenemos la posibilidad de [crear aplicaciones](https://www.solvetic.com/tutoriales/article/4175-crear-programa-portable-windows-10-8-7-sin-instalacion/) propias basadas en requisitos propios.
 
@@ -184,8 +182,7 @@ Cada programa puede estar basado en un conjunto de diferente de necesidades, com
 
 &#x20;
 
-Nullsoft Scriptable Install System (NSIS)\
-
+Nullsoft Scriptable Install System (NSIS)<br>
 
 <figure><img src="https://www.solvetic.com/uploads/monthly_11_2017/ccs-7463-0-87291500-1511183535.png" alt=""><figcaption></figcaption></figure>
 
@@ -248,8 +245,7 @@ Su descarga gratuita está disponible en el siguiente enlace:
 
 &#x20;
 
-Advanced Installer\
-
+Advanced Installer<br>
 
 <figure><img src="https://www.solvetic.com/uploads/monthly_11_2017/ccs-7463-0-35484900-1511183531.png" alt=""><figcaption></figcaption></figure>
 
@@ -308,8 +304,7 @@ Podemos descargar una versión de prueba en el siguiente enlace:
 
 &#x20;
 
-Inno Setup\
-
+Inno Setup<br>
 
 <figure><img src="https://www.solvetic.com/uploads/monthly_11_2017/ccs-7463-0-54511800-1511183527.png" alt=""><figcaption></figcaption></figure>
 
@@ -352,15 +347,13 @@ Se ofrece de forma gratuita en el siguiente enlace:
 
 &#x20;
 
-[ Inno Setup](http://www.jrsoftware.org/isdl.php)\
-
-
-&#x20;
+[ Inno Setup](http://www.jrsoftware.org/isdl.php)<br>
 
 &#x20;
 
-WIX Toolset\
+&#x20;
 
+WIX Toolset<br>
 
 <figure><img src="https://www.solvetic.com/uploads/monthly_11_2017/ccs-7463-0-15743700-1511183524.png" alt=""><figcaption></figcaption></figure>
 
