@@ -258,3 +258,10 @@ Se puede obtener el código fuente del ejemplo desde:
 * java.rmi Properties – [http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/javarmiproperties.html](http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/javarmiproperties.html)
 * Java-RMI-Example – [https://github.com/rm5248/Java-RMI-Example](https://github.com/rm5248/Java-RMI-Example)
 
+{% file src=".gitbook/assets/Tema2_2aParte.pdf" %}
+
+{% file src=".gitbook/assets/Lec03.ps.pdf" %}
+
+{% file src=".gitbook/assets/Lec06.ps.pdf" %}
+
+{% file src=".gitbook/assets/rpcgen1.pdf" %}
