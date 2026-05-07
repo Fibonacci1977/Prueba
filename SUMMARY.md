@@ -59,6 +59,7 @@
     * [Grupo de conexiones en Wildfly con consola](java-se/conexion-base-datos-wildfly/grupo-de-conexiones-en-wildfly-con-consola.md)
   * [Como crear un Connection Pool en WebLogic](java-se/como-crear-un-connection-pool-en-weblogic/README.md)
     * [Conexión directa vs pool](java-se/como-crear-un-connection-pool-en-weblogic/conexion-directa-vs-pool.md)
+  * [Configurar JNDI en WAS 7.0 (Websphere Application Server).](java-se/configurar-jndi-en-was-7.0-websphere-application-server-..md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
