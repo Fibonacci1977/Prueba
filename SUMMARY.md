@@ -36,6 +36,7 @@
   * [Programa Java simple - Hola World Ejemplo](java-se/programa-java-simple-hola-world-ejemplo.md)
   * [Swing](java-se/swing/README.md)
     * [Proyecto Java](java-se/swing/proyecto-java.md)
+  * [Servlet en servidor Tomcat embebido](java-se/servlet-en-servidor-tomcat-embebido.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
