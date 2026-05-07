@@ -67,6 +67,7 @@
     * [Conectar NetBeans con Oracle 11g](java-se/acceso-a-oracle-desde-java/conectar-netbeans-con-oracle-11g.md)
     * [Conectar java utilizando netbeans IDE a Oracle 11g](java-se/acceso-a-oracle-desde-java/conectar-java-utilizando-netbeans-ide-a-oracle-11g.md)
   * [Conectar JAVA con base de datos ACCESS](java-se/conectar-java-con-base-de-datos-access.md)
+  * [Usar Apache Derby como base de datos](java-se/usar-apache-derby-como-base-de-datos.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
