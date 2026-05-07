@@ -69,6 +69,7 @@
   * [Conectar JAVA con base de datos ACCESS](java-se/conectar-java-con-base-de-datos-access.md)
   * [Usar Apache Derby como base de datos](java-se/usar-apache-derby-como-base-de-datos/README.md)
     * [Cómo crear una aplicación Java para gestión de base de datos (Parte 1)](java-se/usar-apache-derby-como-base-de-datos/como-crear-una-aplicacion-java-para-gestion-de-base-de-datos-parte-1.md)
+    * [Guía de uso del gestor de base de datos Derby](java-se/usar-apache-derby-como-base-de-datos/guia-de-uso-del-gestor-de-base-de-datos-derby.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
