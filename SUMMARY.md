@@ -48,6 +48,7 @@
     * [pool de conexiones JNDI, Tomcat, JAVA, context.xml](java-se/pool-de-conexiones-y-tomcat5/pool-de-conexiones-jndi-tomcat-java-context.xml.md)
     * [Pool de Conexiones Tomcat](java-se/pool-de-conexiones-y-tomcat5/pool-de-conexiones-tomcat.md)
     * [Configuración del grupo de conexiones JDBC de Tomcat para producción y desarrollo.](java-se/pool-de-conexiones-y-tomcat5/configuracion-del-grupo-de-conexiones-jdbc-de-tomcat-para-produccion-y-desarrollo..md)
+  * [Crear un Pool de conexiones en GlassFish a una base de datos MySQL Server 8.0 (2020)](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
