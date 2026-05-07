@@ -53,7 +53,7 @@
     * [Cómo configurar un grupo de conexiones JDBC en Glassfish](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/como-configurar-un-grupo-de-conexiones-jdbc-en-glassfish.md)
     * [Tutorial: Crear Data Source y Pool de conexiones en Glass Fish Server](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/tutorial-crear-data-source-y-pool-de-conexiones-en-glass-fish-server.md)
   * [Conexión Base Datos WildFly](java-se/conexion-base-datos-wildfly/README.md)
-    * [Page 1](java-se/conexion-base-datos-wildfly/page-1.md)
+    * [Agregar una fuente de datos a JBoss Wildfly mediante la CLI de JBoss](java-se/conexion-base-datos-wildfly/agregar-una-fuente-de-datos-a-jboss-wildfly-mediante-la-cli-de-jboss.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
