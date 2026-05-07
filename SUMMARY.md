@@ -57,6 +57,7 @@
     * [Instalar y configurar el controlador JDBC de MySQL en JBoss Wildfly.](java-se/conexion-base-datos-wildfly/instalar-y-configurar-el-controlador-jdbc-de-mysql-en-jboss-wildfly..md)
     * [Configuración de la fuente de datos en JBoss Wildfly (con MySQL)](java-se/conexion-base-datos-wildfly/configuracion-de-la-fuente-de-datos-en-jboss-wildfly-con-mysql.md)
     * [Grupo de conexiones en Wildfly con consola](java-se/conexion-base-datos-wildfly/grupo-de-conexiones-en-wildfly-con-consola.md)
+  * [Como crear un Connection Pool en WebLogic](java-se/como-crear-un-connection-pool-en-weblogic.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
