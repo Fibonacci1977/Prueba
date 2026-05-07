@@ -76,6 +76,7 @@
     * [CRUD en Java Creación de la base de datos MySQL](java-se/tutorial-crud-en-java-y-mysql/crud-en-java-creacion-de-la-base-de-datos-mysql.md)
   * [Dominando las Estructuras de Datos en Java: Pilas y Colas](java-se/dominando-las-estructuras-de-datos-en-java-pilas-y-colas/README.md)
     * [Pilas en Java](java-se/dominando-las-estructuras-de-datos-en-java-pilas-y-colas/pilas-en-java.md)
+    * [Colas en Java (Queue): implementación y ejemplos](java-se/dominando-las-estructuras-de-datos-en-java-pilas-y-colas/colas-en-java-queue-implementacion-y-ejemplos.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
