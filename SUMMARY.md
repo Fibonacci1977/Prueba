@@ -54,6 +54,7 @@
     * [Tutorial: Crear Data Source y Pool de conexiones en Glass Fish Server](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/tutorial-crear-data-source-y-pool-de-conexiones-en-glass-fish-server.md)
   * [Conexión Base Datos WildFly](java-se/conexion-base-datos-wildfly/README.md)
     * [Agregar una fuente de datos a JBoss Wildfly mediante la CLI de JBoss](java-se/conexion-base-datos-wildfly/agregar-una-fuente-de-datos-a-jboss-wildfly-mediante-la-cli-de-jboss.md)
+    * [Instalar y configurar el controlador JDBC de MySQL en JBoss Wildfly.](java-se/conexion-base-datos-wildfly/instalar-y-configurar-el-controlador-jdbc-de-mysql-en-jboss-wildfly..md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
