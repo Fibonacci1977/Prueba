@@ -1,10 +1,6 @@
-# Page 1
+# Tutorial CRUD en Java y MySQL
 
 ![](https://codigosdeprogramacion.com/wp-content/uploads/2023/01/crud-java-mysql-nw.jpg)
-
-## Tutorial CRUD en Java y MySQL
-
-26 enero, 2023 por [Administrador](https://codigosdeprogramacion.com/author/admin/)
 
 Durante nuestro curso de desarrollo de aplicaciones en Java y MySQL aprendemos a crear un CRUD, que es el acronimo de **C**reate, **R**ead, **U**pdate and **D**elete (Crear, Leer, Actualizar y Borrar), que se usa para referirse a las transacciones básicas en bases de datos.
 
