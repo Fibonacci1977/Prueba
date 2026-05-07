@@ -51,6 +51,7 @@
   * [Crear un Pool de conexiones en GlassFish a una base de datos MySQL Server 8.0 (2020)](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/README.md)
     * [Como crear un “Pool de Conexiones” en NetBeans 6.0 usando Java Server Faces (JSF) y MySQL](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/como-crear-un-pool-de-conexiones-en-netbeans-6.0-usando-java-server-faces-jsf-y-mysql.md)
     * [Cómo configurar un grupo de conexiones JDBC en Glassfish](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/como-configurar-un-grupo-de-conexiones-jdbc-en-glassfish.md)
+    * [Tutorial: Crear Data Source y Pool de conexiones en Glass Fish Server](java-se/crear-un-pool-de-conexiones-en-glassfish-a-una-base-de-datos-mysql-server-8.0-2020/tutorial-crear-data-source-y-pool-de-conexiones-en-glass-fish-server.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
