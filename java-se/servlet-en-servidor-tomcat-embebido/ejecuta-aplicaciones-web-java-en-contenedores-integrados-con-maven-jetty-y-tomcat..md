@@ -210,3 +210,173 @@ Estas son configuraciones sencillas, pero suficientes para el desarrollo actual.
 ***
 
 Ahí lo tienen… Aplicaciones web Java basadas en [Spring Framework](https://projects.spring.io/spring-framework/) que ejecutan contenedores de servlets ligeros, lo que representa una verdadera alternativa a los servidores JAVA EE y todos los costos que conllevan.
+
+## Podcastpedia
+
+
+
+\[Podcastpedia.org] - el directorio de podcasts de código abierto - **el sitio web fue desactivado.**
+
+### Estructura del proyecto
+
+
+
+[Podcastpedia es un proyecto Maven](http://maven.apache.org/download.cgi) de múltiples módulos estructurado de la siguiente manera:
+
+```
++---podcastpedia
+|   +---common
+|   +---core
+|   +---web-ui
+|   +---api
+|   +---sql
+|   +---admin
+```
+
+* **Podcastpedia** - el proyecto principal
+* **común** : contiene objetos de dominio y tipos utilizados por los demás módulos (núcleo, interfaz web, API y administración).
+* **núcleo** : código para el acceso a la base de datos y la capa de negocio; actualmente admite tanto el módulo _de API_ como _el de interfaz web_ .
+* **Interfaz web** : la aplicación web que realmente está detrás del sitio web [Podcastpedia.org.](http://www.podcastpedia.org/)
+* **API** - API REST que admite las funcionalidades principales de la aplicación (en desarrollo)
+* **sql** - contiene scripts de configuración de bases de datos y sentencias SQL útiles
+* **sql-migration** : contiene scripts delta de la base de datos; utiliza [migraciones de MyBatis.](http://www.mybatis.org/migrations/)
+* **admin** - aplicación web de administración utilizada para insertar/actualizar/eliminar podcasts del directorio; implementada con [Spring MVC.](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)
+
+## Guía de configuración
+
+
+
+_(\~15 minutos, de los cuales 13 minutos se dedicaron a la instalación de MySQL)_
+
+### Instala y ejecuta el sitio web Podcastpedia.org en tu ordenador local.
+
+
+
+#### Requisitos previos
+
+
+
+
+
+* MySQL 5.5, 5.6 o 5.7 (recomendado)
+  * [Descargar MySQL Community Server](http://dev.mysql.com/downloads/mysql/)
+  * [Prepara la base de datos MySQL para el desarrollo de Podcastpedia.](https://github.com/CodepediaOrg/podcastpedia/blob/develop/sql/README.md)
+* JDK 1.7 o JDK 1.8
+  * [Descargas del kit de desarrollo Java SE 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
+  * configurado `JAVA_HOME = jdk-install-dir`en sus variables de entorno
+* Maven 3.\*
+  * [Descargar Apache Maven](http://maven.apache.org/download.cgi)
+    * [Instrucciones de instalación de Maven](https://maven.apache.org/download.cgi#Installation) : básicamente, extraer los archivos y configurar algunas variables de entorno.
+* (Opcional) Se requiere Tomcat 7 o superior para poder ejecutar la aplicación en un servidor Tomcat independiente.
+  * [Descargas de Tomcat 7](http://tomcat.apache.org/download-70.cgi)
+  * [Documentación de Tomcat 7](http://tomcat.apache.org/tomcat-7.0-doc/index.html)
+* (Opcional) IDE (preferiblemente Eclipse 4.3+ o IntelliJ)
+  * \[Descargas del Proyecto Eclipse] ( [http://download.eclipse.org/eclipse/downloads/](http://download.eclipse.org/eclipse/downloads/) )
+  * \[IDEA IntelliJ] ( [https://www.jetbrains.com/idea/download/](https://www.jetbrains.com/idea/download/) )
+
+***
+
+#### [Descargar proyecto](https://github.com/PodcastpediaOrg/podcastpedia)
+
+
+
+```
+git clone https://github.com/PodcastpediaOrg/podcastpedia.git
+```
+
+***
+
+#### Preparar la base de datos MySQL
+
+
+
+**Instale MySQL 5.5 o superior.**
+
+
+
+1. [Descargue MySQL Community Server](http://dev.mysql.com/downloads/mysql/) versión 5.5, 5.6 o 5.7 para la plataforma de su elección.
+2. [Instale el servidor MySQL.](http://dev.mysql.com/doc/refman/5.6/en/installing.html)
+3. [Instalación de MySQL en Microsoft Windows](http://dev.mysql.com/doc/refman/5.6/en/windows-installation.html)
+4. [Instalación de MySQL en Linux](http://dev.mysql.com/doc/refman/5.6/en/linux-installation.html)
+5. **Opcional** : instale [MySQL Workbench](http://www.mysql.com/products/workbench/) para facilitar el desarrollo y la administración de bases de datos.
+6. Configurar el archivo de configuración de MySQL
+7. Para Windows, coloque el archivo de configuración donde está instalado el servidor MySQL; el archivo [my.ini](https://github.com/CodepediaOrg/podcastpedia/blob/develop/_prepare_database_for_development/my.ini) mencionado anteriormente es un ejemplo utilizado en una máquina con Windows 7.
+8. Para Linux necesitas usar archivos .cnf. Puedes ver en esta entrada del blog —Optimización [de la configuración del servidor MySQL—](http://www.codingpedia.org/ama/optimizing-mysql-server-settings/) cómo se configura la base de datos MySQL en producción para [Podcastpedia.org.](http://www.podcastpedia.org/)
+
+**Nota**
+
+1. Utilizarás el usuario administrador configurado durante la instalación para preparar la base de datos de desarrollo.
+2. MySQL se instala por defecto en el puerto 3306; si utiliza otro número de puerto, ajústelo en los archivos de configuración del plugin de Maven.
+
+**Prepare la base de datos de desarrollo con el plugin sql-maven-plugin.**
+
+
+
+Cambie el nombre de usuario y la contraseña en el [archivo pom.xml](https://github.com/CodepediaOrg/podcastpedia/blob/develop/sql/pom.xml) correspondientes a su usuario **root** , configurados en el momento de la instalación:
+
+```
+<configuration>
+  <driver>com.mysql.jdbc.Driver</driver>
+  <url>jdbc:mysql://localhost:3306</url>
+  <username>root</username><!-- use your installation admin user-->
+  <password>root</password><!-- user your installation admin user's password-->
+</configuration>
+```
+
+El primer paso es preparar el usuario "podcast" y la base de datos podcast\_db con el siguiente comando de Maven.
+
+```
+mvn install -Pprepare-db -pl sql
+```
+
+y el segundo paso es importar los datos a la base de datos.
+
+```
+mvn install -Pimport-db -pl sql
+```
+
+La configuración de la base de datos ya debería estar lista. Puede configurarla a través de la consola de MySQL; encontrará más detalles en el [archivo README.md de SQL.](https://github.com/CodepediaOrg/podcastpedia/blob/develop/sql/README.md)
+
+***
+
+#### Construir proyecto
+
+
+
+```
+mvn clean install -DskipTests=true
+```
+
+> Tenga en cuenta que la primera vez el proceso de compilación tarda más debido al [complemento frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin) que se utiliza para generar los archivos .css y .js.
+
+***
+
+#### Ejecutar el sitio web ( módulo _web-ui_ )
+
+
+
+**Jetty** [**(complemento Jetty de Maven)**](http://www.eclipse.org/jetty/documentation/current/jetty-maven-plugin.html)
+
+
+
+Ejecute el siguiente comando en el directorio padre/raíz.
+
+```
+mvn jetty:run -pl web-ui -Denv=dev
+```
+
+Acceda a la página principal en [http://localhost:8080](http://localhost:8080/) - _"usuario/contraseña"_ para iniciar sesión _"_ [_test-dev@podcastpedia.org_](mailto:test-dev@podcastpedia.org) _/test"_
+
+**Tomcat** [**(complemento Maven para Apache Tomcat)**](http://tomcat.apache.org/maven-plugin.html)
+
+
+
+Ejecute el siguiente comando en el directorio padre/raíz.
+
+```
+mvn tomcat7:run -pl web-ui -Denv=dev
+```
+
+Acceda a la página principal en [http://localhost:8080](http://localhost:8080/) o [https://localhost:8443](https://localhost:8443/) para acceso SSL - _"usuario/contraseña"_ para iniciar sesión _"_ [_test-dev@podcastpedia.org_](mailto:test-dev@podcastpedia.org) _/test""_ o
+
+{% file src="../../.gitbook/assets/Tomcat Java DataSource y  @Resource.pdf" %}
