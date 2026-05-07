@@ -38,6 +38,7 @@
     * [Proyecto Java](java-se/swing/proyecto-java.md)
   * [Servlet en servidor Tomcat embebido](java-se/servlet-en-servidor-tomcat-embebido/README.md)
     * [Utilizar Tomcat embebido](java-se/servlet-en-servidor-tomcat-embebido/utilizar-tomcat-embebido.md)
+    * [Ejecuta aplicaciones web Java en contenedores integrados con Maven, Jetty y Tomcat.](java-se/servlet-en-servidor-tomcat-embebido/ejecuta-aplicaciones-web-java-en-contenedores-integrados-con-maven-jetty-y-tomcat..md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
