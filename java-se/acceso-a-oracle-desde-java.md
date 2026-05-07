@@ -59,3 +59,82 @@ class Connector {
 ```
 
 A partir de este sencillo ejemplo ya podéis empezar a trabajar con una base de datos Oracle desde Java.
+
+***
+
+## Conectar Oracle con Java <a href="#firstheading" id="firstheading"></a>
+
+He metido todos los artículos de esta wiki y de [http://chuidiang.org](http://chuidiang.org/) relativos a Java y JDBC en un pdf [Libro JDBC Java](https://chuidiang.org/index.php?title=Libro_JDBC_Java). A través del enlace puedes comprarlo si tienes interés.
+
+JDBC es la interfaz que proporciona Java para la conexión a bases de datos. Son un conjunto de clases e interfaces que permiten a Java ejecutar consultas y ordenes en una bases de datos.
+
+Para poder conectar a Java con ORACLE lo primero que necesitamos es la implementación de JDBC para ORACLE. Esta implementación se encuentra en el archivo Classes12.jar que podemos encontrar en el siguiente directorio del servidor de Oracle.
+
+```
+ 
+%ORACLE_HOME%\jdbc\lib    
+```
+
+ORACLE\_HOME es una variable de entorno que se crea durante la instalación del servidor ORACLE, y que indica donde está instalado fisicamente ORACLE dentro del sistema de archivos, normalmente C:\oracle\ora92
+
+Debemos configurar correctamente nuestra variable CLASSPATH para incluir en ella el archivo Classes12.jar.
+
+\
+Ejemplo usando: JDBC Thin Driver: No requiere de la instalación cliente de ORACLE. Ideal para Applets.
+
+```
+ import java.sql.*;
+ class dbAccess {
+  public static void main (String args []) throws SQLException
+  {    
+
+    DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
+
+    Connection conn = DriverManager.getConnection
+          ("jdbc:oracle:thin:@WIN01:1521:oracleBD", "user", "passw");
+         // driver@machineName:port:SID           ,  userid,  password
+
+    Statement stmt = conn.createStatement();
+    ResultSet rset = 
+              stmt.executeQuery("select BANNER from SYS.V_$VERSION");
+    while (rset.next())
+         System.out.println (rset.getString(1));   // Print col 1
+    stmt.close();
+    
+
+  }
+ } 
+```
+
+El driver JDBC OCI permite realizar llamadas a ORACLE OCI directamente desde Java proporcionando un alto grado de compatibilidad con una versión específica de ORACLE utilizando métodos nativos, pero específicos de la plataforma.
+
+Ejemplo usando: JDBC OCI :API nativa de ORACLE, para aplicaciones J2EE.
+
+```
+ import java.sql.*;
+ class dbAccess 
+ {
+  public static void main (String args []) throws SQLException
+  {
+    try 
+    {
+     Class.forName ("oracle.jdbc.driver.OracleDriver");
+    } 
+    catch (ClassNotFoundException e) 
+    {
+     e.printStackTrace();
+    }
+
+    Connection conn = DriverManager.getConnection
+         ("jdbc:oracle:oci:@ORACLEBD", "user", "passw");
+          //               @TNSNames_Entry,  userid,  password
+
+    Statement stmt = conn.createStatement();
+    ResultSet rset = 
+              stmt.executeQuery("select BANNER from SYS.V_$VERSION");
+    while (rset.next())
+          System.out.println (rset.getString(1));   // Print col 1
+    stmt.close();
+  }
+ }
+```
