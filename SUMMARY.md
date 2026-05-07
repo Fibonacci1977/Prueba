@@ -63,6 +63,7 @@
     * [Configurando la fuente de datos para WebLogic](java-se/como-crear-un-connection-pool-en-weblogic/configurando-la-fuente-de-datos-para-weblogic.md)
   * [Configurar JNDI en WAS 7.0 (Websphere Application Server).](java-se/configurar-jndi-en-was-7.0-websphere-application-server-..md)
     * [Configurando la fuente de datos para WebSphere](java-se/configurar-jndi-en-was-7.0-websphere-application-server-./configurando-la-fuente-de-datos-para-websphere.md)
+  * [Acceso a Oracle desde Java](java-se/acceso-a-oracle-desde-java.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
