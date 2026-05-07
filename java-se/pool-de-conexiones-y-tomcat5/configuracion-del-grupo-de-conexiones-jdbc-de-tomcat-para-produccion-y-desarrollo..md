@@ -139,3 +139,159 @@ Si detecta algún aspecto que podamos mejorar, póngase [en contacto con nosotro
 * [Apache Tomcat 7 – Guía práctica para fuentes de datos JNDI](https://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html)
 * [Uso del grupo de conexiones JDBC de Tomcat 7 en producción](https://www.tomcatexpert.com/blog/2012/01/24/using-tomcat-7-jdbc-connection-pool-production)
 * [Configuración de jdbc-pool para alta concurrencia](https://www.tomcatexpert.com/blog/2010/04/01/configuring-jdbc-pool-high-concurrency)
+
+***
+
+
+
+
+
+## Pool de conexiones <a href="#firstheading" id="firstheading"></a>
+
+* [Página](https://chuidiang.org/index.php?title=Pool_de_conexiones)
+* [Discusión](https://chuidiang.org/index.php?title=Discusi%C3%B3n:Pool_de_conexiones\&action=edit\&redlink=1)
+* [Leer](https://chuidiang.org/index.php?title=Pool_de_conexiones)
+* [Editar](https://chuidiang.org/index.php?title=Pool_de_conexiones\&action=edit)
+* [Ver historial](https://chuidiang.org/index.php?title=Pool_de_conexiones\&action=history)
+
+He metido todos los artículos de esta wiki y de [http://chuidiang.org](http://chuidiang.org/) relativos a Java y JDBC en un pdf [Libro JDBC Java](https://chuidiang.org/index.php?title=Libro_JDBC_Java). A través del enlace puedes comprarlo si tienes interés.
+
+Viene de [Establecer conexión con base de datos desde java](https://chuidiang.org/index.php?title=Establecer_conexi%C3%B3n_con_base_de_datos_desde_java)
+
+### Problema de las conexiones a base de datos
+
+Cuando trabajamos con [_java_](https://chuidiang.org/index.php?title=Categor%C3%ADa:Java) contra una [base de datos](https://chuidiang.org/index.php?title=Categor%C3%ADa:Base_de_datos), es normal encontrar en todos los ejemplos esta forma de [obtener un conexión con la base de datos](https://chuidiang.org/index.php?title=Conectar_java_con_mysql):
+
+```
+import java.sql.Connection;
+import java.sql.DriverManager;
+...
+try
+{
+   Class.forName("com.mysql.jdbc.Driver");
+   Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/agenda", "root", "LA_PASSWORD");
+   ...
+
+```
+
+Para una aplicación sencilla y más o menos controlada, puede ser adecuado, pero en una aplicación más compleja es mejor utilizar otras formas. Veamos los problemas de este tipo de conexión:
+
+* Abrir una conexión, realizar cualquier operación con la base de datos y cerrar la conexión puede ser lento. La apertura de las conexiones puede tardar más que la operación que queremos realizar. Es mejor, por tanto, abrir una o más conexiones y mantenerlas abiertas.
+* Mantener una única conexión abierta compartida puede traernos problemas de concurrencia de hilos. Si varios hilos intentan hacer una operación con la conexión sin sincronizarse entre ellos, puede haber conflictos.
+
+<br>
+
+### Pedirle a alguien las conexiones : javax.sql.DataSource
+
+Para evitar estos problemas, lo mejor es no abrir nosotros directamente la conexión con el _DriverManager_, sino delegar esta tarea en una clase que implemente la interface _javax.sql.DataSource_ y, por supuesto, elegir una implementación adecuada para nuestros propósitos.
+
+En la API de java no hay ninguna implementación concreta de este _DataSource_, así que tendremos que buscarla fuera. Normalmente los .jar con los conectores a base de datos, como _ojdbc14.jar_ para [_Oracle_](https://chuidiang.org/index.php?title=Categor%C3%ADa:Oracle) o _java-mysql-connector-5.0.5-bin.jar_ para [_Mysql_](https://chuidiang.org/index.php?title=Categor%C3%ADa:MySQL) suelen tener varias implementaciones disponibles. Es cuestión de revisar la API de ellos y elegir la adecuada.
+
+<br>
+
+### Pool de conexiones
+
+Una implementación interesante de estos _DataSource_ son los "Pool" de conexiones. Basicamente, estos "pool" nos facilitan conexiones según se las vamos pidiendo, pero las "reaprovechan" de una petición a otra. La idea es la siguiente: Le pedimos al _pool_ una conexión. Este busca una que esté libre y nos la da, apuntando que la tenemos nosotros y que deja de estar libre. Nosotros realizamos nuestra operación (consulta, inserción, borrado, ...) y cerramos la conexión. El _pool_ recibe esta petición de cierre y NO cierra la conexión, sino que la deja abierta y la vuelve a marcar libre para el siguiente que la pida.
+
+Con esta forma de trabajo, el _pool_ mantiene varias conexiones abiertas que va sirviendo y marcando como usadas según se le piden. Cuando desde fuera se cierran esas conexiones, el pool no las cierra y las marca como libres, para poder reaprovecharlas.
+
+### apache commons-bdcp: BasicDataSource
+
+Un _pool_ de estas características es [BasicDataSource](http://commons.apache.org/dbcp/apidocs/org/apache/commons/dbcp/BasicDataSource.html) de [Apache Commons BDCP](http://commons.apache.org/dbcp/). Este _pool_ es además es configurable para que compruebe si la conexión es correcta antes de servirla al que se la pida, para que las verifique cada cierto tiempo, etc.
+
+Vamos a ver un ejemplo con este _pool_. En primer lugar, necesitamos descargarnos los jar de :
+
+* [apache commons-bdcp](http://commons.apache.org/downloads/download_dbcp.cgi)
+* [apache commons-pool](http://commons.apache.org/downloads/download_pool.cgi)
+* [apache commons-collections](http://commons.apache.org/downloads/download_collections.cgi)
+
+o bien, si trabajamos con [maven](https://chuidiang.org/index.php?title=Categor%C3%ADa:Maven), nos bastará con añadir la depedencia en el pom.xml y maven se encargará de "tirar del hilo" y bajarse el resto de los jar.
+
+```
+   ...
+   <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifacId>commons-dbcp</artifactId>
+      <version>1.2.2</version>
+      <scope>compile</scope>
+   </dependency>
+   ...
+```
+
+<br>
+
+#### Uso por defecto de BasicDataSource
+
+El código java es también sencillo. Debemos, en primer lugar, crear el _pool_, que es lo que deberemos pasar al resto del código, como un _DataSource_.
+
+```
+import javax.sql.DataSource; // Este es propio de java
+import org.apache.commons.dbcp.BasicDataSource;  // Este es específico de Apache
+...
+BasicDataSource basicDataSource = new BasicDataSource();
+// Ejemplo con base de datos MySQL
+basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+basicDataSource.setUrl("jdbc:mysql://localhost:3306/nombre_bd");
+basicDataSource.setUsername("usuario");
+basicDataSource.setPassword("password");
+
+// Pasamos el DataSource a las clases que lo necesiten.
+claseQueHaceLasConsultas.setDataSource(basicDataSource);
+```
+
+La clase que haga las consultas debería tener un método setDataSource(DataSource), para recibir este _pool_ de conexiones. DataSource es una interface propia de java, por lo que no estamos metiendo en esa clase ninguna depedencia de Apache commons. Un código simple para esa clase podría ser este
+
+```
+import javax.sql.DataSource;
+
+public class ClaseQueHaceLasConsultas() {
+
+   /** El DataSource */
+   private DataSource dataSource=null;
+
+   /** Recibe y guarda el DataSource */
+   public void setDataSource (DataSource dataSource) {
+      this.dataSource = dataSource;
+   }
+
+   /** Pide la Connection al DataSource, hace la consulta y
+     * cierra la conexión */
+   public void hazConsulta () {
+      
+      Connection conexion = null;
+      try {
+         conexion = dataSource.getConnection();
+         // realización de la consulta
+      } catch (Exception e) {
+         // tratamiento de error
+      } finally {
+         if (null != conexion)
+            conexion.close();
+      }
+   }
+}
+```
+
+Es importante acordarse de cerrar la conexión después de haberla usado porque si no, el _pool_ pensará que todavía la necesitamos y la mantendrá reservada todo el tiempo. Por ello, es buena costumbre poner el _close()_ en el _finally_ del _try-catch_, de forma que se cierre siempre, vaya bien o mal la consulta.
+
+<br>
+
+#### Configuración adicional
+
+En la [API de _BasicDataSource_](http://commons.apache.org/dbcp/apidocs/org/apache/commons/dbcp/BasicDataSource.html) vemos que hay infinidad de métodos que nos permiten configurar el comportamiento del _BasicDataSource_. Algunas de ellas son las siguientes:
+
+Número de conexiones reales
+
+* _setMaxActive()_ : Número máximo de conexiones que se pueden abrir simultáneamente.
+* _setMinIdle()_ : Número mínimo de conexiones inactivas que queremos que haya. Si el número de conexiones baja de este número, se abriran más.
+* _setMaxIdle()_ : Número máximo de conexiones inactivas que queremos que haya. Si hay más, se irán cerrando.
+* _setInitialSize()_ : Número de conexiones que se quiere que se abran en cuanto el _pool_ comienza a trabajar (se llama por primera vez a _getConnection(), setLogwriter(), setLoginTimeout(), getLoginTimeout() o getLogWriter()_. Debe llamarse a _setInitialSize()_ antes de llamar a cualquiera de estos métodos y después no puede cambiarse el valor.
+
+Verificación automática de la conexión
+
+El _pool_ puede verificar que la conexión funciona correctamente cuando se la pasa a alguien, cuando se la devuelven y mientras está inactiva, de forma que intentará la reconexión en caso de fallo. Algunos de los métodos implicados son:
+
+* _setValidationQuery()_ : SQL a usar con la validación. En MySQL suele ser SELECT 1, en Oracle SELECT 1 FROM DUAL.
+* _setTestOnBorrow()_ : Indica si se debe testear la conexión antes de pasársela a alguien.
+* _setTestOnReturn()_ : Indica si se debe testear la conexión cuando ese alguien la libera.
+* _setTextWhileIdle()_ : Indica si se debe testear la conexión mientras está inactiva. El tiempo entre tests se puede fijar con _setTimeBetweenEvictionRunsMillis()_
