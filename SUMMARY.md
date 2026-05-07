@@ -55,6 +55,7 @@
   * [Conexión Base Datos WildFly](java-se/conexion-base-datos-wildfly/README.md)
     * [Agregar una fuente de datos a JBoss Wildfly mediante la CLI de JBoss](java-se/conexion-base-datos-wildfly/agregar-una-fuente-de-datos-a-jboss-wildfly-mediante-la-cli-de-jboss.md)
     * [Instalar y configurar el controlador JDBC de MySQL en JBoss Wildfly.](java-se/conexion-base-datos-wildfly/instalar-y-configurar-el-controlador-jdbc-de-mysql-en-jboss-wildfly..md)
+    * [Configuración de la fuente de datos en JBoss Wildfly (con MySQL)](java-se/conexion-base-datos-wildfly/configuracion-de-la-fuente-de-datos-en-jboss-wildfly-con-mysql.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
