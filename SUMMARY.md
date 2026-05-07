@@ -70,6 +70,7 @@
   * [Usar Apache Derby como base de datos](java-se/usar-apache-derby-como-base-de-datos/README.md)
     * [Cómo crear una aplicación Java para gestión de base de datos (Parte 1)](java-se/usar-apache-derby-como-base-de-datos/como-crear-una-aplicacion-java-para-gestion-de-base-de-datos-parte-1.md)
     * [Guía de uso del gestor de base de datos Derby](java-se/usar-apache-derby-como-base-de-datos/guia-de-uso-del-gestor-de-base-de-datos-derby.md)
+  * [Acceso nativo a  servidor MySQL Server y MariaDB con Java y JDBC](java-se/acceso-nativo-a-servidor-mysql-server-y-mariadb-con-java-y-jdbc.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
