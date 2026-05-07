@@ -1,5 +1,7 @@
 # Crear un Pool de conexiones en GlassFish a una base de datos MySQL Server 8.0 (2020)
 
+{% embed url="https://youtu.be/E3lnLnib_GU?si=IVIr4NhCtrgeli9N" %}
+
 Glassfish tiene una manera peculiar de tratar los recursos JDBC: Tiene un pool de conexiones, y después un JDBC Resources. Supongo que es porque un pool de conexiones puede tener varios JDBC Resource. Los demás Servidores de Aplicaciones que he visto usan unicamente un JDBC Resource, y en ese mismo se configura la configuración del pool.
 
 En este post aprenderemos a crear un Pool de Conexion + JDBC Resource en GlassFish Server. Primero lo haremos directamente desde el mismo servidor GlassFish y después desde la misma IDE de  NetBeans.
