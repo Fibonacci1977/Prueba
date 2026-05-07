@@ -139,7 +139,7 @@ Convertir un archivo JAR a EXE facilita el acceso de los usuarios de Windows a t
 
 {% embed url="https://youtu.be/YpjdA3g-Lpg" %}
 
-Para crear un paquete instalador de C++ con Advanced Installer, primero debes instalar la extensión de [Advanced Installer para Visual Studio](https://www.advancedinstaller.com/create-msi-installer-for-cpp-application-visual-studio.html) en Visual Studio. Luego, abre tu proyecto de C++, crea un nuevo "Setup Project" o usa la extensión directamente desde el IDE, y sigue los pasos de la interfaz de Advanced Installer para añadir los archivos de tu aplicación, definir las opciones de instalación, configurar los componentes y generar el paquete de instalación final (como un archivo .exe o .msi). This video demonstrates how to create an installer package using Advanced Installer:![Miniatura de vídeo relacionado](<.gitbook/assets/Miniatura de vídeo relacionado (1)>)
+Para crear un paquete instalador de C++ con Advanced Installer, primero debes instalar la extensión de [Advanced Installer para Visual Studio](https://www.advancedinstaller.com/create-msi-installer-for-cpp-application-visual-studio.html) en Visual Studio. Luego, abre tu proyecto de C++, crea un nuevo "Setup Project" o usa la extensión directamente desde el IDE, y sigue los pasos de la interfaz de Advanced Installer para añadir los archivos de tu aplicación, definir las opciones de instalación, configurar los componentes y generar el paquete de instalación final (como un archivo .exe o .msi). This video demonstrates how to create an installer package using Advanced Installer:![Miniatura de vídeo relacionado](<.gitbook/assets/Miniatura de vídeo relacionado (1) (1)>)
 
 {% embed url="https://youtu.be/YpjdA3g-Lpg" %}
 
@@ -164,7 +164,7 @@ Para crear un paquete instalador de C++ con Advanced Installer, primero debes in
 
 You can watch this video to learn how to create an installer in Visual Studio 2017:<br>
 
-<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado (1) (1)" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado (1) (1) (1)" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://youtu.be/bDlk8uE5YKM" %}
 
@@ -387,7 +387,7 @@ De esta forma tenemos opciones para la creación de paquetes instaladores de Win
 
 Para crear un instalador de una aplicación Visual Basic 6, debes usar el **Asistente de Distribución** dentro del propio IDE. Este asistente se encuentra en el menú "Complementos" y te guiará para empaquetar tu proyecto con el _runtime_ de Visual Basic y las DLLs necesarias. This video demonstrates the process of creating a setup for your Visual Basic 6 application:
 
-<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Miniatura de vídeo relacionado (1)" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://youtu.be/fln6PDCZQYo" %}
 

@@ -144,3 +144,14 @@ Configura servlets, filtros, oyentes, manejo de errores y más. -->
 Pulsa Intro o haz clic para ver la imagen a tamaño completo.
 
 <figure><img src="https://miro.medium.com/v2/resize:fit:700/1*y1s7-mdxiNhyRamtwzNH9w.png" alt="" height="305" width="700"><figcaption></figcaption></figure>
+
+***
+
+Utilizar Tomcat embebido con JSP permite ejecutar aplicaciones web Java sin un servidor externo, empaquetando todo en un JAR ejecutable. Se logra añadiendo dependencias de Tomcat (especialmente `jasper` para JSP) a Maven/Gradle, configurando el motor Jasper, y definiendo el contexto de la aplicación, preferiblemente usando `META-INF/resources` para archivos estáticos/JSP. **Puntos Clave para Tomcat Embebido + JSP:**
+
+* **Motor JSP:** Tomcat utiliza **Jasper** para convertir archivos JSP en servlets Java, el cual debe configurarse en el código de inicio.
+* **Empaquetado:** Aunque el estándar es WAR, el JSP funciona en JAR si se colocan en `META-INF/resources`.
+* **Dependencias Necesarias:** Para habilitar JSP en un Tomcat embebido, se deben incluir en el `pom.xml` (Maven) las bibliotecas de Tomcat, `tomcat-embed-core` y `tomcat-embed-jasper`.
+* **Código de Configuración:** Se requiere crear una instancia de `Tomcat()`, configurar el directorio base, y añadir el contexto web con `addContext`.&#x20;
+
+Este video muestra cómo configurar Apache Tomcat en NetBeans para crear y ejecutar un JSP:Si necesitas un ejemplo de código específico para **iniciar el servidor** o para configurar las **dependencias de Maven**, dímelo y te prepararé un ejemplo completo. \[[1](https://tomcat.apache.org/tomcat-10.1-doc/jasper-howto.html)]

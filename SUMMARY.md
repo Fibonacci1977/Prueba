@@ -40,6 +40,7 @@
     * [Utilizar Tomcat embebido](java-se/servlet-en-servidor-tomcat-embebido/utilizar-tomcat-embebido.md)
     * [Ejecuta aplicaciones web Java en contenedores integrados con Maven, Jetty y Tomcat.](java-se/servlet-en-servidor-tomcat-embebido/ejecuta-aplicaciones-web-java-en-contenedores-integrados-con-maven-jetty-y-tomcat..md)
     * [HttpServlet con servidor Tomcat integrado en Java](java-se/servlet-en-servidor-tomcat-embebido/httpservlet-con-servidor-tomcat-integrado-en-java.md)
+    * [Tomcat integrado](java-se/servlet-en-servidor-tomcat-embebido/tomcat-integrado.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
