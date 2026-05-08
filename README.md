@@ -6,7 +6,7 @@
 
 Leer
 
-![Tutorial completo de Java](https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230305131111/Java-programming.png)
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230305131111/Java-programming.png" alt="Tutorial completo de Java" height="470" width="1000">
 
 Este tutorial de Java está diseñado tanto para principiantes como para profesionales experimentados. Ya sea que esté buscando aprender los conceptos básicos de Java o sus conceptos avanzados, este tutorial gratuito de Java es el recurso perfecto para usted.
 

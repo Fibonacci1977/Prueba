@@ -26,13 +26,13 @@ Jersey es un framework que simplifica todavía más el uso de JAX-RS extendiénd
 
 El primer paso será crear una aplicación llamada **ApiRest**. En eclipse vamos al menú **File > New > Dynamic Web Project**. Luego sólo escribimos el nombre del proyecto como en la imagen y le damos a finalizar.
 
-![](https://www.webtutoriales.com/_astro/step1.vJ2P6IoQ_Z1nRj4P.webp)
+<img src="https://www.webtutoriales.com/_astro/step1.vJ2P6IoQ_Z1nRj4P.webp" alt="" height="716" width="589">
 
 ## Cambiar el tipo de proyecto a Maven <a href="#cambiar-el-tipo-de-proyecto-a-maven" id="cambiar-el-tipo-de-proyecto-a-maven"></a>
 
 MAVEN sirve para gestionar las dependencias del proyecto. Principalmente servirá para registrar las librerías externas que usa el proyecto con sus respectivas versiones. Para que eclipse trate el proyecto como un proyecto Maven, lo convertiremos. Para nos dirigimos a la ventana de Project Explorer (si no lo tenemos abierto en el menú Window > Show View > Project explorer), en la carpeta principal del proyecto le damos **click al botón derecho > Configure > Convert to Maven Project**. Lo dejamos tal cual está en la imagen y pulsamos finish.
 
-![](https://www.webtutoriales.com/_astro/step2.XO3f7BNZ_1OXnUr.webp)
+<img src="https://www.webtutoriales.com/_astro/step2.XO3f7BNZ_1OXnUr.webp" alt="" height="434" width="511">
 
 Automáticamente se crea un archivo pom.xml en la raíz del proyecto que es donde manejaremos las librerías. Para este ejemplo usaremos las librerías asm.jar, jersey-bundle.jar, json.jar y jersey-server.jar. Para editar pom.xml podemos clickar encima de el con el botón derecho > Open with > Text editor y pegamos este XML:
 
@@ -77,7 +77,7 @@ Si todo ha ido bien deberías ver un mensaje de éxito parecido a este:
 
 Si ya tenemos instalado y configurado el servidor Tomcat para eclipse, podemos ir a la pestaña de Servers y en la instancia de **Tomcat Server at localhost** pulsamos el botón derecho y seleccionamos “Add and Remove…”
 
-![](https://www.webtutoriales.com/_astro/step3.CAp42KHL_Z2wowDu.webp)
+<img src="https://www.webtutoriales.com/_astro/step3.CAp42KHL_Z2wowDu.webp" alt="" height="537" width="511">
 
 En la ventana que se abre movemos nuestra aplicación ApiRest de Available a Configured y le damos a Finish.
 

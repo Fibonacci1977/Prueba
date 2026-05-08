@@ -46,23 +46,23 @@ Tabla: **Personas**
 
 Luego de iniciar sesión en el servidor MySQL, crea la base de datos:
 
-![CRUD en Java Creación de la base de datos](https://1.bp.blogspot.com/-szz_5mhPtpI/XBlQF3sBqZI/AAAAAAAACkY/w31WT9YsxiE1cXRTFO5Rhkt4r2LAFk-EwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B1.jpg)
+<img src="https://1.bp.blogspot.com/-szz_5mhPtpI/XBlQF3sBqZI/AAAAAAAACkY/w31WT9YsxiE1cXRTFO5Rhkt4r2LAFk-EwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B1.jpg" alt="CRUD en Java Creación de la base de datos" height="194" width="1065">
 
 Ver másprogramaciónProgramaciónAprendizaje automático e inteligencia artificial
 
 Indica al **servidor MySQ**L que trabajarás sobre la base de datos “Registro”.
 
-![CRUD en Java Creación de la base de datos](https://4.bp.blogspot.com/-b9BFCsKQOA0/XBlQX3K50BI/AAAAAAAACkg/UlZnguoHMbk_amkbMJu6l4N-G6raA5uvgCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg)
+<img src="https://4.bp.blogspot.com/-b9BFCsKQOA0/XBlQX3K50BI/AAAAAAAACkg/UlZnguoHMbk_amkbMJu6l4N-G6raA5uvgCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg" alt="CRUD en Java Creación de la base de datos" height="47" width="1066">
 
 Ya con la base de datos seleccionada procedemos a crear la tabla “Personas”, con los datos descritos en la tabla anterior.
 
-![CRUD en Java Creación de la base de datos](https://3.bp.blogspot.com/-UxH1_8oWa9c/XBlQwxVVCHI/AAAAAAAACko/ivxeahtAh8gaLYlWKxY6uHlhXrYDo0QRQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg)
+<img src="https://3.bp.blogspot.com/-UxH1_8oWa9c/XBlQwxVVCHI/AAAAAAAACko/ivxeahtAh8gaLYlWKxY6uHlhXrYDo0QRQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg" alt="CRUD en Java Creación de la base de datos" height="205" width="1208">
 
 **Insertando datos de ejemplo**
 
 A continuación ingresamos desde la consola varios registros de ejemplo:
 
-![CRUD en Java Creación de la base de datos](https://2.bp.blogspot.com/-HT1h3kFxTNs/XBlRPP418rI/AAAAAAAACkw/YTpuEuhFiSsP8p1EibMb1MC5FzD0-t19gCLcBGAs/s1600/CRUD%2Ben%2BJava%2B4.jpg)
+<img src="https://2.bp.blogspot.com/-HT1h3kFxTNs/XBlRPP418rI/AAAAAAAACkw/YTpuEuhFiSsP8p1EibMb1MC5FzD0-t19gCLcBGAs/s1600/CRUD%2Ben%2BJava%2B4.jpg" alt="CRUD en Java Creación de la base de datos" height="52" width="1203">
 
 De esta manera logramos crear la base de datos con la tabla necesaria para guardar los registros necesarios, ahora procederemos a la configuración del proyecto.
 
@@ -76,7 +76,7 @@ Luego de [construir la base de datos](https://byspel.com/crud-en-java-creacion-d
 
 Crea un nuevo proyecto con el nombre: **CRUD\_Registro,** con la siguiente estructura:
 
-![CRUD en Java Configuración del proyecto](https://2.bp.blogspot.com/-rc5z1zs1HkM/XBlWIkE2KII/AAAAAAAACk8/TwTv9sNglPAg5GWjZ4LA4LWOMlcNEF4UQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B1.jpg)
+<img src="https://2.bp.blogspot.com/-rc5z1zs1HkM/XBlWIkE2KII/AAAAAAAACk8/TwTv9sNglPAg5GWjZ4LA4LWOMlcNEF4UQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B1.jpg" alt="CRUD en Java Configuración del proyecto" height="335" width="1083">
 
 **Librerías necesarias y clase para conectar**
 
@@ -98,13 +98,13 @@ Puedes proceder a la descarga de la librería desde el siguiente link:
 
 **1.** Crea una carpeta dentro de la carpeta de tu proyecto “**CRUD\_Registro**”, que está ubicada en **NetBeansProyects**, asigna como nombre “**Librerías**”.
 
-![CRUD en Java Configuración del proyecto](https://4.bp.blogspot.com/-EX5QRqophFU/XBlWnXGt7xI/AAAAAAAAClE/BFI3nIZdBqEttvxRjXx7YNXX2-O9ZO8JwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg)
+<img src="https://4.bp.blogspot.com/-EX5QRqophFU/XBlWnXGt7xI/AAAAAAAAClE/BFI3nIZdBqEttvxRjXx7YNXX2-O9ZO8JwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg" alt="CRUD en Java Configuración del proyecto" height="206" width="1204">
 
 Ver másprogramaciónProgramaciónAprendizaje automático e inteligencia artificial
 
 **2.** Pega dentro de la carpeta “Librerías”, el archivo: **mysql-connector-java-5.1.18-bin.jar**
 
-![CRUD en Java Configuración del proyecto](https://3.bp.blogspot.com/-OT2Uoaq2vF4/XBlW82Uk-bI/AAAAAAAAClM/4CglwjSxegUj2ktem4i5d5pYUo-47h6UQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg)
+<img src="https://3.bp.blogspot.com/-OT2Uoaq2vF4/XBlW82Uk-bI/AAAAAAAAClM/4CglwjSxegUj2ktem4i5d5pYUo-47h6UQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg" alt="CRUD en Java Configuración del proyecto" height="120" width="1207">
 
 > **Nota:** Es importante ubicar las librerías que se utilizarán en una carpeta dentro del mismo proyecto por facilidad, debido a que si deseamos mover el proyecto para trabajarlo desde otro computador. Ya tendremos todas las librerías configuradas, de lo contrario se deberán importar nuevamente.
 
@@ -114,15 +114,15 @@ Importar una librería es asignarla a nuestro proyecto, con el fin de poder util
 
 **1. Clic derecho** sobre el **paquete bibliotecas** en el “Explorador de proyectos de NetBeans”.
 
-![CRUD en Java Configuración del proyecto](https://1.bp.blogspot.com/-NuC8B-U9eds/XBlXTnhBvuI/AAAAAAAAClU/oZk-1-TirMYLEmV03g9ZSE-sBSGOhkSoACLcBGAs/s1600/CRUD%2Ben%2BJava%2B4.jpg)
+<img src="https://1.bp.blogspot.com/-NuC8B-U9eds/XBlXTnhBvuI/AAAAAAAAClU/oZk-1-TirMYLEmV03g9ZSE-sBSGOhkSoACLcBGAs/s1600/CRUD%2Ben%2BJava%2B4.jpg" alt="CRUD en Java Configuración del proyecto" height="256" width="1209">
 
 Selecciona “**Agregar archivo JAR/Carpeta..**.”, a continuación selecciona en el cuadro de dialogo la librería descargada y ubicada en la carpeta “Librerías” de tu proyecto.
 
-![CRUD en Java Configuración del proyecto](https://1.bp.blogspot.com/-TKKwLfek1-8/XBlXjg5fY_I/AAAAAAAAClg/N4d-XBrXgCcEqJK04VlnQGdk2GImWQV6wCLcBGAs/s1600/CRUD%2Ben%2BJava%2B5.jpg)
+<img src="https://1.bp.blogspot.com/-TKKwLfek1-8/XBlXjg5fY_I/AAAAAAAAClg/N4d-XBrXgCcEqJK04VlnQGdk2GImWQV6wCLcBGAs/s1600/CRUD%2Ben%2BJava%2B5.jpg" alt="CRUD en Java Configuración del proyecto" height="237" width="1207">
 
 Al seleccionar la librería verás cómo se carga en el explorador de proyectos de NetBeans, indicando que está lista para ser usada.
 
-![CRUD en Java Configuración del proyecto](https://2.bp.blogspot.com/-fvay_3rQRHg/XBlX2X5LruI/AAAAAAAAClo/95pLHgxcNUUy8ddJ_feb94oftp_42Sv_gCLcBGAs/s1600/CRUD%2Ben%2BJava%2B6.jpg)
+<img src="https://2.bp.blogspot.com/-fvay_3rQRHg/XBlX2X5LruI/AAAAAAAAClo/95pLHgxcNUUy8ddJ_feb94oftp_42Sv_gCLcBGAs/s1600/CRUD%2Ben%2BJava%2B6.jpg" alt="CRUD en Java Configuración del proyecto" height="188" width="1211">
 
 **Creando la clase conexión**
 
@@ -144,7 +144,7 @@ Realiza las siguientes instrucciones paso a paso para construir la interfaz del 
 
 **1.** Crear un formulario de tipo (**JFrame**) en el paquete “**Formularios**”, asigna el nombre “_Principal_”.
 
-![CRUD en Java Crear la interfaz del Software](https://4.bp.blogspot.com/-s__Gkn2Ll8Q/XBpjs8pyCTI/AAAAAAAACmI/VSQWRZZp4dIP_Sok0yU-_UId4d-sv7lzgCLcBGAs/s1600/CRUD%2Ben%2BJava%2B1.jpg)
+<img src="https://4.bp.blogspot.com/-s__Gkn2Ll8Q/XBpjs8pyCTI/AAAAAAAACmI/VSQWRZZp4dIP_Sok0yU-_UId4d-sv7lzgCLcBGAs/s1600/CRUD%2Ben%2BJava%2B1.jpg" alt="CRUD en Java Crear la interfaz del Software" height="333" width="1209">
 
 > [**🌟 ¡Visita Nuestra Tienda para Programadores! 🌟**](https://shop.byspel.com/)
 >
@@ -152,7 +152,7 @@ Realiza las siguientes instrucciones paso a paso para construir la interfaz del 
 
 **2.** Diseñe el **JFrame** “**Principal**” con la siguiente estructura:
 
-![CRUD en Java Crear la interfaz del Software](https://3.bp.blogspot.com/-dnAUhwEQe5g/XBpkSPVnnnI/AAAAAAAACmQ/M1tqc1wp08wxesKzqe8fJYHEzwbOSu2jwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg)
+<img src="https://3.bp.blogspot.com/-dnAUhwEQe5g/XBpkSPVnnnI/AAAAAAAACmQ/M1tqc1wp08wxesKzqe8fJYHEzwbOSu2jwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg" alt="CRUD en Java Crear la interfaz del Software" height="497" width="1070">
 
 **Especificación de los controles del formulario:**
 
@@ -185,7 +185,7 @@ Ver másProgramaciónprogramaciónAprendizaje automático e inteligencia artific
 ¿_Qué instrucciones debemos colocar_?, pues bien. Al inicial el Software debemos mostrar el formulario “Principal”, por lo tanto codificamos:\
 ![CRUD en Java Crear la interfaz del Software](https://1.bp.blogspot.com/--yXh_lLZBkM/XBplO8iDSuI/AAAAAAAACmc/1LtVfWCuD1oUgEsgfU1HIVHkTSPGtEq9wCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg)
 
-![CRUD en Java Crear la interfaz del Software](https://1.bp.blogspot.com/-OZJ8a0_qi2s/XBplicHzd4I/AAAAAAAACmk/hFApjh58V3UKXb_Zeu2sCkh-W2d4gQ6kACLcBGAs/s1600/CRUD%2Ben%2BJava%2B4.jpg)
+<img src="https://1.bp.blogspot.com/-OZJ8a0_qi2s/XBplicHzd4I/AAAAAAAACmk/hFApjh58V3UKXb_Zeu2sCkh-W2d4gQ6kACLcBGAs/s1600/CRUD%2Ben%2BJava%2B4.jpg" alt="CRUD en Java Crear la interfaz del Software" height="424" width="984">
 
 Finalmente si al ejecutar el proyecto se muestra el formulario “_Principal_”, [sigue con la siguiente parte de este tutorial para la creación de un **CRUD en Java**](https://byspel.com/crud-en-java-insertar-registros-en-mysql-tutorial-4/).
 
@@ -215,11 +215,11 @@ En esta parte de la creación del [**CRUD** ](https://www.youtube.com/c/byspel)e
 
 Ver másProgramaciónprogramaciónAprendizaje automático e inteligencia artificial
 
-![CRUD en Java insertar registros](https://3.bp.blogspot.com/-Hqq8nLqmuu8/XBvHehLu_7I/AAAAAAAACm4/_5WZtFuhVo0P6Ch4esqYWwObkQFQsrtbQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg)
+<img src="https://3.bp.blogspot.com/-Hqq8nLqmuu8/XBvHehLu_7I/AAAAAAAACm4/_5WZtFuhVo0P6Ch4esqYWwObkQFQsrtbQCLcBGAs/s1600/CRUD%2Ben%2BJava%2B2.jpg" alt="CRUD en Java insertar registros" height="461" width="783">
 
 **4.** Si recibiste el mensaje que indica que los datos se guardaron con éxito verifica en la base de datos que el registro se halla creado correctamente en los campos deseados:
 
-![CRUD en Java insertar registros](https://4.bp.blogspot.com/-wnOFG5QVp8Y/XBvH2mdAlXI/AAAAAAAACnA/fofGzCvJur4K72a9uc9GOtdN3ekBygkrwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg)
+<img src="https://4.bp.blogspot.com/-wnOFG5QVp8Y/XBvH2mdAlXI/AAAAAAAACnA/fofGzCvJur4K72a9uc9GOtdN3ekBygkrwCLcBGAs/s1600/CRUD%2Ben%2BJava%2B3.jpg" alt="CRUD en Java insertar registros" height="152" width="1147">
 
 Ver másProgramaciónAprendizaje automático e inteligencia artificialprogramación
 

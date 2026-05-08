@@ -300,7 +300,7 @@ Finalmente, solo serán necesario deployar en el servidor de aplicaciones nuestr
 
 Podemos probar el servicio con SOAP-UI para ver el servicio y las dos operaciones:
 
-![Web Services con Java](http://www.oscarblancarteblog.com/wp-content/uploads/2016/12/soapui.png)
+<img src="http://www.oscarblancarteblog.com/wp-content/uploads/2016/12/soapui.png" alt="Web Services con Java" height="113" width="228">
 
 &#x20;
 
@@ -313,7 +313,7 @@ Observemos que tenemos dos operaciones:
 
 Primeo ejecutaremos el método **createEmployee**:
 
-![Web Services con Java](http://www.oscarblancarteblog.com/wp-content/uploads/2016/12/createEmployee.png)
+<img src="http://www.oscarblancarteblog.com/wp-content/uploads/2016/12/createEmployee.png" alt="Web Services con Java" height="271" width="872">
 
 Con este paso, ya habremos creado un nuevo Empleado llamado Oscar Blancarte.
 
@@ -321,7 +321,7 @@ Con este paso, ya habremos creado un nuevo Empleado llamado Oscar Blancarte.
 
 El segundo paso, será consultar los empleados con el método **getEmployeeList**:
 
-![Web Services con Java](http://www.oscarblancarteblog.com/wp-content/uploads/2016/12/getEmployeeList.png)
+<img src="http://www.oscarblancarteblog.com/wp-content/uploads/2016/12/getEmployeeList.png" alt="Web Services con Java" height="205" width="721">
 
 &#x20;
 
@@ -755,7 +755,7 @@ Listo con eso tenemos nuestro servicio Web Rest con Java y Tomcat funcionando to
 
 Vamos a construir un servicio REST utilizando los estandares de JAX-RS . Para ello lo primero que tenemos que hacer es comenzar a conocer las distintas anotaciones que el estandar define.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 **@GET :**&#x45;sta anotación marca un método y define  una operación GET  .Es similar a cuando realizamos una petición HTTP GET y solo debe usarse en el caso que de queramos leer información .Nunca a la hora de escribir o modificar el estado del recurso al que estemos accediendo.
 
@@ -818,7 +818,7 @@ Persona p = new Persona(parametros.getFirst("nombre"),
 
 En este caso hemos utilizado un servicio REST que se encarga de mostrar las personas que tenemos almacenas en una variable “listaPersonas” que al ser estatica se mantiene en memoria. Por lo tanto definir un método GET es suficiente para acceder a la información. Este método se apoya en la anotación @Produces para generar información en formato JSON.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Una vez hemos invocado la primera vez al servicio  via URL podemos usar un formulario HTML para invocar al metodo /personaa  pasando los parametros por POST y añadiendo nuevas personas a la lista
 

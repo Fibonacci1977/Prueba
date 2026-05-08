@@ -4,11 +4,11 @@
 
 RMI (Remote Method Invocation) es un mecanismo de comunicación entre procesos. Es parte del JDK standard. La idea consiste en ejecutar métodos remotos de un proceso ha otro, independiente si estos se encuentran alojados en diferentes instancias de JVM.
 
-![rmi-2](https://daylersalazar.wordpress.com/wp-content/uploads/2017/01/rmi-2.png?w=484\&h=158)
+<img src="https://daylersalazar.wordpress.com/wp-content/uploads/2017/01/rmi-2.png?w=484&#x26;h=158" alt="rmi-2" height="158" width="484">
 
 En ese artículo vamos ha implementar un ejemplo Cliente Servidor con RMI.
 
-![rmi-1](https://daylersalazar.wordpress.com/wp-content/uploads/2017/01/rmi-11.png?w=490\&h=255)
+<img src="https://daylersalazar.wordpress.com/wp-content/uploads/2017/01/rmi-11.png?w=490&#x26;h=255" alt="rmi-1" height="255" width="490">
 
 ## Requerimientos
 

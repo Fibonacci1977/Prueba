@@ -4184,7 +4184,7 @@ java --module-path %PATH_TO_FX% --add-modules javafx.controls StrokeFillSVGPath
 
 Al ejecutarse, el programa anterior genera una ventana JavaFX que muestra dos círculos, el de la izquierda tiene su relleno predeterminado mientras que el otro es de color amarillo, como se muestra a continuación.
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## JavaFX - Propiedad de trazo
 

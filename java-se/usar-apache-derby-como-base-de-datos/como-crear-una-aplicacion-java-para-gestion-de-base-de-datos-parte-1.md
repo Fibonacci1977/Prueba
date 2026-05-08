@@ -15,7 +15,7 @@ Inicialmente deberás **crear una aplicación Java estándar**, asignándole el 
 
 **File > New Project > Java > Java Application**
 
-![Screen Shot 2017 04 05 at 21.10.46 7bef4](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.10.46_7bef4.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.10.46_7bef4.png" alt="Screen Shot 2017 04 05 at 21.10.46 7bef4" height="167" width="600">
 
 ## Base de datos Java DB
 
@@ -45,11 +45,11 @@ En la siguiente ventana podrás asignar un **nombre a la conexión** con la base
 
 Una vez finalizado este proceso de registro de la base de datos en NetBeans, aparecerá su **conexión en el árbol&#x20;**_**Databases**_, y a patir de este momento será más sencillo realizar diversas operaciones con la base de datos desde el propio entorno de desarrollo NetBeans.
 
-![Screen Shot 2017 04 05 at 20.52.06 ad515](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_20.52.06_ad515.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_20.52.06_ad515.png" alt="Screen Shot 2017 04 05 at 20.52.06 ad515" height="212" width="600">
 
 Comprueba también que en la carpeta donde has creado el proyecto se ha creado una **nueva carpeta correspondiente a la base de datos**.
 
-![Screen Shot 2017 04 05 at 20.35.53 09dc4](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_20.35.53_09dc4.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_20.35.53_09dc4.png" alt="Screen Shot 2017 04 05 at 20.35.53 09dc4" height="209" width="600">
 
 ### Creación de las tablas
 
@@ -59,11 +59,11 @@ Con el fin de mantener organizado el código fuente de la aplicación, conviene 
 
 Vuelve a la pestaña _**Projects**_, y utiliza el menú contextual de la carpeta _**Source Packages**_ para seleccionar la opción _**New > Java Package**_ e indica el nombre para el paquete de fuentes que almacenará los archivos SQL. Un buen nombre puede ser el mismo que se ha utilizado para la aplicación, **seguido de&#x20;**_**.sql**_:
 
-![Screen Shot 2017 04 05 at 21.12.34 8457b](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.12.34_8457b.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.12.34_8457b.png" alt="Screen Shot 2017 04 05 at 21.12.34 8457b" height="312" width="600">
 
 Crea dentro de esta carpeta un archivo SQL desde su menú contextual, usando la opción _**New > Other > (Categories) Other > SQL file**_ o _New > SQL File_ si ya has usado anteriormente esta opción. Asigna un nombre al archivo, por ejemplo, _CreacionTablas_. Una vez abierto el archivo, asegúrate de **seleccionar en su parte superior la conexión con la base de datos** que se ha creado anteriormente, para que la ejecución de las sentencias SQL que se escriban se ejecuten sobre la base de datos deseada.
 
-![Screen Shot 2017 04 05 at 21.14.32 a1fe9](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.14.32_a1fe9.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.14.32_a1fe9.png" alt="Screen Shot 2017 04 05 at 21.14.32 a1fe9" height="102" width="600">
 
 Como este tutorial no es más que un ejemplo de una posible base de datos, se va a crear una **tabla** para almacenar una serie de datos de **personas**. Los datos que se indicarán no tendrán mucho sentido en algunos casos, pero se intenta crear un ejemplo que utilice **diversos tipos de datos**, y de ahí que haya algunos datos añadidos de manera uno tanto forzada. También con el fin de crear un ejemplo con tablas relacionadas, se va a crear una **segunda tabla con las provincias** españolas que se relacionará con la tabla de personas, para indicar en qué provincia reside cada una.
 
@@ -103,7 +103,7 @@ La **relación entre las 2 tablas** se lleva a cabo mediante la clave foránea P
 
 Para **ejecutar el script SQL** anterior, haz clic sobre el **botón&#x20;**_**Run SQL**_ de la barra de herramientas asociada a este archivo.
 
-![Screen Shot 2017 04 05 at 21.16.35 513c8](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.16.35_513c8.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.16.35_513c8.png" alt="Screen Shot 2017 04 05 at 21.16.35 513c8" height="374" width="600">
 
 Como resultado de la ejecución, deberían aparecer, en la pestaña _**Services**_, las tablas que se han creado, y si vas desplegando el contenido de cada una, verás los nombres de las columnas.
 
@@ -135,15 +135,15 @@ Las **clases entidad** que se acaban de comentar, se podrían crear manualmente,
 
 Para ello, usa el menú contextual en el proyecto, o sobre el paquete de fuentes donde se deseen crear las clases entidad, y usa la opción _**New > Entity Classes from Database**_. Tras hacerlo, aparecerá una ventana de diáologo donde se deberá indicar la conexión con la base de datos que se quiere utilizar, y en la parte central aparecerán las tablas que contiene.
 
-![Screen Shot 2017 04 05 at 21.25.59 ee30b](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.25.59_ee30b.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.25.59_ee30b.png" alt="Screen Shot 2017 04 05 at 21.25.59 ee30b" height="416" width="600">
 
 Las **tablas** que se deseen utilizar para crear sus clases entidad correspondientes se deben **añadir a la lista de la derecha**. En este caso se añadirán todas, por lo que puedes usar el **botón&#x20;**_**Add All**_. Comprueba que aparecen las tablas en la parte derecha y usa el **botón&#x20;**_**Next**_ para continuar.
 
 En la siguientes pantallas se pueden concretar algunos detalles sobre las clases entidad que se van a crear, pero puedes dejar las opciones por defecto que aparecen y continuar hasta finalizar este proceso.
 
-![Screen Shot 2017 04 05 at 21.27.38 209e6](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.27.38_209e6.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.27.38_209e6.png" alt="Screen Shot 2017 04 05 at 21.27.38 209e6" height="403" width="600">
 
-![Screen Shot 2017 04 05 at 21.28.52 d4c5b](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.28.52_d4c5b.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.28.52_d4c5b.png" alt="Screen Shot 2017 04 05 at 21.28.52 d4c5b" height="403" width="600">
 
 Como resultado, se debe haber creado en los paquetes de fuentes **una clase Java por cada tabla** de la base de datos, así como el archivo _**persistence.xml**_ dentro del paquete _META-INF_, que contiene información sobre la conexión con la base de datos como la ruta donde se encontrará, el usuario y contraseña de acceso, etc.
 
@@ -407,7 +407,7 @@ Anteriormente se comentó que ademaś de las clases entidad, el asistente de gen
 
 En la tecnología empleada por JPA se conoce como **Unidad de Persistencia (**_**PersistenceUnit**_**)** y el nombre que se le asigne debes tenerlo en cuenta, ya que se usará posteriormente en el código Java de la aplicación. En este caso se le ha asignado el nombre _**AgendaContactosPU**_.
 
-![Screen Shot 2017 04 05 at 21.30.29 927ae](https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.30.29_927ae.png)
+<img src="https://javiergarciaescobedo.es/images/stories/apuntes/Java/BaseDatos/Screen_Shot_2017-04-05_at_21.30.29_927ae.png" alt="Screen Shot 2017 04 05 at 21.30.29 927ae" height="466" width="600">
 
 Este archivo puede verse en modo visual, como se muestra en la imagen anterior, o en modo **código fuente XML**, usando la pestaña _Source_. En su contenido puedes ver, entre otras cosas, los nombres de las clases entidad que se utilizan, la ruta de conexión con la base de datos, así como el nombre de usuario y contraseña de acceso.
 
