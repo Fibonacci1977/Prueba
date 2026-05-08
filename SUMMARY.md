@@ -108,6 +108,7 @@
   * [Herramientas](javaee/herramientas/README.md)
     * [Herramientas de desarrollo](javaee/herramientas/herramientas-de-desarrollo.md)
   * [Bibliografia](javaee/bibliografia.md)
+  * [Tutorial JavaEE7](javaee/tutorial-javaee7.md)
 * [Frameworks](frameworks/README.md)
   * [Struts 2](frameworks/struts-2.md)
   * [JSF](frameworks/jsf.md)
