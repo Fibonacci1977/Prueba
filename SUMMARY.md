@@ -84,6 +84,7 @@
     * [¿Cómo se pueden utilizar las cookies en los Servlets?](java-se/usando-java-session-en-aplicaciones-web/como-se-pueden-utilizar-las-cookies-en-los-servlets.md)
     * [Gestionar sesiones con servlets](java-se/usando-java-session-en-aplicaciones-web/gestionar-sesiones-con-servlets.md)
     * [Gestión de sesiones en Java: HttpServlet, cookies, reescritura de URL.](java-se/usando-java-session-en-aplicaciones-web/gestion-de-sesiones-en-java-httpservlet-cookies-reescritura-de-url..md)
+    * [Gestión de sesiones en Java](java-se/usando-java-session-en-aplicaciones-web/gestion-de-sesiones-en-java.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
