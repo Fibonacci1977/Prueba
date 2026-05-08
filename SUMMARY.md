@@ -90,6 +90,8 @@
     * [Métodos de ordenamiento](java-se/que-es-un-algoritmo-de-ordenacion/metodos-de-ordenamiento.md)
   * [¿ Qué son los Servicios REST ?](java-se/que-son-los-servicios-rest/README.md)
     * [SOA vs. SOAP y REST](java-se/que-son-los-servicios-rest/soa-vs.-soap-y-rest.md)
+    * [Creación de Webservice SOAP mediante Anotaciones](java-se/que-son-los-servicios-rest/creacion-de-webservice-soap-mediante-anotaciones.md)
+    * [Servicios REST con JAVA usando JAX-RS y Jersey](java-se/que-son-los-servicios-rest/servicios-rest-con-java-usando-jax-rs-y-jersey.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
