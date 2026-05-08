@@ -162,11 +162,11 @@ Hay un vídeo de demostración que muestra el funcionamiento:\
 
 <br>
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 8- [Piano](https://www.lawebdelprogramador.com/codigo/Java/6452-Piano.html)
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% file src=".gitbook/assets/piano.rar" %}
 

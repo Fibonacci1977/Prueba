@@ -599,3 +599,246 @@ Espero que este contenido haya sido de gran ayuda para ti. El código fuente de 
 * Cliente del servicio REST: [https://github.com/elle184/ScriptsJAVA/tree/master/SampleRestClient](https://github.com/elle184/ScriptsJAVA/tree/master/SampleRestClient)
 
 Que tengas muchos éxitos y buena programación.
+
+## Crea Servicio REST con JAVA
+
+Posted on [July 4, 2022](https://www.ingeniusworlds.com/crea-servicio-rest-con-java/) by [Polivio Onofa](https://www.ingeniusworlds.com/author/onofapolivio/)[![api\_java\_tomcat\_feature\_image](https://www.ingeniusworlds.com/wp-content/uploads/2022/07/api_java_tomcat_feature_image.jpg)](https://www.ingeniusworlds.com/crea-servicio-rest-con-java/)04\
+Jul
+
+> Seguro has trabajado con servicios web utilizando el protocolo Soap en Java , pero en esta ocasión quiero explicar como crear un servicio Web utilizando REST la transferencia de estado representacional, con Java y Tomcat como servidor.
+
+#### JAVA VERSIONES
+
+Para realizar el proyecto estaremos trabajando con la versión de JAVA 1.8.033, en este caso puedes descargar el SDK (Librerías completas de JAVA) o el JRE(De producción o las necesarias para que funcionen los ejecutables)
+
+#### INSTALACIÓN
+
+Si estamos en un ambiente de Windows, recomendaría utilizar el msi, o instalador para que instales el JAVA luego  de instalarlo verifica si lo tienes funcionando como variable de entorno para esto puedes acceder a tu Línea de comandos y colocar java -version.
+
+![servidor\_rest\_java\_tomcat\_java\_version](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_java_version.jpg)
+
+Si no encuentra el comando entonces tenemos que configurar para eso ingresamos a las variables de entorno puede ser desde Mi PC – Propiedades – Configuración avanzada del sistema – Opciones avanzadas – Variables de entorno.
+
+En ese lugar buscamos la variable path y ahí colocamos la ruta del JRE descargado que apunte a la carpeta BIN.
+
+![servidor\_rest\_java\_tomcat\_path\_environment\_variable](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_path_environment_variable.jpg)
+
+También agreguemos como nueva variable una llamada JAVA\_HOME y agreguemos la ruta a nuestro BIN. Con estas configuraciones reiniciamos la línea de comandos y ejecutamos java -version.
+
+#### ECLIPSE
+
+Como IDE para desarrollar estaremos utilizando un IDE que sea compatible con nuestra versión de JAVA o JRE, en este caso puede ser el Clásico, Juno o Web, eso queda a decisión del que mas se ajusten pero es importante que utilice la versión del JRE para el proyecto.
+
+#### LIBRERÍAS
+
+Para poder crear los servicios utilizaremos las siguientes librerías:
+
+**JERSEY**
+
+Utilizaremos la especificación [JAX-RS](https://github.com/jax-rs) para implementar los servicios REST en JAVA para esto descargaremos la librería Jersey [JAX-RS 2.5 RI Bundle.](https://eclipse-ee4j.github.io/jersey/)
+
+**JACKSON PARSE API**
+
+Para utilizar poder Utilizar comunicación con JSON podemos utilizar la librería Jackson API, ya que Jersey no tiene incluido. Para esto debemos descargar los siguientes paquetes:
+
+![servidor\_rest\_java\_tomcat\_jackson\_libraries\_json](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_jackson_libraries_json.jpg)
+
+**IMPLEMENTANDO LAS LIBRERÍAS**
+
+Ahora para configurar las librerías en nuestro eclipse, vamos a agregar como librerías al entorno para esto nos dirigimos al menú:
+
+_Window – Preferences – Java – Build Path_.
+
+![servidor\_rest\_java\_tomcat\_configure\_libraries](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_configure_libraries.jpg)
+
+Ahora presionamos en Nueva y vamos a colocarle el nombre JAX-RS-Jersey-Api. Dentro de esta vamos a ir agregando como librerías externas cada .jar que tenemos en las siguientes carpetas:
+
+lib
+
+ext
+
+api.
+
+![servidor\_rest\_java\_tomcat\_jersey\_add\_libraries](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_jersey_add_libraries.jpg)
+
+Lo mismo vamos a realizar con la librería Jackson, le colocaremos el nombre Jackson-Parse-Api y agregamos todos los .jar que nos descargamos.
+
+![servidor\_rest\_java\_tomcat\_jackson\_add\_libraries](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_jackson_add_libraries.jpg)
+
+**TOMCAT**
+
+Ahora configuremos nuestro servidor, lo realizaremos con Tomcat que nos permite colocar aplicaciones ligeras rápidamente podemos revisar todas sus características en el siguiente [aquí](https://tomcat.apache.org/). En este caso utilizaremos la versión 7 que es compatible con el JRE que estamos utilizando.
+
+El proceso es buscar la versión que vamos a utilizar nos descargamos y seguido de esto la descomprimimos en una carpeta que pueden llamarle c:/tomcat .
+
+![servidor\_rest\_java\_tomcat\_path\_tomcat](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_path_tomcat.jpg)
+
+En esta carpeta estarán todas las configuraciones de nuestro servidor, podemos editar archivos de configuración para que el tomcat seleccione que JRE utilizar pero de momento si tenemos instalado 1 solo JRE como lo hicimos utilizará ese para arrancar ahora realizamos las pruebas, ingresemos a línea de comandos a la ruta de nuestro tomcat/bin/ y lo iniciamos con startup.bat start.
+
+![servidor\_rest\_java\_tomcat\_start\_tomcat](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_start_tomcat.jpg)
+
+Como podemos ver si no tenemos ningún problema nos abrirá una nueva pantalla y nos mostrará el mensaje _Server startup in 6017 ms_. Con esto podemos ver que ya nuestro server esta ejecutándose.
+
+Ahora configuremos esto dentro de nuestro Eclipse vamos a la opción _Window – Preferences – Server – Runtime Environments_, aquí podemos agregar nuestro nuevo servidor. Para esto presionamos Nuevo.
+
+![servidor\_rest\_java\_tomcat\_eclipse\_server\_configuration](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_eclipse_server_configuration.jpg)
+
+Presionamos Add, y seleccionamos la versión de Tomcat y luego de esto el JRE que utilizamos y lo agregamos. Ahora ya tendríamos con esto nuestro servidor dentro de Eclipse. Que ventajas nos trae esto:
+
+_1- Podemos depurar nuestro proyecto._
+
+_2. Podemos enviar a consola mensajes para ver como está funcionando todo._
+
+Bueno en resumen podemos saber que pasa y evitamos estar publicando el proyecto para cada prueba y perder tiempo.
+
+![servidor\_rest\_java\_tomcat\_eclipse\_server\_tomcat\_version](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_eclipse_server_tomcat_version.jpg)
+
+**INICIANDO EL PROYECTO WEB**
+
+Ahora podemos comenzar con nuestro proyecto le colocaremos cualquier nombre RestServices por ejemplo:
+
+![servidor\_rest\_java\_tomcat\_new\_dynamic\_web\_project](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_new_dynamic_web_project.jpg)
+
+Ahora vamos a crearnos un paquete lo llamaremos _com.restservice.api_ en el cual agregaremos nuestras clases necesarias para el proyecto.
+
+Dentro de este paquete crearemos una clase que nos ayudará haciendo la inyección de las variables necesarias para utilizar Jersey.
+
+En esta clase utilizaremos la anotación @ApplicationPath que nos especificará la url del servicio llamemos a la clase StartJerseyMainClass.
+
+![servidor\_rest\_java\_tomcat\_error\_class\_resource\_config](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_error_class_resource_config.jpg)
+
+Si nos presenta errores es porque no tenemos asociadas las librerías a nuestro proyecto recordemos que les configuramos global a nuestro entorno ahora tenemos que utilizarlas. Damos click derecho sobre nuestro proyecto y nos dirigimos a propiedades al ingresar a la pantalla vamos a _Java Build Path – Add Library_.
+
+![servidor\_rest\_java\_tomcat\_add\_libraries\_to\_project](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_add_libraries_to_project.jpg)
+
+Presionamos en User Library y agregamos las 2 librerías que configuramos anteriormente.
+
+![servidor\_rest\_java\_tomcat\_add\_libraries\_to\_project\_b](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_add_libraries_to_project_b.jpg)
+
+Listo con eso ya tenemos nuestras librerías en el proyecto el código de nuestra primera clase sería:
+
+```
+package com.restservice.api;import javax.ws.rs.ApplicationPath;import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.server.ResourceConfig;@ApplicationPath("apiservices")
+public class StartJerseyMainClass extends ResourceConfig {public StartJerseyMainClass() {packages("com.fasterxml.jackson.jaxrs.json");packages("com.restservice.api");}
+}
+```
+
+Ahora vamos a crear una nueva clase la cual contendrá nuestros servicios vamos a realizar la prueba una clase con un método del tipo GET, la llamaremos First.java. Y le agregamos el siguiente código.
+
+```
+
+package com.restservice.api;import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;@Path("first")
+public class First {public First(){}@GET@Path("/{name}")@Produces(MediaType.APPLICATION_JSON)public String sayHello(@PathParam("name") String name) {return "Hello World From Jersey Api: "+ name;}}
+```
+
+Ahora podemos probar nuestra api la url que necesitamos utilizar es:
+
+http://localhost:8080/RestServices/apiservices/first/polo
+
+Le adjuntamos un nombre al final que es la manera en la que recibiríamos un parámetro y vamos a devolver como resultado ese texo. Para esto ejecutemos nuestro servidor en Eclipse y también podemos dar clic derecho sobre la clase principal y presionar _Run On Server_ esto nos abrirá la consola y podemos ir observando el comportamiento de nuestro proyecto.
+
+![servidor\_rest\_java\_tomcat\_test\_service](https://www.ingeniusworlds.com/wp-content/uploads/2022/06/servidor_rest_java_tomcat_test_service.jpg)
+
+Listo con eso tenemos nuestro servicio Web Rest con Java y Tomcat funcionando tomar en cuenta que se puede recibir parámetros tipo Post y en la url, una nota importante en las pruebas muchas veces el Browser coloca en la ruta https a tu localhost y no va funcionar tu servicio o te mostrará el mensaje Http Header Parsing Error. Espero te sirva esta información si necesitas ayuda o soporte en tus proyectos [contáctanos](https://www.ingeniusworlds.com/contacto).
+
+
+
+## JAX-RS Servicios RESTFull en Java
+
+
+
+Vamos a construir un servicio REST utilizando los estandares de JAX-RS . Para ello lo primero que tenemos que hacer es comenzar a conocer las distintas anotaciones que el estandar define.
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+**@GET :**&#x45;sta anotación marca un método y define  una operación GET  .Es similar a cuando realizamos una petición HTTP GET y solo debe usarse en el caso que de queramos leer información .Nunca a la hora de escribir o modificar el estado del recurso al que estemos accediendo.
+
+**@POST :**&#x45;sta anotación marca un método y define  una operación POST .Es similar a cuando realizamos una petición HTTP POST y se usa para añadir un recurso o modificar un recurso existente.
+
+**@DELETE :**&#x45;sta anotación marca un método y define  una operación DELETE .Como su nombre indica se trata de eliminar un recurso del servidor . No siempre se usa ya que redirecciona a traves de POST cuando trabajamos con HTML plano.
+
+**@PUT :** Esta anotación se encargar de reemplazar un recurso del servidor y como en el caso anterior suele redireccionarse a traves de POST.
+
+**@Path :**&#x45;sta anotación es distinta a las anteriores y se encarga de definir un punto de entrada al servicio.  Puede usarse tanto a nivel de clase como a nivel de método.
+
+**@Produces :**&#x45;sta anotación se encarga de que el contenido del servicio REST sea generado con distintos formatos.En nuestro caso usaremos JSON
+
+Vamos a ver un ejemplo de código sencillo.
+
+```
+```
+
+```
+package com.arquitecturajava.serviciosexternos;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MultivaluedMap;
+ 
+@Path("/servicioPersonas/")
+@Produces("application/json")
+public class ServicioPersonas {
+ 
+private static List&amp;amp;lt;Persona&amp;amp;gt; listaPersonas = new ArrayList&amp;amp;lt;Persona&amp;amp;gt;();
+ 
+public ServicioPersonas() {
+ super();
+ Persona yo = new Persona("pedro", "perez");
+ listaPersonas.add(yo);
+ }
+ 
+@GET
+ @Path("/personas")
+ public List&amp;amp;lt;Persona&amp;amp;gt; getPersonas() {
+ 
+return listaPersonas;
+ }
+ 
+@POST
+ @Path("/personas")
+ public void addPersona(MultivaluedMap&amp;amp;lt;String, String&amp;amp;gt; parametros) {
+ 
+Persona p = new Persona(parametros.getFirst("nombre"),
+ parametros.getFirst("apellidos"));
+ listaPersonas.add(p);
+ }
+}
+```
+
+En este caso hemos utilizado un servicio REST que se encarga de mostrar las personas que tenemos almacenas en una variable “listaPersonas” que al ser estatica se mantiene en memoria. Por lo tanto definir un método GET es suficiente para acceder a la información. Este método se apoya en la anotación @Produces para generar información en formato JSON.
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+Una vez hemos invocado la primera vez al servicio  via URL podemos usar un formulario HTML para invocar al metodo /personaa  pasando los parametros por POST y añadiendo nuevas personas a la lista
+
+```
+```
+
+```
+&amp;amp;lt;html&amp;amp;gt;
+&amp;amp;lt;body&amp;amp;gt;
+&amp;amp;lt;form method="POST" action="rest/servicioPersonas/personas"&amp;amp;gt;
+&amp;amp;lt;input type="text" name="nombre"/&amp;amp;gt;
+&amp;amp;lt;input type="text" name="apellidos"/&amp;amp;gt;
+&amp;amp;lt;input type="submit"/&amp;amp;gt;
+&amp;amp;lt;/form&amp;amp;gt;
+&amp;amp;lt;/body&amp;amp;gt;
+&amp;amp;lt;/html&amp;amp;gt;
+```
+
+Realizada esta operación la lista de personas queda modificada
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+Aunque el ejemplo es muy sencillo muchas veces es mas complicado configurar algún framework para que pueda construir estos servicios .En el siguiente POST hablaremos de como configurar Apache CXF para que este servicio REST funcione sin problemas.
