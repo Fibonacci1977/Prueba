@@ -1,6 +1,4 @@
-# Page 1
-
-### **¿Qué es un algoritmo de ordenación?** <a href="#qu-es-un-algoritmo-de-ordenaci-n" id="qu-es-un-algoritmo-de-ordenaci-n"></a>
+# ¿Qué es un algoritmo de ordenación?
 
 Los algoritmos de ordenación son un conjunto de instrucciones que toman un arreglo o lista como entrada y organizan los elementos en un orden particular.
 
