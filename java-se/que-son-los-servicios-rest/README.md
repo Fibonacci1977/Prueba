@@ -755,7 +755,7 @@ Listo con eso tenemos nuestro servicio Web Rest con Java y Tomcat funcionando to
 
 Vamos a construir un servicio REST utilizando los estandares de JAX-RS . Para ello lo primero que tenemos que hacer es comenzar a conocer las distintas anotaciones que el estandar define.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **@GET :**&#x45;sta anotación marca un método y define  una operación GET  .Es similar a cuando realizamos una petición HTTP GET y solo debe usarse en el caso que de queramos leer información .Nunca a la hora de escribir o modificar el estado del recurso al que estemos accediendo.
 
@@ -818,7 +818,7 @@ Persona p = new Persona(parametros.getFirst("nombre"),
 
 En este caso hemos utilizado un servicio REST que se encarga de mostrar las personas que tenemos almacenas en una variable “listaPersonas” que al ser estatica se mantiene en memoria. Por lo tanto definir un método GET es suficiente para acceder a la información. Este método se apoya en la anotación @Produces para generar información en formato JSON.
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Una vez hemos invocado la primera vez al servicio  via URL podemos usar un formulario HTML para invocar al metodo /personaa  pasando los parametros por POST y añadiendo nuevas personas a la lista
 
@@ -839,6 +839,6 @@ Una vez hemos invocado la primera vez al servicio  via URL podemos usar un formu
 
 Realizada esta operación la lista de personas queda modificada
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 Aunque el ejemplo es muy sencillo muchas veces es mas complicado configurar algún framework para que pueda construir estos servicios .En el siguiente POST hablaremos de como configurar Apache CXF para que este servicio REST funcione sin problemas.
