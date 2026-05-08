@@ -1,5 +1,7 @@
 # JAX-RS Client y Servicios REST
 
+{% embed url="https://youtu.be/E0RwNcAsTMg" %}
+
 **El uso de servicios REST es cada día más común** y han sido construidos para poder gestionar de una forma sencilla el intercambio de información entre sistemas heterogeneos. Estamos muy habituados a utilizar Ajax para comunicarnos con un servicio REST.
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
