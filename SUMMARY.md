@@ -77,6 +77,8 @@
   * [Dominando las Estructuras de Datos en Java: Pilas y Colas](java-se/dominando-las-estructuras-de-datos-en-java-pilas-y-colas/README.md)
     * [Pilas en Java](java-se/dominando-las-estructuras-de-datos-en-java-pilas-y-colas/pilas-en-java.md)
     * [Colas en Java (Queue): implementación y ejemplos](java-se/dominando-las-estructuras-de-datos-en-java-pilas-y-colas/colas-en-java-queue-implementacion-y-ejemplos.md)
+  * [Roles de usuarios en Java](java-se/roles-de-usuarios-en-java.md)
+  * [Usando Java Session en aplicaciones web](java-se/usando-java-session-en-aplicaciones-web.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
