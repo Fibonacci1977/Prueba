@@ -1610,3 +1610,15 @@ Algunos sitios que fueron consultados durante la elaboración de este artículo:
 * [PHP Sessions](https://www.tutorialspoint.com/php/php_sessions.htm)
 * [PHP Sessions explained](https://justinmccormick.com/programming/php-sessions-explained)
 * [PHP Security Guide: Sessions](http://phpsec.org/projects/guide/4.html)
+
+{% embed url="https://youtube.com/playlist?list=PLJMFsLpj00lH8UDQTBjFc3qDNSViImwsC&si=Q5EE1Ra-2GkOBBoh" %}
+
+{% embed url="https://youtu.be/Kep5cPgt9Sc?si=zq_PRUFwkiJypb1y" %}
+
+{% embed url="https://youtu.be/v8jFcdZ6nfI?si=h44FNw8lfAzcAn1N" %}
+
+{% embed url="https://youtu.be/g2NOIlQwl0g?si=1eQ4Luiz9ywr00Xm" %}
+
+{% embed url="https://youtu.be/w4zNJNon3Ng?si=Z4zDw0Nft5hPxuNq" %}
+
+{% embed url="https://youtu.be/IAOR9qMSBls?si=MT68sL1r1fDnz3Ir" %}
