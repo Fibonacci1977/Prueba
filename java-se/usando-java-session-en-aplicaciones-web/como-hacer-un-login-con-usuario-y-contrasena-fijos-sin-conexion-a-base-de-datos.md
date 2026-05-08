@@ -911,3 +911,51 @@ public class controlador implements ActionListener{\
 \
 Con esto hemos concluido con el desarrollo de nuestro proyecto, es recomendable tener conocimientos previos relacionado a los temas de base de datos y programación orientada objetos.\
 Espero este corto tutorial te haya sido de gran ayuda y pronto estaremos tratando otros temas interesantes relacionados
+
+
+
+***
+
+#### Creando pantalla de acceso (usuario y contraseña)
+
+[<br>](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTCiymfyI43JaYgOLbUwe32TvntewWKiY_7952wHyMvZYg29LZZi5lR2e023H6JmuFJUfRTKp1RJS7KzlSt_gMnAHAEeYkOC-zSJzLK3DJqXe0VOekvUocj7agCSt6VGvmz4NkzvsSeAM/s1600/login+error.png)\
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEib7gH3oY_1Pavi28QazwVrbtxzL3SWKCEgKYH-E-5TmODxp90bCA9sTxzCDutqRIm_Ni3Fl93XvvW9Co8LFbCDohc9yO8CcrFx3mY5U76-gM7widRQRivZ6SjveQGuSyZpaV6ndIrG374/s1600/login+final.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEib7gH3oY_1Pavi28QazwVrbtxzL3SWKCEgKYH-E-5TmODxp90bCA9sTxzCDutqRIm_Ni3Fl93XvvW9Co8LFbCDohc9yO8CcrFx3mY5U76-gM7widRQRivZ6SjveQGuSyZpaV6ndIrG374/s1600/login+final.png)\
+\
+En el ejercicio desarrollaremos una forma sencilla de una ventana de acceso y podrá ser utilizada en casi cualquier software que te propongas a desarrollar, claro está, como mencione anteriormente es una forma "sencilla", ya que, será de un único usuario y contraseña, no tiene opción de modificar contraseña ni mucho menos cambiar de usuario para el software final, siendo la única manera modificarlo desde programación, para ello necesitamos lo siguiente:\
+\
+2 jFrame form, una para la pantalla de acceso y otra que será la pantalla principal.2 label para identificar usuario y contraseña.1 jTextField para ingresar el nombre de usuario.1 jPasswordField para ingresar la contraseña.2 jButton, uno que será para confirmar los datos y tiene como nombre "Ingresar" y otro para cerrar la ventana de nombre "Salir".\
+Cabe destacar que no se le cambiaron los nombres de variables a ningunos de los campos.\
+\
+\
+Ok, empecemos, una vez ingresado los elementos como en la imagen, en la ventana diseño le damos doble click al botón de ingresar y agregamos lo siguiente:\
+&#x20;creamos dos variables
+
+:[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQLX3G292MXYFTFvh0vNRq5iJHfyrHZGscWG4IKK-KWocScNo0TSzZVrzxT_odUJMPyUiOsVhbAwB0IQv2g7ogYtKW2pzKGLTxo8JaFvAWsvnTDZfpiPANGi5iF-99Ct4giRIRGwi_l-Q/s1600/2+variables.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQLX3G292MXYFTFvh0vNRq5iJHfyrHZGscWG4IKK-KWocScNo0TSzZVrzxT_odUJMPyUiOsVhbAwB0IQv2g7ogYtKW2pzKGLTxo8JaFvAWsvnTDZfpiPANGi5iF-99Ct4giRIRGwi_l-Q/s1600/2+variables.png)\
+Creamos las variables del campo de texto y campo de password ya que para obtener los valores del jpassword necesitamos convertir en string para hacer la validación:\
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYoUNJ_H72xvHaWjnUQbPTh-twYEb_adQNchlrbvZOsI8-fEJa2ZSyxYzJWwmwdlH5CIEJTi2vcEir3Zffgax2AHMOcDbxByOgfAxz09Uh94Bv4ErdMHJgF2ROAkwPkYh9kcrVVOOjs8Y/s400/string+para+validacion.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYoUNJ_H72xvHaWjnUQbPTh-twYEb_adQNchlrbvZOsI8-fEJa2ZSyxYzJWwmwdlH5CIEJTi2vcEir3Zffgax2AHMOcDbxByOgfAxz09Uh94Bv4ErdMHJgF2ROAkwPkYh9kcrVVOOjs8Y/s1600/string+para+validacion.png)\
+Ahora continuamos con las validaciones
+
+:[<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-eODwtZQcXcYvKn1SeK7dZirCauLqWuqKxVpqCH5VhAq8BIstCFfMlAF2IEAfreCpsLb9RlAa7PgADTCLaRgeaLQyzqyd4OYJkBOITtgDFFhGe0ods3bBekV080xCNEtVrEsMon4LPvg/s400/continuamos+validaciones.png" alt="" data-size="line">](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-eODwtZQcXcYvKn1SeK7dZirCauLqWuqKxVpqCH5VhAq8BIstCFfMlAF2IEAfreCpsLb9RlAa7PgADTCLaRgeaLQyzqyd4OYJkBOITtgDFFhGe0ods3bBekV080xCNEtVrEsMon4LPvg/s1600/continuamos+validaciones.png)\
+\
+Verificamos si es correcto el usuario y contraseña, si es correcto muestra la ventana y la cierra automáticamente para abrir nuestro segundo jFrame de nombre home:\
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBOgtC76iKxD9fh3Yj3OUEGkToixht7Ro0-fLLkOBFzNPqoeXVwPzj6bd6biOr2p25hNpLOxH9p1D9nYHFU2FS7kWeKBiOQBJleCur9jQs1j5e8asl9FXDwZOvp2gdAvoJD7Vf4FbvnVc/s1600/mostrar+home.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBOgtC76iKxD9fh3Yj3OUEGkToixht7Ro0-fLLkOBFzNPqoeXVwPzj6bd6biOr2p25hNpLOxH9p1D9nYHFU2FS7kWeKBiOQBJleCur9jQs1j5e8asl9FXDwZOvp2gdAvoJD7Vf4FbvnVc/s1600/mostrar+home.png)\
+\
+Si ingresamos la clave incorrect con el JOptionPane mostramos este mensaje:[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXlyI1wmMbf0DpN_envJOYuvXgWCg0PZMPRq5gBXCfir6TzMfRlzNhcGlVNE2rbBnYCYs6gvbu6RXaA2SKIo5wvIMKT38OJYwOecuA5wbnqNR_QhEja_NgzrOj2nxT2DsVLAnrQOa907A/s1600/error.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXlyI1wmMbf0DpN_envJOYuvXgWCg0PZMPRq5gBXCfir6TzMfRlzNhcGlVNE2rbBnYCYs6gvbu6RXaA2SKIo5wvIMKT38OJYwOecuA5wbnqNR_QhEja_NgzrOj2nxT2DsVLAnrQOa907A/s1600/error.png)\
+\
+Ya eso es todo por el botón de ingresar, así se verá reflejado completamente:\
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsNncs4pM5NTVSld1UuJfvzv0UZ14juVEpxC0kDcfvniiV5QaV1CWmGrMxjemQPJL2kxqJ_vLpTU_nxr7446A68LRccTuf_p0hR0tuXQgT3ajH0BYgAm_2wVdKeaMt97bRLOV1jrVtUh8/s1600/ingresar.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsNncs4pM5NTVSld1UuJfvzv0UZ14juVEpxC0kDcfvniiV5QaV1CWmGrMxjemQPJL2kxqJ_vLpTU_nxr7446A68LRccTuf_p0hR0tuXQgT3ajH0BYgAm_2wVdKeaMt97bRLOV1jrVtUh8/s1600/ingresar.png)\
+\
+Para el botón de salir usamos el system.exit
+
+:[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjV58Tu62xcDbQigexw89BIs377aWiQIGjkXTv1DQq7hwpfP0BOGs0GAiJ2SXsHLdmEXWMYG94Fu5AN31iizajgZyA-oOg4CaXCTr5epRxE10LgVHm61fWBr_xwb3572LouHP3TboJMfuo/s1600/exit.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjV58Tu62xcDbQigexw89BIs377aWiQIGjkXTv1DQq7hwpfP0BOGs0GAiJ2SXsHLdmEXWMYG94Fu5AN31iizajgZyA-oOg4CaXCTr5epRxE10LgVHm61fWBr_xwb3572LouHP3TboJMfuo/s1600/exit.png)\
+\
+Ya solo resta ejecutar nuestro programa y deberia quedar de la siguiente forma:\
+Pantalla de acceso
+
+:[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1d_UGbrT3TwjyIpWnZ7jCVwZCg4gLRGKrJB1VF6ecKeSi0vHApzcteWYq_BrRX7qleOTuWmOwXZC1VGpqrGuts-A-N0NvAhB1E5two8_fSvnBNOQX3XyodHc3ghbTb41mToYRcnCfWXU/s1600/login+final.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1d_UGbrT3TwjyIpWnZ7jCVwZCg4gLRGKrJB1VF6ecKeSi0vHApzcteWYq_BrRX7qleOTuWmOwXZC1VGpqrGuts-A-N0NvAhB1E5two8_fSvnBNOQX3XyodHc3ghbTb41mToYRcnCfWXU/s1600/login+final.png)\
+Mensaje de error
+
+:[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQD1FQf6Bi_jtEPlhFH_vb7q4yV_JQylpLrE2TZPc52j-JTyCsimUlLJy1q85TuIYPi8TAwmzM_DQWDmZ6dOpIrGttIzft6p9fz9COjkYP4VMYw_DM2UDbh0TS_KK_dJfTJ0OVTs91V6w/s1600/login+error.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQD1FQf6Bi_jtEPlhFH_vb7q4yV_JQylpLrE2TZPc52j-JTyCsimUlLJy1q85TuIYPi8TAwmzM_DQWDmZ6dOpIrGttIzft6p9fz9COjkYP4VMYw_DM2UDbh0TS_KK_dJfTJ0OVTs91V6w/s1600/login+error.png)\
+\
+Y el segundo formulario ejecutandose una vez aprobado el ingreso al sistema de forma correcta:\
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjIxNrSKzNnSKSgKBLmrood1ivF_-KBOjbocpwXFAFiiSLHRIUrBkfvEC8vxGr3euPgT5SA1eWGoe6NLGYUuaBMXlE7us9bpicXfRqGLW3qgrYeedUpAhC5T1cc6wgH5_md897tmuzAvI/s1600/pantalla+principal.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjIxNrSKzNnSKSgKBLmrood1ivF_-KBOjbocpwXFAFiiSLHRIUrBkfvEC8vxGr3euPgT5SA1eWGoe6NLGYUuaBMXlE7us9bpicXfRqGLW3qgrYeedUpAhC5T1cc6wgH5_md897tmuzAvI/s1600/pantalla+principal.png)
