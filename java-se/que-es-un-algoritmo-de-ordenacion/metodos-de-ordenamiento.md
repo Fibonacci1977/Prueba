@@ -1,5 +1,7 @@
 # Métodos de ordenamiento
 
+{% file src="../../.gitbook/assets/Ordenacion.pdf" %}
+
 Los problemas más comunes en la informática son la búsqueda y el ordenamiento. El proceso de ordenar consiste en recolocar los elementos de un _array_ o colección ya sea de mayor a menor o viceversa con el fin de acelerar la búsqueda de la información.
 
 En este aspecto existe una multitud de algoritmos de ordenamiento clasificados de diversas formas como la estabilidad, su complejidad, ubicación del proceso al ordenar, etc.
