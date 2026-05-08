@@ -1,5 +1,7 @@
 # SOA vs. SOAP y REST
 
+{% embed url="https://ccia.esei.uvigo.es/docencia/SCS/" %}
+
 En este tutorial intentaremos explicar qué diferencias existen entre una arquitectura SOA y el desarrollo de servicios web basados en SOAP o REST, cómo se relacionan y los beneficios esperados de cada uno.
 
 ### SOA vs. SOAP y REST.
@@ -98,3 +100,60 @@ Construir una arquitectura SOA es un trabajo relativamente complejo, laborioso y
 Podemos diseñar excelentes arquitecturas basadas en REST de una manera bastante más sencilla. Incluso podemos basarnos en aplicaciones silo, que tienen sus inconvenientes pero también sus ventajas, para la integración entre ellas (si fuese necesaria) ya tenemos muchas alternativas como los servicios web. No todo debe pasar por SOA. SOA simplemente es un medio para obtener una serie de beneficios, nunca debe ser un fin en sí mismo. Todo depende del tamaño de la organización, presupuesto, lo cambiante del negocio y, sobre todo, del sentido común :-).
 
 Espero que este tutorial os haya sido de ayuda. Un saludo.
+
+## SOAP vs REST ¿cual es mejor?
+
+
+
+<figure><img src="https://www.oscarblancarteblog.com/wp-content/uploads/2017/03/SOAP-vs-REST-1024x576.png" alt="SOAP vs REST"><figcaption></figcaption></figure>
+
+SOAP vs REST es una comparación que muchos programadores o incluso arquitectos de software suelen preguntarse a la hora de desarrollar las API para sus sistemas, pero cual es realmente la diferencia que existe entre ellas, ¿Será que una es superior a la otra? ¿Será que REST llego para remplazar a SOAP? Pues bien, en este artículo trataremos de resolver esta gran duda.
+
+Primero que nada, me gustaría aclarar un error muy común que puede hacer que distorsione por completo tu entendimiento con respecto a los Web Services y es que **SOA no es igual que SOAP y tener Web Services no significa que tenemos SOA**. Hace un tiempo publique un artículo donde hablaba acerca de la [Arquitectura SOA](https://www.oscarblancarteblog.com/2014/07/23/que-es-service-oriented-architecture-soa/) por si quieres darle una repasada al tema.\
+Pues bien, ya con este punto aclaro, debemos entender que SOA (Service-Oriented Architecture) es un _**tipo de Arquitectura de Software**_ y no una tecnología o producto. SOA es una arquitectura que se base en la integración de aplicaciones mediante Servicios, los servicios representan la medida más granular de la arquitectura, sobre la que se construyen otros artefactos como: composiciones, proxys, fachadas, BPM e incluso API completas. Ahora bien, si SOA tiene como médula espinal los servicios, ¿no son SOAP y REST servicios? ¡Revelador no!!\
+Entonces si REST y SOAP son en realidad servicios, entonces que diferencia existe entre las dos, cual es el propósito de que existan dos tecnologías que aparentemente hacen lo mismo. Primero entendamos que SOAP y REST siguen la misma Arquitectura (SOA), por lo que las dos deberían de apegarse a los mismos principios.
+
+<figure><img src="https://www.oscarblancarteblog.com/wp-content/uploads/2017/03/SOAP_VS_REST_SOA.png" alt="SOAP vs REST"><figcaption></figcaption></figure>
+
+En este punto nos debe de quedar claro que tanto SOAP como REST son tecnologías que implementan la arquitectura SOA.
+
+### &#x20;
+
+### Que es SOAP:
+
+Los servicios SOAP o mejor conocimos simplemente como Web Services, son servicios que basan su comunicación bajo el protocolo SOAP (Simple Object Access Protocol) el cual este definido por Wikipedia como “protocolo estándar que define cómo dos objetos en diferentes procesos pueden comunicarse por medio de intercambio de datos XML”. Por lo tanto, queda claro que la comunicación se realiza mediante XML, lo cual nos debe de quedar muy claro, pues es en este aspecto donde radican las principales diferencias contra REST. Los servicios SOAP funcionan por lo general por el protocolo HTTP que es lo más común cuando invocamos un Web Services, sin embargo, SOAP no está limitado a este protocolo, si no que puede ser enviado por FTP, POP3, TCP, Colas de mensajería (JMS, MQ, etc). Pero como comentaba, HTTP es el protocolo principal.
+
+<figure><img src="https://www.oscarblancarteblog.com/wp-content/uploads/2017/03/soap-services.png" alt="SOAP vs REST"><figcaption></figcaption></figure>
+
+Si bien, me gustaría poner una sección de ventajas y desventajas, la realidad es que estas pueden ser lo contrario dependiendo del punto de vista y la situación concreta del problema a resolver por lo que me gustaría dejar un breve análisis de cuando utilizar SOAP. A mi parecer SOAP sigue siendo el mejor protocolo para **la comunicación de Server to Server o Partner to Partner** pues es un protocolo mucho más robusto, tiene un tipiado mucho más fuerte, permite agregar _**metadatos**_ mediante los atributos (cosa que JSON no tiene), permite definir _**espacios de nombre**_, evitando la ambigüedad. Por lo mismo, SOAP es un formato más pesado, tanto en tamaño como en procesamiento, pues los XML tiene que ser parseado a un árbol DOM, resolver espacios de nombre (namespaces) antes de poder empezar a procesar el documento. Los XML además tienen métodos de validación muy potentes y ampliamente utilizados, a diferencia de JSON, el cual, si tiene forma de validar, pero no son tan potente y su utilización es pobremente utilizada (no significa que en el futuro no se estandarice su uso).
+
+Nótese que, SOAP solo soporta formato XML, por lo que cuando lo que necesitamos es flexibilidad y un performance superior, podemos optar por REST. Tengo otro artículo donde hablo de [XML vs JSON](https://www.oscarblancarteblog.com/2014/07/18/json-vs-xml/) por si quieres profundizar en el tema.
+
+### Que es REST
+
+Por otra parte, tenemos REST, el chico nuevo de la cuadra. REST ya tiene unos años, pero en realidad tiene poco que se le empezó a dar la importancia que hoy tiene. REST es una tecnología mucho más flexible que transporta datos por medio del protocolo HTTP, pero este permite utilizar los diversos métodos que proporciona HTTP para comunicarse, como lo son GET, POST, PUT, DELETE, PATCH y a la vez, utiliza los códigos de respuesta nativos de HTTP (404,200,204,409). REST es tan flexible que permite transmitir prácticamente _**cualquier tipo de datos**_, ya que el tipo de datos está definido por el Header Content-Type, lo que nos permite mandar, XML, JSON, Binarios (imágenes, documentos), Text, etc. que contrasta con SOAP que solo permite la transmisión de datos en formato XML. A pesar de la gran variedad de tipos de datos que podemos mandar con REST, la gran mayoría transmite en JSON por un motivo muy importante, _**JSON es interpretado de forma natural por JavaScript**_, lo que ha hecho que frameworks como Angular y React se aprovechen al máximo, pues pueden enviar peticiones directas al servidor por medio de AJAX y obtener los datos de una forma nativa. Los formularios de HTML pueden ser apuntados a los servicios REST sin ningún problema (por ejemplo).
+
+<figure><img src="https://www.oscarblancarteblog.com/wp-content/uploads/2017/03/rest-services.png" alt="SOAP vs REST"><figcaption></figcaption></figure>
+
+Otra de las grandes ventajas que presenta JSON sobre SOAP es el _**performance**_, ya que los JSON son considerablemente más livianos en peso y mucho más rápido en su procesamiento. Pero como ya vimos, el performance tiene un costo, y es la robustez del mensaje como tal.\
+<br>
+
+
+
+Ahora bien, desde mi punto de vista REST debería ser utilizado para obtener datos en aplicaciones WEB que funcionan principalmente con el Modelo MVC del lado del cliente, es decir, que todos los procesamientos se realizan desde el navegador y que solo va al backend para obtener o actualiza la base de datos. Otra de las situaciones es cuando tenemos aplicaciones donde los recursos de procesamiento son bajos y con ancho de banda limitado, como sería el caso de las aplicaciones móviles o robótica.
+
+Te invito a que vas mi articulo “[Construir un API REST con NodeJS](https://www.oscarblancarteblog.com/2018/01/11/construir-api-rest-nodejs-primera-parte/)“, en el cual hablo desde cero como implementar un API REST de la forma más simple y clara, utilizando NodeJS y Express. O puedes puedes ver la guia completa de cómo implementar un [API REST con Java](https://www.oscarblancarteblog.com/api-rest-java-jax-rs/) desde cero.
+
+Te puede interesar mi video de Youtube”[**Qué es API REST? – 🚀Y por que es importante aprenderlo 🚀**](https://youtu.be/RbBPuMlgdUU)“
+
+{% embed url="https://youtu.be/RbBPuMlgdUU?si=LuG2Fek_yaUZFsAk" %}
+
+### SOAP vs REST Conclusiones
+
+Como vimos en este análisis, no hay un claro ganador, pues tanto SOAP como REST siguen siendo muy útiles en condiciones diferentes, incluso existen aplicaciones que ya exponente todas sus API’s en SOAP y REST para asegurar que la integración con ellas sea lo más natural posible sin importar la aplicación con la que se estén integrado.
+
+Cabe mencionar que REST ha estado tomando fuerza a una velocidad impresionante y más con la llegada de NodeJS y las bases de datos NoSQL como MongoDB. Sin embargo, el hecho de que REST tome fuerza, no significa que le esté quitando protagonismo a SOAP, pues recordemos que con la llegada del Internet de las cosas (IOT) cada vez se conectan más dispositivos a internet que necesitan ser integrados (una gran oportunidad para REST) y es donde REST está tomando la delantera.
+
+La verdad es que el futuro no se ve claro, pero lo que, si es que a pesar de que REST siga tomando fuerza, SOAP sigue siendo una tecnología muy robusta y extremadamente utilizada por lo que una cosa si es segura, a SOAP todavía le queda un largo camino.
+
+A pesar de todo este análisis, lo importante es tu qué opinas, ¿cuál crees que sea el futuro?, ¿crees que REST poco a poco matara a SOAP? O ¿simplemente SOAP seguirá funcionando a la par con REST?.
