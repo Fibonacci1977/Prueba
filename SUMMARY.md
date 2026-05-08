@@ -82,6 +82,8 @@
     * [Servlet - Ejemplo de inicio y cierre de sesión mediante Cookies](java-se/usando-java-session-en-aplicaciones-web/servlet-ejemplo-de-inicio-y-cierre-de-sesion-mediante-cookies.md)
     * [Manejo de Sesiones y Cookies En Servlets Java](java-se/usando-java-session-en-aplicaciones-web/manejo-de-sesiones-y-cookies-en-servlets-java.md)
     * [¿Cómo se pueden utilizar las cookies en los Servlets?](java-se/usando-java-session-en-aplicaciones-web/como-se-pueden-utilizar-las-cookies-en-los-servlets.md)
+    * [Gestionar sesiones con servlets](java-se/usando-java-session-en-aplicaciones-web/gestionar-sesiones-con-servlets.md)
+    * [Gestión de sesiones en Java: HttpServlet, cookies, reescritura de URL.](java-se/usando-java-session-en-aplicaciones-web/gestion-de-sesiones-en-java-httpservlet-cookies-reescritura-de-url..md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
