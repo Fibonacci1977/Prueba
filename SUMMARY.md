@@ -109,6 +109,7 @@
     * [Herramientas de desarrollo](javaee/herramientas/herramientas-de-desarrollo.md)
   * [Bibliografia](javaee/bibliografia.md)
   * [Tutorial JavaEE7](javaee/tutorial-javaee7.md)
+  * [Internacionalización de Java (i18n): traduzca su aplicación/sitio web Java.](javaee/internacionalizacion-de-java-i18n-traduzca-su-aplicacion-sitio-web-java..md)
 * [Frameworks](frameworks/README.md)
   * [Struts 2](frameworks/struts-2.md)
   * [JSF](frameworks/jsf/README.md)
