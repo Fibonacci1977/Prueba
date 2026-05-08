@@ -80,6 +80,8 @@
   * [Roles de usuarios en Java](java-se/roles-de-usuarios-en-java.md)
   * [Usando Java Session en aplicaciones web](java-se/usando-java-session-en-aplicaciones-web/README.md)
     * [Servlet - Ejemplo de inicio y cierre de sesión mediante Cookies](java-se/usando-java-session-en-aplicaciones-web/servlet-ejemplo-de-inicio-y-cierre-de-sesion-mediante-cookies.md)
+    * [Manejo de Sesiones y Cookies En Servlets Java](java-se/usando-java-session-en-aplicaciones-web/manejo-de-sesiones-y-cookies-en-servlets-java.md)
+    * [¿Cómo se pueden utilizar las cookies en los Servlets?](java-se/usando-java-session-en-aplicaciones-web/como-se-pueden-utilizar-las-cookies-en-los-servlets.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
