@@ -94,6 +94,8 @@
     * [Servicios REST con JAVA usando JAX-RS y Jersey](java-se/que-son-los-servicios-rest/servicios-rest-con-java-usando-jax-rs-y-jersey.md)
     * [JAX-RS Client y Servicios REST](java-se/que-son-los-servicios-rest/jax-rs-client-y-servicios-rest.md)
     * [Uso de SOAP-to-REST para simplificar la migración e integración](java-se/que-son-los-servicios-rest/uso-de-soap-to-rest-para-simplificar-la-migracion-e-integracion.md)
+    * [API testing con Postman y SoapUI](java-se/que-son-los-servicios-rest/api-testing-con-postman-y-soapui.md)
+    * [Tutorial de pruebas de carga de postman: WDSL, JSON y API](java-se/que-son-los-servicios-rest/tutorial-de-pruebas-de-carga-de-postman-wdsl-json-y-api.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
