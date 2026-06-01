@@ -99,6 +99,7 @@
     * [Qué es Postman](java-se/que-son-los-servicios-rest/que-es-postman.md)
     * [Consumo de Servicios Web REST con Postman](java-se/que-son-los-servicios-rest/consumo-de-servicios-web-rest-con-postman.md)
   * [RMI](java-se/rmi.md)
+  * [30 Segundos de Java](java-se/30-segundos-de-java.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
