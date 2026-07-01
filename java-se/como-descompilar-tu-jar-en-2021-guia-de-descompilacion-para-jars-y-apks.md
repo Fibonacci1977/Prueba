@@ -597,3 +597,71 @@ Terminal
 # JDK source code
 C:\opt\jdk-11.0.1\lib\src.zip  
 ```
+
+{% file src="../.gitbook/assets/jd-eclipse-master.zip" %}
+
+## JD-Eclipse
+
+
+
+JD-Eclipse, un complemento descompilador de Java para la plataforma Eclipse.
+
+<figure><img src="https://raw.githubusercontent.com/java-decompiler/jd-eclipse/master/src/website/img/jd-eclipse.png" alt=""><figcaption></figcaption></figure>
+
+* Página principal del proyecto Java Decompiler: [http://java-decompiler.github.io](http://java-decompiler.github.io/)
+* Código fuente de JD-Eclipse: [https://github.com/java-decompiler/jd-eclipse](https://github.com/java-decompiler/jd-eclipse)
+
+### Descripción
+
+
+
+JD-Eclipse es un complemento para la plataforma Eclipse. Permite visualizar todo el código fuente de Java durante el proceso de depuración, incluso si no se dispone de todos los archivos.
+
+### ¿Cómo compilar JD-Eclipse?
+
+
+
+```
+> git clone https://github.com/java-decompiler/jd-eclipse.git
+> cd jd-eclipse
+> ./gradlew build
+```
+
+generar _"build/distributions/jd-eclipse-xyzzip"_
+
+### ¿Cómo instalar JD-Eclipse?
+
+
+
+1. Compilar o descargar _"jd-eclipse-xyzzip"_ ,
+2. Lanzar _Eclipse_ ,
+3. Haga clic en _"Ayuda > Instalar nuevo software..."_ ,
+4. Arrastra y suelta _"jd-eclipse-xyzzip"_ en las ventanas de diálogo,
+5. Compruebe _"Complemento descompilador de Java para Eclipse"_ ,
+6. Haz clic en los botones "Siguiente" y "Finalizar".
+7. Aparece una ventana de advertencia porque _"org.jd.ide.eclipse.plugin\_x.yzjar"_ no está firmado. Haga clic en el botón "Instalar de todos modos".
+
+<figure><img src="https://raw.githubusercontent.com/java-decompiler/jd-eclipse/master/src/website/img/install_anyway.png" alt=""><figcaption></figcaption></figure>
+
+### ¿Cómo comprobar las asociaciones de archivos?
+
+
+
+Haz clic en _"Ventana > Preferencias > General > Editores > Asociaciones de archivos"._
+
+* _"\*.class"_ : _El "Visor de archivos de clase" de Eclipse_ está seleccionado por defecto.
+* _"\*.class sin código fuente"_ : _"Visor de archivos de clase JD"_ está seleccionado por defecto.
+
+### ¿Cómo configurar JD-Eclipse?
+
+
+
+Haz clic en _"Ventana > Preferencias > Java > Descompilador"_
+
+### ¿Cómo desinstalar JD-Eclipse?
+
+
+
+1. Haz clic en _"Ayuda > Acerca de Eclipse > Detalles de la instalación"_ ,
+2. Seleccione _"Complemento JD-Eclipse"_ ,
+3. Haz clic en _"Desinstalar..."_ .
