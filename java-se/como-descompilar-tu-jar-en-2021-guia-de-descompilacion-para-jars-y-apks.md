@@ -514,3 +514,86 @@ Para obtener más información, consulta estos tutoriales:
 
 </details>
 
+## Complemento de descompilación de Java para el IDE Eclipse
+
+
+
+En el IDE de Eclipse, podemos usar el complemento [Enhanced Class Decompiler](https://ecd-plugin.github.io/ecd/) para descompilar archivos de clase Java sin necesidad de consultar directamente el código fuente.
+
+Después de instalar y configurar el `Enhanced Class Decompiler`complemento, haga clic en la clase o los métodos, presione `F3`, y el complemento descompilará automáticamente la clase Java.
+
+Tabla de contenido
+
+* [1. ¿Qué es el plugin Enhanced Class Decompiler?](https://mkyong.com/java/java-decompiler-plugin-for-eclipse/#what-is-enhanced-class-decompiler-plugin)
+* [2. Cómo instalar el complemento Enhanced Class Decompiler](https://mkyong.com/java/java-decompiler-plugin-for-eclipse/#how-to-install-enhanced-class-decompiler-plugin)
+* [3. Cómo configurar las asociaciones de archivos](https://mkyong.com/java/java-decompiler-plugin-for-eclipse/#how-to-configure-file-associations)
+* [4. Cómo configurar el descompilador de clases mejorado](https://mkyong.com/java/java-decompiler-plugin-for-eclipse/#how-to-configure-enhanced-class-decompiler)
+* [5. Descompilar el código fuente de JDK](https://mkyong.com/java/java-decompiler-plugin-for-eclipse/#decompile-jdk-source-code)
+* [6. Referencias](https://mkyong.com/java/java-decompiler-plugin-for-eclipse/#references)
+
+_PS Probado con Enhanced Class Decompiler v3.2.2 y Eclipse IDE 2021-06._
+
+### 1. ¿Qué es el plugin Enhanced Class Decompiler?<br>
+
+El `Enhanced Class Decompiler`complemento puede elegir las siguientes cinco herramientas de descompilación de Java para descompilar la clase Java sin el código fuente.
+
+* [JD](http://java-decompiler.github.io/)
+* [Jad](http://www.kpdus.com/jad.html)
+* [Flor de helecho](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine)
+* [CFR](https://www.benf.org/other/cfr/)
+* [Proción](https://github.com/mstrobel/procyon)
+
+_PD: Elijo esto `FernFlower`porque IntelliJ IDEA también lo usa `FernFlower`para descompilar clases Java._
+
+### 2. Cómo instalar el complemento Enhanced Class Decompiler<br>
+
+A continuación se detallan los pasos para instalar el complemento Enhanced Class Decompiler en el IDE Eclipse.
+
+1. Inicie el IDE de Eclipse.
+2. Haz clic `Help -> Eclipse Marketplace...`.
+3. Busque "Descompilador de Java" o "Descompilador de clases mejorado".
+4. Seleccione "Descompilador de clases mejorado".
+5. Haz clic en el `Install`botón.
+6. Seleccione todas las funciones y clics `Confirm`.
+7. Para obtener una advertencia de seguridad, haga clic aquí `Install anyway`.
+8. Listo, reinicie el IDE de Eclipse.
+
+<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+
+### 3. Cómo configurar las asociaciones de archivos<br>
+
+A continuación se detallan los pasos para configurar `class without source`el `Class Decompiler Viewer`.
+
+1. En el IDE Eclipse.
+2. Clics `Window -> Preferences -> General -> Editors -> File Associations`.
+3. En `File types`la sección, seleccione `*.class without source`.
+4. Desplácese hacia abajo hasta la `Associated editors`sección, seleccione `Class Decompiler Viewer`y haga clic en `Default`el botón. Si `Class Decompiler Viewer`falta, haga clic en `Add`el botón para agregar uno nuevo `Class Decompiler Viewer`. La clave es establecerlo como predeterminado.
+5. Haz clic en `Apply and Close`el botón.
+
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+Listo, haga clic en la clase o método sin el código fuente, presione `F3`y el complemento descompilará automáticamente los archivos de clase.
+
+### 4. Cómo configurar el descompilador de clases mejorado<br>
+
+Haga clic `Window > Preferences > Java > Decompiler`para configurar qué descompilador de clases predeterminado descompilará la clase Java.
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+### 5. Descompilar el código fuente de JDK<br>
+
+Este `Enhanced Class Decompiler`complemento parece incapaz de descompilar correctamente el código fuente del JDK; no estoy seguro de haberlo configurado correctamente; siempre aparece una página en blanco o un código fuente vacío cuando intento descompilar el código fuente del JDK (Java 11).
+
+El código fuente del JDK está en la ruta `$JAVA_HOME\lib\src.zip`, adjúntelo y no necesitaremos el complemento para descompilarlo.
+
+Terminal
+
+```bash
+
+# JDK source code
+C:\opt\jdk-11.0.1\lib\src.zip  
+```
