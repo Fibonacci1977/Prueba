@@ -1,5 +1,7 @@
 # Cómo descompilar tu JAR en 2021: Guía de descompilación para JARs y APKs
 
+{% embed url="https://youtu.be/fyF_NgKv0_M?si=vnWZST9pZ44gHYR0" %}
+
 En los últimos días, me he divertido intentando comprender el funcionamiento interno de un archivo APK. Anteriormente, solo había usado el legendario [JD-GUI](http://java-decompiler.github.io/) como descompilador para algunos desafíos CTF. Pero al trabajar con código más complejo, descubrí que analizar la salida de diferentes descompiladores puede ser útil. Por lo tanto, investigué un poco para encontrar más descompiladores que utilizan enfoques distintos. Esta publicación sirve como una pequeña referencia sobre cómo crear y usar estas herramientas.
 
 ### Introducción <a href="#introduction" id="introduction"></a>
