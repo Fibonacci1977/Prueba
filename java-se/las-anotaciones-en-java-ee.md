@@ -1,4 +1,4 @@
-# Page 1
+# Las anotaciones en Java EE
 
 Las anotaciones en Java EE (actualmente evolucionado a Jakarta EE) son metadatos que se añaden directamente al código fuente para configurar el comportamiento de componentes, simplificar el desarrollo declarativo y eliminar la necesidad de extensos archivos XML de configuración. \[[1](https://www.makigas.es/series/fundamentos-de-jakarta-ee/que-diferencia-hay-entre-jakartaee-y-javaee), [2](https://www.ibm.com/docs/en/wasdtfe?topic=annotations-java-ee-overview), [3](https://openxava.org/OpenXavaDoc/docs/annotations_es.html), [4](https://www.aluracursos.com/blog/crear-anotaciones-en-java)]Para tips sobre cómo aplicar anotaciones para inyectar dependencias eficientemente:
 
@@ -6,7 +6,7 @@ Las anotaciones en Java EE (actualmente evolucionado a Jakarta EE) son metadatos
 
 
 
-[Anotaciones para aplicar inyección de dependencia en ..](https://www.youtube.com/watch?v=5yhvVdx2yVA)Las anotaciones más utilizadas en el ecosistema se agrupan según su función:1. Inyección de Dependencias (CDI)
+Las anotaciones más utilizadas en el ecosistema se agrupan según su función:1. Inyección de Dependencias (CDI)
 
 * **`@Inject`**: Inyecta una dependencia o componente en la clase actual.
 * **`@Named`**: Permite exponer un bean para que sea accesible desde páginas web (como JSF).
