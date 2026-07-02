@@ -115,7 +115,7 @@ Todo lo que es entendible es hackeable: Un sólido entendimiento de las transacc
 
 ## Anotaciones de Yakarta
 
-
+{% embed url="https://www.youtube.com/playlist?list=PLTd5ehIj0goMhqWg_v2CbIZf_Ed2jqE-r" %}
 
 * [Licencia de especificación de la Fundación Eclipse](https://jakarta.ee/specifications/annotations/2.1/annotations-spec-2.1.html#eclipse-foundation-specification-license)
   * [Descargo de responsabilidad](https://jakarta.ee/specifications/annotations/2.1/annotations-spec-2.1.html#disclaimers)
