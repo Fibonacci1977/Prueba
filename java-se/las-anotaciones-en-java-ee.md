@@ -1158,3 +1158,1092 @@ Hemos creado nuestras propias Java Annotations. Este tipo de enfoque puede ser �
 {% file src="../.gitbook/assets/Java Generic Repository y JPA.pdf" %}
 
 {% file src="../.gitbook/assets/Java Diamond Operator y Genéricos.pdf" %}
+
+## Annotations (Anotaciones) en Java
+
+<br>
+
+Antes de empezar a leer sobre Annotations en Java (o Anotaciones Java), he de indicar que este artículo consta de dos partes dependiendo del punto de vista del desarrollador:
+
+* Como **desarrollador que usa anotaciones**: Es bastante sencillo de aprender sabiendo lo que es la programación básica de Java. Lo utilizan muchas bibliotecas (como Spring), e incluso las propias de Java (como @Override). Por lo que si te desenvuelves bien con Java y no necesitas saber cómo desarrollar anotaciones, entonces adelante, puedes continuar leyendo (te avisaré cuando requieras Reflection. [Si necesitas conocer Java básico te recomiendo que leas este otro artículo](https://jarroba.com/mucho-java-en-un-sencillo-tutorial-aqui-los-dummies-se-hacen-de-oro/)).
+* Como **desarrollador de anotaciones**: Esto ya es otro cantar. Aunque también es fácil de aprender, esta parte depende fuertemente [del artículo de Reflection que ya te contamos anteriormente](https://jarroba.com/reflection-en-java/) (Si no sabes mucho sobre Reflection y tienes intención de seguir igualmente, permíteme que te disuada para que no pierdas el tiempo con la siguiente pregunta ¿Qué me puedes decir de las clases: Class, Field, Method, entre otras relacionadas? En tu cabeza está lo que necesitas)
+
+Las anotaciones de Java no son más que anotaciones como su propio nombre indica. No son muy diferentes a las anotaciones que tomas en una libreta con papel y lápiz, salvo que las de Java pueden modificar la funcionalidad del programa, si queremos.
+
+**Nota sobre la versión de Java**: La mejor versión para utilizar anotaciones es Java 1.8 en adelante (con Java 1.7 también funcionan muy bien, le falta algún pequeño detalle que no influye mucho para programar). Versiones anteriores carecen de algunas características de annotations (si sigues este artículo y ves que el IDE te dice que algo no existe, lo más seguro es que tengas una versión muy antigua de Java). Las anotaciones de Java se pueden utilizar desde Java 1.5.
+
+**Nota sobre el código de este artículo**: Lo puedes encontrar para descargar al final.
+
+&#x20;
+
+Introducción a las anotaciones<br>
+----------------------------------
+
+Vamos a supones el siguiente ejemplo (si te recuerda a ejemplos del colegio, mucho más lejos de la realidad, será mucho más ameno, te lo prometo  tenemos una “Bolsita” que tiene exactamente 50 “almendras”. Sabemos que 1 almendra tiene:
+
+* 500 calorías
+* El árbol del cual es fruto es el Almendro
+* Tiene vitamina E
+
+&#x20;
+
+
+
+Todos estos datos anteriores nos interesa tenerlos siempre a mano. Si esto lo hiciéramos con Java básico nos quedaría la siguiente clase:
+
+```
+public class Bolsita {
+	
+	// Calorías: 500
+	// Árbol que da este fruto: Almendro
+	// Tiene vitamina E: Sí
+	private int almendras = 50;
+
+	public int getAlmendras (){
+		return almendras;
+	}
+
+}
+```
+
+Esto visto así cumple con lo que queríamos, pero no nos aporta funcionalidad y es bastante feo. Funcionalidad me refiero ¿Cómo calcularías las calorías totales de las 35 almendras si el valor está en un comentario? Es decir, realizar la simple operación de “35 \* 576”. Complicado al estar los datos en un comentario (un comentario puede ser una nota, como este caso; pero no nos interés, queremos anotar y que esos datos sirvan en el programa).
+
+Podríamos hacer una clase Contract (una clase Contract es una clase que solo sirve para anotar valores finales; dicho de otro modo, que nunca se van a modificar y va a servir para que nos lo facilite el IDE de Java, para acceder rápido a estos valores. Como por ejemplo los nombres de las tablas de una base de datos; de este modo cuando queramos hacer la consulta a la base de datos, con tan solo escribir el nombre de la clase y un punto, el IDE nos sugerirá las variables -con los nombres de las tablas- que tiene la clase en su interior) en la que anotar los valores de las calorías, del árbol, y de si tiene o no vitamina E.
+
+```
+public class AlmendraContract {
+	
+	public final int calorias = 500;
+	public final String arbolQueDaEsteFruto = "Almendro";
+	public final boolean tieneVitaminaE = true;
+
+}
+```
+
+Hago un breve inciso, pues llegado a este punto, si eres un programador avanzado de Java (si no te suenan no pasa nada, a partir de ahora sí que te sonará ), puede que te haya recordado a los ficheros de propiedades/configuración Java (Java Property File. Estos ficheros sirven para escribir constantes en un único fichero o unos pocos bien ubicados para su futura posible modificación; se suele guardar normalmente credenciales de acceso como a bases de datos, rutas estáticas, o ficheros de idiomas con las traducciones de la aplicación). Si bien podríamos utilizar un fichero de propiedades para este mismo fin, como muestro en el siguiente ejemplo (lo he escrito en formato Java Property File, pero puede que lo hayas visto en XML también), perdemos el dinamismo. Las anotaciones no sustituyen en todos los casos al uso de estos ficheros de configuración, sino que lo complementan y le dan muchísima más versatilidad, facilidad y claridad en la programación. Un posible ejemplo de un Java Property File sería (si te preguntas en que formato se guardan: en ninguno en concreto, podría ser un txt o incluso un Word, aunque normalmente acaban en extensión “properties” por convención; simplemente se crea una carpeta y desde la clase Java se apunta al fichero en esa carpeta; un ejemplo muy común de nombre de estos ficheros de propiedades es “MisPropiedades.properties”, para el ejemplo de la Almendra podría ser “Almendra.properties”):
+
+```
+# Mis propiedades para las Almendras (el símbolo # indicia comentario)
+calorias=500
+arbolQueDaEsteFruto=Almendro
+tieneVitaminaE=true
+```
+
+No voy a seguir con los ficheros de propiedades Java, simplemente quería que tuvieras presente su relación con las anotaciones Java. Si quieres saber más en [https://docs.oracle.com/javase/tutorial/essential/environment/properties.html](https://docs.oracle.com/javase/tutorial/essential/environment/properties.html). Ahora continuaré con el ejemplo Contract anterior.
+
+De este modo podríamos realizar la siguiente operación para obtener el total de calorías de las almendras (instancio Bolsita, pues es una clase que utilizaremos de la maneara normal a la que estamos acostumbrados a trabajar con objetos; podremos modificar dinámicamente su contenido, así como utilizar sus funciones del objeto de la clase Bolsita. La clase Contract nunca se instancia pues no tiene sentido, se accede directamente al valor de sus variables):
+
+```
+Bolsita bolsita = new Bolsita();
+int caloriasTotales = bolsita.getAlmendras() * AlmendraContract.calorias;
+```
+
+Esto es muy útil siempre que no cambien las variables de la clase Bolsita. Supongamos que hoy hacemos una Bolsita con almendras de una marca comercial que tienen 576 calorías, pero mañana hacemos otra con otra marca de almendras que tiene 345 calorías. Ya lo hemos estropeado, podríamos hacer otra clase Contract con los nuevos datos; pero ya estamos con el problema de duplicar clases para cambiar una única variable. Además -fuera de la duplicidad de clases- esto nos deja muy lejos el tener a mano las características del fruto seco dentro de una única clase, debido que al hacer clases Contract extraemos a éstas los valores fuera de la clase Bolsita y esto en este caso no nos interesa.
+
+Supongamos ahora que mezclamos frutos secos con caramelos dentro de la misma Bolsita, y nos interesa sumar la cantidad de frutos secos que tenemos. Podríamos tener la siguiente estructura:
+
+```
+public class Bolsita {
+	
+	// Es fruto seco
+	private int almendras = 50;
+
+	// Es fruto seco
+	private int avellanas = 40;
+
+	// NO es fruto seco
+	private int caramelos = 30;
+
+}
+```
+
+¿No sería interesante distinguir cuáles son frutos secos de otras cosas que no lo son?
+
+Podríamos deducir: instancio bolsita y tomo los valores únicamente de “almendras” y de “avellanas”, que son frutos secos. Esto es útil si estamos seguros de la existencia de esas variables en todos los casos. Añadamos otro “pero” más ¿Qué pasa si no tenemos claro los frutos secos que estarán dentro de la Bolsita? Me explico.
+
+Si nunca has tocado anotaciones puedes pensar: bueno, yo siempre sé que variables tienen mis clases. Y qué ocurre si un amigo te dice: “yo te hago la clase Bolsita -pero no vas a saber nunca (recalco nunca) que variables te voy a escribir dentro- es más, te voy hacer varias clases de bolsitas (parecidas a Bolsita, pero no son Bolsita) que puedo llamar como quiera y con variables diferentes cada una de ellas (Tu amigo podría crear las clases BolsitaA y BolsitaB únicamente, o decantarse con nombres como BolsitaMarcaA, BolsitaMarcaB y BolsitaMarcaC; sea como sea, no conocerás: ni el nombre de la clase, ni la cantidad de clases, ni el contenido); necesito que me cuentes las suma de todas las calorías de cada bolsita de únicamente los frutos secos que yo te voy anotar encima de cada variable”. Puede que con la programación tradicional tengamos un problema.
+
+&#x20;
+
+
+
+Vamos a dejar de preámbulos, caminemos hacia la solución a todos los problemas.
+
+Sin explicarte nada más, directamente anotaremos lo anterior con anotaciones Java. Mira que hermoso queda:
+
+```
+public class Bolsita {
+	
+	@FrutoSeco(calorias=500, tieneVitaminaE=true, arbolQueDaEsteFruto="Almendro")
+	private int almendras = 50;
+	
+	@FrutoSeco(calorias=600, tieneVitaminaE=true, arbolQueDaEsteFruto="Avellano")
+	private int avellanas = 40;
+
+	@Dulce(calorias=2500)
+	private int caramelos = 30;
+
+}
+```
+
+Creo que no hace falta que te cuente mucho. Hemos anotado los frutos secos como “FrutoSeco” y los dulces como “Dulce” (aparte de “FrutoSeco” y “Dulce” podría haber otras posibilidades). Además, les hemos puesto la información de una manera muy cómoda de leer tanto por nosotros como por el compilador.
+
+Si la anterior clase Bolsita la escribimos a pelo en nuestro IDE favorito nos dirá el compilador que no existen esas anotaciones, tenemos que crearlas.
+
+Si el tema de frutos secos no te aclara. Además de ponerte un ejemplo de utilizar anotaciones de Spring al final (más información al final del artículo). Te voy a poner otro ejemplo de utilización de anotaciones bastante intenso con una biblioteca que desarrolle para Android, la cual creaba la base de datos con las tablas de manera automática (la biblioteca no la he hecho pública por ser muy alfa; simplemente la pongo para que te hagas una idea de hasta dónde podemos llegar utilizando anotaciones). Gracias a las anotaciones podía fácilmente crearme una clase Pojo (Una clase Pojo solo contiene variables guardadas, nada de lógica) que tuviera la estructura de la base de datos y que automáticamente generara todos los “CREATES” de SQLite sin confundirme ni una sola vez en las sentencias SQL. Y además podía reutilizar de una manera muy sencilla esta estructura para trabajar con la aplicación -pues ya era el propio Pojo- ahorrándome mucho código:
+
+```
+@BaseDeDatos(version = 1)
+public final class NombreDeLaBaseDeDatos {
+
+	@Tabla
+	public final static class miTablaUsuarios { 
+		@Columna(esPrimaryKey = true, esAutoIncrement = true, esUnique = true)
+		public long id;
+
+		@Columna(permitirNull = false, valorPorDefecto = " ")
+		public String nombre;
+
+		@Columna()
+		public int telefono;
+	}
+	
+	@Tabla
+	public final static class miTablaCoches { 
+		@Columna(esPrimaryKey = true, esAutoIncrement = true, esUnique = true)
+		public long id;
+
+		@Columna
+		public String modelo;
+
+		@Columna(permitirNull = false, valorPorDefecto = "X")
+		public int matricula;
+	}
+
+}
+```
+
+Creo que con esto la idea queda clara del poder de las Annotation y Reflection.
+
+Después de esta introducción para comprender la profundidad de las anotaciones, hemos llegado a un punto de inflexión. Te voy a enseñar cómo utilizar anotaciones de terceros en la parte llamada “Desarrollador que usa anotaciones”, es muy sencillo y puedes continuar sin problemas con el siguiente punto. Pero cuando llegues al punto “Desarrollador de anotaciones”, donde te guiaré en la creación de tus propias anotaciones, [vas a requerir un profundo conocimiento de Reflection](https://jarroba.com/reflection-en-java/).
+
+&#x20;
+
+&#x20;
+
+Desarrollador que usa anotaciones<br>
+-------------------------------------
+
+Para utilizar anotaciones es bastante sencillo, no tenemos que saber mucho más que Java básico, pues el IDE (como Eclipse) las suele facilitar al sugerirlas. Otras incluidas en las bibliotecas de Java son todavía más fáciles de utilizar, pues el IDE las suele poner automáticamente o sugerirlas en advertencias.
+
+Aunque ahora veremos algunos ejemplos muy utilizados, evidentemente no voy a explicar todas las anotaciones que existen en los paquetes Java; pues este artículo trata sobre anotaciones en general y mi intención es que después de leerte este artículo puedas desenvolverte con soltura tú sólo.
+
+&#x20;
+
+### Anotaciones en comentarios (para genera la documentación Java)<br>
+
+Seguro que habrás visto cientos de veces como aparecen anotaciones en código fuente por doquier en Internet encima de clases y métodos. Como por ejemplo el siguiente código:
+
+```
+/**
+ * Descripción de la clase
+ * 
+ * @author Ramón Invarato
+ * @version 1.2
+ * @see <a href="https://jarroba.com/">Jarroba</a>
+ *
+ */
+public class Inicio {
+
+	/**
+	 * Descripción del método
+	 * 
+	 * @param caracter pide un parámetro de tipo char
+	 * @param texto pide un parámetro de tipo String
+	 * @return Devuelve un entero
+	 */
+	public static int probarComentariosAnotados(char caracter, String texto){
+		return 0;
+	}
+
+}
+```
+
+Estas anotaciones son muy útiles para crear una correcta documentación, encima de manera automática (Lo que se crea de manera automática es un sitio web con toda la documentación de nuestras clases que hayas escrito, como por ejemplo puedes ver en [http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html); si pensabas que el IDE te leía la mente y se creaba el texto de la documentación de manera automática, he de romper la ilusión pues todavía no y tengo mis dudas si en un futuro próximo lo haga, así que a escribir documentación a mano cómo se lleva haciendo desde que se inventó la escritura, salvo que al menos ahora tenemos teclado ).
+
+Así que si no las utilizabas ya no tienes excusas. Te recomiendo que a partir de ahora en cada método y clase las utilices como es debido, te lo agradecerá tu yo futuro y otros desarrolladores que utilicen tu código o biblioteca.
+
+Algunas son:
+
+* **@author**: el autor de la clase o método
+* **@version**: la versión del código
+* **@see**: algo que es interesante que se vea, como pueden ser webs. Se puede utilizar HTML, para un vínculo podemos utilizar la estructura: \<a href="url">nombre\</a>
+* **@param nombreVariable**: para explicar un parámetro de la clase
+* **@return**: para indicar que es lo que devuelve el método
+
+Existen otras anotaciones para crear la documentación que puedes consultar en [http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html](http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html)
+
+&#x20;
+
+### Anotaciones en código<br>
+
+#### @Override<br>
+
+Es una anotación ya creada por Java -que se utiliza mucho- al heredar una clase o una clase abstracta, así como al implementar una interfaz es “@Override” que quiere decir sobre-escribir un método. Es una anotación de ayuda al programador, para que de un vistazo a una clase sepa de inmediato si es un método ha sido sobrescrito de otra clase superior (heredada, abstracta o interfaz).
+
+Supondremos por ejemplo que tenemos la siguiente clase abstracta:
+
+```
+public abstract class ClaseAbstracta {
+	
+	public abstract void metodoParaSobrescribirEnHijo();
+	
+}
+```
+
+Si escribimos otra clase en un IDE como Eclipse, donde heredamos de la clase abstracta anterior:
+
+```
+public class ProbarOverride extends ClaseAbstracta {
+
+}
+```
+
+El IDE nos avisará que es obligatorio sobrescribirlo, pues un método abstracto requiere ser sobrescrito. Si pasamos el ratón sobre el aviso en rojo nos saldrán las posibles opciones para corregir el problema de manera automática; aunque también lo podríamos hacer manualmente, mejor que nos lo haga solo el IDE&#x20;
+
+&#x20;
+
+
+
+Podremos pulsar sobre “Add unimplemented methods” para que Eclipse no cree automáticamente el método con la anotación @Override; también podríamos escribirlo a mano. Al final tendríamos lo siguiente:
+
+```
+public class ProbarOverride extends ClaseAbstracta {
+
+	@Override
+	public void metodoParaSobrescribirEnHijo() {
+		
+	}
+
+}
+```
+
+Aunque aquí lo he hecho por pasos, el utilizar esta anotación lo hemos hecho en menos de un segundo.
+
+Solo nos queda añadir el contenido y continuar trabajando.
+
+&#x20;
+
+#### @SuppressWarnings<br>
+
+Esta anotación simplemente avisa al IDE que no nos moleste con ciertas advertencias.
+
+Por ejemplo, si utilizamos un método que esté obsoleto (Deprecated) el IDE nos lo pintará una línea amarilla y nos avisará con un triángulo amarillo. Supongamos que queremos utilizar este método a toda costa, pero no queremos que nos notifique el IDE de la Advertencia.
+
+O la escribimos a mano o dejamos que el IDE nos la escriba por nosotros.
+
+&#x20;
+
+
+
+Esta anotación @SuppressWarnings requiere que le pasemos un único valor de tipo String, en el cual pongamos unos textos prefijados que indiquen al IDE que advertencia queremos que no nos avise.
+
+&#x20;
+
+
+
+&#x20;
+
+#### @Deprecated<br>
+
+Si has programado con Java, otra anotación que habrás descubierto es la de código obsoleto (deprecated). Cuando estamos aprendiendo Java puede que nos hayamos preguntado ¿Y cómo lo harán para poner un código como obsoleto? Pues muy sencillo, utilizando la anotación “@Deprecated” sobre un método. A partir de entonces cada vez que se utilice ese método, el IDE avisará que está obsoleto y que aconseja utilizar otro diferente.
+
+Para que entiendas un poco mejor el contexto de su uso te lo cuento con un ejemplo. Hemos escrito hace años una clase que es muy utilizada por otras clases y sus métodos. Pasado tanto tiempo hemos creado otro método que hace lo mismo pero mejor, puede que hasta requiera una cantidad diferente de parámetros, que procese de manera diferente o devuelva otro tipo de resultado con otro formato o tipo. Lo malo es que no podeos hacer limpieza libremente de los métodos antiguos -ya que podríamos dejar otras clases que usen estos métodos sin funcionar- y deberán convivir los viejos con los nuevos. Ahora bien, queremos que en el futuro no se utilicen los viejos, y dar prioridad a los nuevos.
+
+Para esto anotamos el método con @Deprecated, que indica que ya está obsoleto, que funciona pero que existe uno mejor, más nuevo y que posiblemente no se le dará mantenimiento.
+
+```
+public class MetodosDeprecated {
+	
+	@Deprecated
+	public void metodoObsoleto(){
+	}
+}
+```
+
+Junto a la anotación del método @Deprecated nos suele interesar crear su documentación (se ve al pasar por encima del método si trabajamos con un IDE), que indique a todos los desarrolladores que este método está obsoleto y recomendarle cual pueden utilizar mejor que el viejo. Como el siguiente ejemplo:
+
+&#x20;
+
+
+
+Para indicar que es obsoleto y automáticamente se dibuje en la documentación que es obsoleto utilizamos simplemente **@deprecated**.
+
+Y para poder clicar e ir directamente a la documentación del nuevo método utilizamos **{@link}** del modo: **{@link paquete.Clase#metodo() nombreSimple}**
+
+Veamos cómo funciona todo esto junto:
+
+```
+public class MetodosDeprecated {
+	
+	/**
+	 * Descripción del método
+	 * 
+	 * @deprecated Se recomienda utilizar {@link deprecated.MetodosDeprecated#metodoNuevo() metodoNuevo} en su lugar
+	 */
+	@Deprecated
+	public void metodoObsoleto(){
+	}
+	
+	/**
+	 * Método nuevo
+	 */
+	public void metodoNuevo(){
+	}
+		
+}
+```
+
+Luego podemos utilizar estos métodos desde otra clase para ver como el IDE nos avisa:&#x20;
+
+```
+MetodosDeprecated md = new MetodosDeprecated();
+
+md.metodoObsoleto();
+md.metodoNuevo();
+
+```
+
+&#x20;
+
+Desarrollador de anotaciones<br>
+--------------------------------
+
+Continuaremos y ampliaremos el primer ejemplo de los frutos secos. Nos quedamos en el siguiente código:
+
+```
+public class Bolsita {
+	
+	@FrutoSeco(calorias=500, tieneVitaminaE=true, arbolQueDaEsteFruto="Almendro")
+	private int almendras = 50;
+	
+	@FrutoSeco(calorias=600, tieneVitaminaE=true, arbolQueDaEsteFruto="Avellano")
+	private int avellanas = 40;
+
+	@Dulce(calorias=2500)
+	private int caramelos = 30;
+
+}
+```
+
+Teniendo esto ya podemos programar que solo se seleccionen los frutos secos, nos haga las cuentas y nos devuelvan las calorías totales. Veamos cómo se hace, pero antes tenemos que crear las anotaciones (en este anterior código de ejemplo hemos usado las anotaciones, pero no las hemos creado; por así decirlo, te he creado el objeto instanciado, y falta por crear la clase). Si sabes crear una clase o interfaces Java es casi lo mismo con algún extra.
+
+Vamos a empezar a complicarlo un poco más, pero sólo un poco para que lo veas claro como el agua cristalina.
+
+* Primero, sabemos que podemos tener varios tipos de clase “Bolsita” con cosas dentro diferentes, para ello le cambiaré el nombre a “BolsitaMarcaA” (¿Motivo? simplemente porque me da la gana, y porque quiero que veas como funciona para procesar varias clases diferentes ).
+* Segundo, añadimos algún fruto seco más como “pinones” (piñones, la “Ñ” los compiladores no les gusta). Al que añadimos la anotación con las calorías y el árbol, pero no añadimos si tiene o no vitamina E. El hecho de no añadir la variable de vitamina E es para mostrar que no es obligatorio añadir todas las variables; aunque otras querremos definirlas como obligatorias, como “calorías”, sin ella no podemos realizar el cálculo.
+* Tercero, añadiremos algún dulce más. La anotación “Dulce” sólo tiene un valor dentro ¿Para qué poner “calorias=2500” si solo queremos un único valor que es “2500”? Pues fuera “calorías=”, quedando: “@Dulce(2500)”. Hago notar que este truco de quitar el nombre de la variable solo sirve si es un único valor pasado a la anotación.
+
+Cuarto, añadiré otras variables cualesquiera sin anotaciones para ver que no nos influye si no tiene anotación. Podríamos añadir también, métodos, constructores, clases internas y sin anotaciones no las leeremos; solo leeremos únicamente lo que queremos, lo que hemos anotado.
+
+```
+public class BolsitaMarcaA {
+	@FrutoSeco(calorias=500, tieneVitaminaE=true, arbolQueDaEsteFruto="Almendro")
+	private int almendras = 50;
+	
+	@FrutoSeco(calorias=600, tieneVitaminaE=true, arbolQueDaEsteFruto="Avellano")
+	private int avellanas = 40;
+	
+	@FrutoSeco(calorias=700, arbolQueDaEsteFruto="Pino")
+	private int pinones = 30;
+	
+	@Dulce(2500)
+	private int caramelos = 20;
+	
+	@Dulce(3800)
+	private int chocolates = 15;
+	
+	private int juguetesPromocionales = 1;
+}
+```
+
+Manos a la obra. Tenemos que crear dos anotaciones “FrutoSeco” y “Dulce”. Al final tendremos una estructura de nuestro proyecto como la que sigue (la estructura de paquetes la he creado como me han parecido conveniente):
+
+&#x20;
+
+
+
+&#x20;
+
+### Declarar nuestras anotaciones<br>
+
+Para crear la anotación dentro del fichero “FrutoSeco.java” simplemente escribimos como en todas las clases “publi”c seguido del nombre del fichero (en este caso de la anotación). Una diferencia es que donde suele ir la palabra “class” en declaración de las clases (Como por ejemplo “public class MiClase {}”), aquí se escribe la palabra que contiene arroba “**@interface**” (No hay que confundir esto con una Interfaz de Java, aunque la idea es muy similar).
+
+```
+public @interface FrutoSeco {
+
+}
+```
+
+Dentro tenemos que declarar las variables que utilizamos al usar la anotación, que fueron:
+
+* “tieneVitaminaE” de tipo boolean
+* “calorias” de tipo int
+* “arbolQueDaEsteFruto” de tipo String
+
+En el paso segundo de antes vimos que las variables podemos declararlas como obligatorias u opcionales. Para ello utilizamos la palabra “**default**” seguido del valor por defecto, para que el desarrollador que utilice nuestra anotación tenga la opción de añadir el valor de las variables si lo desea. Por otro lado, si queremos que sea obligatoria su declaración, simplemente no pondremos “default”.
+
+En nuestro ejemplo vamos a poner como opcionales: “tieneVitaminaE” y “arbolQueDaEsteFruto”. Y como obligatorio: “calorias”.
+
+```
+public @interface FrutoSeco {
+	boolean tieneVitaminaE() default false;
+	
+	int calorias();
+	
+	String arbolQueDaEsteFruto() default "";	
+}
+```
+
+Ya casi lo tenemos ¿Cómo que casi si ya está todo? No cantemos victoria antes de tiempo faltan dos cosas: dónde va a ir colocada nuestra anotación (si sobre una clase, sobre una variable, etc) y si va a poder utilizar en tiempo de ejecución (puede que solo nos interese que sirva para avisar en el compilador, pero para nada en ejecución). Para ello vamos a usar dos anotaciones que están preparadas para crear anotaciones:
+
+* **@Target**: el objetivo de nuestra anotación, es decir dónde vamos a permitir que se coloque: variable, clase, método, constructor, etc. No todas las anotaciones sirven para anotar todas las cosas, algunas puede que varias, otras solo una. Esta anotación se le puede pasar una tipo de elemento (ElementType) o varios en un array (como por ejemplo si queremos que solo se pueda utilizar en variables globales y métodos pondríamos: “@Target({ElementType.FIELD, ElementType.METHOD})”). El enumerado ElementType consta de:
+
+**-ANNOTATION\_TYPE**: anotación.
+
+**-CONSTRUCTOR**: constructor.
+
+**-FIELD**: variable global (variable dentro de una clase, pero fuera de los métodos).
+
+**-LOCAL\_VARIABLE**: variable local (variable dentro de un método).
+
+**-METHOD**: método.
+
+**-PACKAGE**: paquete (la primera línea de cualquier fichero “.java” aparece “package”).
+
+**-PARAMETER**: parámetro de un método.
+
+**-TYPE\_USE**: tipos (los tipos de objetos, como: String, int, Object, MiObjeto, etc; e incluso de declaración de arrays, es decir, delante de los corchetes “\[]”)
+
+**-TYPE\_PARAMETER**: parámetro de tipo (para los parámetros de los tipos genéricos; es decir, para anotar los parámetros del siguiente ejemplo: “\<parametroDeTipoA, parametroDeTipoB>” )
+
+**-TYPE**: cualquier elemento (sí, es un comodín para que funcione con todo: clases, método, variables, etc)
+
+* **@Retention**: Indica cómo se va a guardar la anotación usad. Tenemos que escoger entre un solo valor enumerado de RetentionPolicy:
+
+**-SOURCE**: La anotación se retiene solo a nivel de código fuente; es decir, se descarta la anotación durante la compilación (no se escribirá en el bytecode de tu programa, por lo que no se podrá ejecutarse).
+
+**-CLASS**: Se retiene la anotación por el compilador en tiempo de compilación, pero la Máquina Virtual de Java la ignora.
+
+**-RUNTIME**: Se retiene por la Máquina Virtual de Java, por lo que puede ser utilizada en tiempo de ejecución. Por lo que la anotación estará disponible en tiempo de ejecución mediante Reflection.
+
+Entonces, si queremos que sea solo para variables globales “@Target(ElementType.FIELD)” y que podamos leerla en tiempo de ejecución “@Retention(RetentionPolicy.RUNTIME)”. Obtendremos lo siguiente:
+
+```
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface FrutoSeco {
+	boolean tieneVitaminaE() default false;
+	
+	int calorias() default 0;
+	
+	String arbolQueDaEsteFruto() default "";	
+}
+```
+
+¿Fácil no? Practiquemos con la anotación “@Dulce” que es mucho más sencilla.
+
+Sólo te voy a añadir un truco que te resultará muy útil. Que es el poder poner variables públicas a los valores por defecto (esto es muy útil si queremos saber en código si se ha modificado o no el valor, o para saber cuál es el valor por defecto). El resto es lo mismo que antes (solo que no has de confundir entre el valor de la anotación y la variable global pública):
+
+```
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Dulce {
+	public static final int VALOR_POR_DEFECTO = 0;
+
+	int value() default VALOR_POR_DEFECTO;	
+}
+```
+
+De este modo podremos llamar a este valor por defecto desde cualquier otra clase con:
+
+```
+int valor = Dulce.VALOR_POR_DEFECTO;
+```
+
+&#x20;
+
+### Leer el valor de las anotaciones por Reflection<br>
+
+Aquí poco te voy a contar más que no sepas después de haberte [leído el artículo de Reflection](https://jarroba.com/reflection-en-java/).
+
+Lo único nuevo que hay es “**getAnnotation()**” de la variable tipo “Field” (hay que pasarle el “class” de la anotación que vamos a leer). Funciona igual que “getField()”, salvo que en vez de devolverte una variable, te devuelve una anotación.
+
+Es interesante asegurar que hayamos obtenido bien la anotación y no otra cosa, por ello podemos utilizar la siguiente condicional antes de realizar el casteo completo, evitaremos errores:
+
+```
+final Annotation anotacionObtenida = variable.getAnnotation(FrutoSeco.class);
+
+if (anotacionObtenida != null && anotacionObtenida instanceof FrutoSeco){
+	final FrutoSeco anotacionFrutoSeco = (FrutoSeco) anotacionObtenida;
+}
+```
+
+Del mismo modo existe “**getAnnotations()**” para obtener todas a las anotaciones y “**getDeclaredAnnotations()**” para leer las anotaciones privadas. Y ya por rematar podemos preguntar si existe una anotación “**isAnnotationPresent()**” a la que pasaremos también el “class” de la anotación.
+
+Directamente te pongo el código entero de la clase “Inicio”, que será quien se encargue de procesar las anotaciones en el método “contarCaloriasTotalesFrutosSecos()”.
+
+```
+public class Inicio {
+
+	public static void main(String[] args) {
+
+		BolsitaMarcaA bolsitaMarcaA = new BolsitaMarcaA();
+		int caloriasTotalesA = contarCaloriasTotalesFrutosSecos(bolsitaMarcaA);
+		System.out.println("Calorias totales de los frutos secos de una bolsita de la marca 'A': " + caloriasTotalesA);
+
+	}
+
+	public static int contarCaloriasTotalesFrutosSecos(final Object bolsita) {
+		Class<?> claseBolsita = bolsita.getClass();
+
+		int caloriasTotales = 0;
+
+		final Field[] variables = claseBolsita.getDeclaredFields();
+		for (final Field variable : variables) {
+
+			final Annotation anotacionObtenida = variable.getAnnotation(FrutoSeco.class);
+
+			if (anotacionObtenida != null && anotacionObtenida instanceof FrutoSeco) {
+				final FrutoSeco anotacionFrutoSeco = (FrutoSeco) anotacionObtenida;
+
+				int calorias = anotacionFrutoSeco.calorias();
+
+				int cantidad = 0;
+				try {
+					variable.setAccessible(true);
+					cantidad = variable.getInt(bolsita);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+
+				String nombreFrutoSeco = variable.getName();
+
+				System.out.println("	-Hay " + cantidad + " de " + nombreFrutoSeco + ", y cada una tiene " + calorias + " calorías");
+
+				caloriasTotales += (cantidad * calorias);
+			}
+		}
+
+		return caloriasTotales;
+	}
+}
+```
+
+Si lo ejecutamos nos mostrará por consola lo siguiente (Nota: el resto del ejemplo está tanto en el apartado de a continuación, como con todo el código al final del artículo):
+
+```
+	-Hay 50 de almendras, y cada una tiene 500 calorías
+	-Hay 40 de avellanas, y cada una tiene 600 calorías
+	-Hay 30 de pinones, y cada una tiene 700 calorías
+Calorias totales de los frutos secos de una bolsita de la marca 'A': 70000
+```
+
+&#x20;
+
+### Resto del ejemplo<br>
+
+Ya no te voy a enseñar nada nuevo. Simplemente te voy a terminar lo empezado.
+
+Si quieres ver como procesar también las anotaciones de “BolsitaMarcaB” puedes ampliar el anterior código sustituyendo el main() de la clase “Inicio” por:
+
+```
+public static void main(String[] args) {
+
+	BolsitaMarcaA bolsitaMarcaA = new BolsitaMarcaA();
+	int caloriasTotalesA = contarCaloriasTotalesFrutosSecos(bolsitaMarcaA);
+	System.out.println("Calorias totales de los frutos secos de una bolsita de la marca 'A': " + caloriasTotalesA);
+
+	System.out.println("");
+
+	BolsitaMarcaB bolsitaMarcaB = new BolsitaMarcaB();
+	int caloriasTotalesB = contarCaloriasTotalesFrutosSecos(bolsitaMarcaB);
+	System.out.println("Calorias totales de los frutos secos de una bolsita de la marca 'B': " + caloriasTotalesB);
+
+}
+```
+
+El código de “BolsitaMarcaB” puedes escribir el que quieras, como por ejemplo:
+
+```
+public class BolsitaMarcaB {
+	@FrutoSeco(calorias=300, tieneVitaminaE=true, arbolQueDaEsteFruto="Almendro")
+	private int almendras = 20;
+	
+	@FrutoSeco(calorias=250, tieneVitaminaE=true)
+	private int nueces = 30;
+	
+	@Dulce(1500)
+	private int azucarillos = 15;
+	
+	@SuppressWarnings("unused")
+	private int tornillos = 2;
+}
+```
+
+Mostraría por consola:
+
+```
+	-Hay 50 de almendras, y cada una tiene 500 calorías
+	-Hay 40 de avellanas, y cada una tiene 600 calorías
+	-Hay 30 de pinones, y cada una tiene 700 calorías
+Calorias totales de los frutos secos de una bolsita de la marca 'A': 70000
+
+	-Hay 20 de almendras, y cada una tiene 300 calorías
+	-Hay 30 de nueces, y cada una tiene 250 calorías
+Calorias totales de los frutos secos de una bolsita de la marca 'B': 13500
+```
+
+&#x20;
+
+### Inyección de dependencias (Dependency Injection)<br>
+
+Como extra (esta parte no es necesaria para una correcta comprensión de Annotations), voy a crear un mini Spring (Spring es un Framework Java para desarrollar aplicaciones) donde simularé brevemente su gran Contenedor de Inversión de Control, con ello su famosa anotación @Autowired.
+
+La anotación @Autowired permite indicar en qué variable inyectar una dependencia (dicho rápidamente: dependencia = objeto de una clase). No me voy a extender más en la explicación de @Autowired, para lo que voy a hacer me sirve (Si tienes curiosidad tienes más información en su documetnación oficial: [http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Autowired.html](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Autowired.html))
+
+Las Annotations junto a Reflection vienen de perlas para la inyección de dependencias, y los chicos de Spring lo saben y vaya que si lo saben, si utilizas Spring sabrás que se utilizan Annotations gestionadas por Reflection hasta en la sopa.
+
+Doy una definición rápida del patrón de “inyección de dependencias”. Significa que no vamos a crear el objeto dentro de una clase, sino que nos lo va a pasar otra clase externa. Esto puede sonar un poco peculiar, pues prácticamente siempre hemos instanciado los objetos con:
+
+```
+MiClase miObjeto = new MiClase();
+```
+
+**Las dependencias crean un fuerte** acoplamiento entre las clases; es decir, la clase que crea el objeto de otra clase no puede vivir sin ésta otra.
+
+La inyección de dependencias con @Autowired simplemente es esto:
+
+```
+@Autowired
+MiClase miObjeto;
+```
+
+Es decir, que otra clase cree mi objeto y me lo pase a donde pone la anotación. Esta otra clase utilizando Reflection tendrá que obtener el tipo, buscar la clase, instanciarla e inyectarla en la variable con la anotación @Autowired.
+
+La “inyección de dependencias” hace que el código sea débilmente acoplado.
+
+Es muy útil si necesitamos diferentes implementaciones de una misma clase o diferentes configuraciones. Separa el comportamiento de la construcción del objeto. Reduce el “código repetido” (Boilerplate code) de cada vez que hay que crear los objetos. Facilita las pruebas unitarias al ser muy sencillo usar métodos stub y objetos mock.
+
+Permite cambiar instancias del objeto inyectado en tiempo de ejecución, al asignar otra instancia diferente de la que fue inyectada.
+
+Ya visto que queremos hacer empezaré mostrándote la siguiente estructura del proyecto:
+
+&#x20;
+
+
+
+Spring realmente es una biblioteca aparte y la clase que define la anotación Autowired también está en la misma biblioteca de Spring; aquí por simplicidad pongo todo junto. Para que te hagas una idea la representación sería la siguiente:
+
+&#x20;
+
+
+
+Suponiendo que soy un usuario de la biblioteca de Spring, lo primero que tendría que hacer sería crear una clase cuyos objetos querremos inyectar:
+
+```
+public class Inyectar {
+	
+	private String algoQueDevolver = "'Algo devuelto desde el objeto inyectado'";
+	
+	public String metodoDeObjetoInyectado(){
+		return algoQueDevolver;
+	}
+
+}
+```
+
+**Nota para usuarios de Spring**: si has utilizado Spring, sabes que hay muchas más configuraciones previas. Esto no es un artículo sobre Spring, sino que debido a su popularidad me pareció un buen ejemplo de Reflection y Annotation; así como de revelar su magia interna  . Aquí me centro directamente en lo que es la inyección de dependencias con @Autowired.
+
+Ahora bien, necestiamos otro **objeto que requiera un objeto inyectado** (fíjate en el @Autowired y la variable que acompaña):
+
+```
+public class NecesitaObjetoInyectado {
+
+	@Autowired
+	private Inyectar miObjetoInyectado;
+
+	public void usarObjetoInyectadoYMostrarPorPantalla() {		
+		String textoObtenidoDeObjetoInyectado = miObjetoInyectado.metodoDeObjetoInyectado();		
+		System.out.println("Lo que me devuelve el método del objeto que me han inyectado: " + textoObtenidoDeObjetoInyectado);
+	}
+
+}
+```
+
+Para este ejemplo queremos algo muy simple, que es utilizar el método que está dentro de la clase anterior que va a ser inyectada (fíjate en los métodos de ambas clases).
+
+Con esto ejecutaríamos Spring y debería de funcionar devolviendo por consola:
+
+```
+Lo que me devuelve el método del objeto que me han inyectado: 'Algo devuelto desde el objeto inyectado'
+```
+
+Pero como aquí estamos creando Spring, vamos a definir su **Annotation llamada Autowired**:
+
+```
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Autowired {
+	
+}
+```
+
+Como ves es una anotación muy simple, tan simple que no tiene contenido.
+
+Y ya solo nos queda el simulador de **Spring**:
+
+```
+public class SimulaSpring {
+
+	public static void main(String[] args) {		
+		NecesitaObjetoInyectado necesitaInyeccion = new NecesitaObjetoInyectado();
+		
+		//Srping facilita un poco más al instanciar los objetos y no necesitar pedir la inyección a un objeto propiamente, por simplificar pediremos la inyección directamente
+		inyectorDeObjetos (necesitaInyeccion);
+		
+		necesitaInyeccion.usarObjetoInyectadoYMostrarPorPantalla();
+	}
+	
+	/**
+	 * Inyecta un objeto cualquiera que esté anotado con @Autowired (Este método simula al Framework Spring)
+	 * 
+	 * @param objetoNecesitaInyeccion objeto que requiere ser inyectado
+	 */
+	public static void inyectorDeObjetos (final Object objetoNecesitaInyeccion) {
+		Class<?> claseObjetoNecesitaInyeccion = objetoNecesitaInyeccion.getClass();
+
+		final Field[] variables = claseObjetoNecesitaInyeccion.getDeclaredFields();
+		for (final Field variable : variables) {
+			final Annotation anotacionObtenida = variable.getAnnotation(Autowired.class);
+
+			if (anotacionObtenida != null && anotacionObtenida instanceof Autowired) {	
+				//Obtiene el tipo de clase a inyectar, independientemente del tipo	
+				Class<?> claseInyectar = variable.getType(); 
+				
+				try {
+					//Instanciamos el objeto a inyectar
+					Object nuevoObjetoDeMiClase = claseInyectar.getConstructor().newInstance(); 
+					
+					variable.setAccessible(true);
+
+					//Inyectamos el objeto en la variable del objeto que requiere la inyección
+					variable.set(objetoNecesitaInyeccion, nuevoObjetoDeMiClase);
+				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+
+}
+```
+
+Aquí no hemos hecho nada raro que no hayamos [explicado ya tanto en este artículo como en el de Reflection](https://jarroba.com/reflection-en-java/).
+
+Puedes ver que lo que hace el método inyectorDeObjetos() es: dado cualquier tipo de objeto (sí este método es capaz de inyectar cualquier cosa); obtiene todas sus variables que estén anotadas con @Autowired, e independientemente de si son privadas o no (Spring lo hace también así, es capaz de leer variables privadas, he aquí su truco mejor guardado revelado  ); obtiene el tipo de la variable que se quiere inyectar, y ésta se instancia directamente con Reflection; accedemos a la variable, y le insertamos el valor que acabamos de crear con independencia de si es privada o no.
+
+Ya está, rápido, fácil y para toda la familia&#x20;
+
+&#x20;
+
+Código<br>
+----------
+
+Tienes todo el código en:&#x20;
+
+* [https://github.com/jarroba/Annotations.git](https://github.com/jarroba/Annotations.git)
+* [https://github.com/jarroba/DependencyInjectionSpringSimulation.git](https://github.com/jarroba/DependencyInjectionSpringSimulation.git)
+
+&#x20;
+
+Bibliografía<br>
+----------------
+
+* [https://docs.oracle.com/javase/tutorial/java/annotations/index.html](https://docs.oracle.com/javase/tutorial/java/annotations/index.html)
+* [https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Target.html](https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Target.html)
+* [https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/ElementType.html](https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/ElementType.html)
+* [https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Retention.html](https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Retention.html)
+* [http://en.wikipedia.org/wiki/Java\_annotation](http://en.wikipedia.org/wiki/Java_annotation)
+* [http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html](http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html)
+* [https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/](https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/)
+* [https://en.wikipedia.org/wiki/Spring\_Framework](https://en.wikipedia.org/wiki/Spring_Framework)
+* [https://en.wikipedia.org/wiki/Dependency\_injection](https://en.wikipedia.org/wiki/Dependency_injection)
+
+<figure><img src="https://hashraydamon.blog/wp-content/uploads/2019/02/anotaciones-1.png" alt="Acceder y crear anotaciones en Java" height="850" width="2000"><figcaption></figcaption></figure>
+
+Después de programar en Java por un tiempo seguramente se haya encontrado e incluso escrito lineas de código que comienzan con una @ justo al declarar clases y métodos, estas se llaman anotaciones y son bastante mas útiles y practicas de lo que cree, veamos como.
+
+### Anotaciones
+
+Las anotaciones son la forma en que el lenguaje de programación Java nos permite almacenar información sobre una parte de nuestro programa, sean métodos o clases, esta información puede usarse en tiempo de compilación o de ejecución para indicar como usar esa parte del código.
+
+Un ejemplo del uso de anotaciones es la anotación @Deprecated esta es usada para que el compilador de Java el advierta que esta usando un método que ya esta obsoleto de modo que pueda decidir si usarlo o no.
+
+Otro ejemplo es el framework Hibernate el cual usa anotaciones para relacionar una tabla en base de datos y sus campos con una clase Java y sus miembros, de modo que al consultar la base de datos automáticamente los registros obtenidos se conviertan en objetos del tipo correcto con los valores de los campos almacenados donde corresponde.
+
+Esta capacidad de básicamente poder almacenar información sobre la clase o función y leerla en tiempo de ejecución para tomar decisiones sobre como usar esa clase o que datos almacenar puede ser bastante útil y permitirle diseñar sistemas que pueden extenderse y reusarse con facilidad, por lo que bien vale la pena aprender a usarla, cosa que veremos a continuación.
+
+### Usando anotaciones
+
+Para usar una anotación basta con colocar un @, la anotación que deseamos usar y, si tiene, los valores de cada elemento de esa anotación antes de declarar la clase, campo o método que deseamos tenga esa anotación, puede poner cuantas anotaciones desee como se ve a continuación
+
+```
+@Anotacion(elemento="informacion del elemento", orden=1)
+@Override
+@SuppressWarnings("unchecked")
+public void metodoAnotado() {
+...
+}
+```
+
+Ahí por ejemplo puede ver que le pusimos tres anotaciones a un método, una anotación con dos elementos, uno que almacena texto y otro que almacena un numero, la anotación Override que es usada por el compilador y la anotación SupressWarnings con un elemento de texto
+
+Los «elementos» que mencionamos previamente son información almacenada por la anotación de \*esa\* clase/método/miembro, de modo que la misma clase anotación puede ser usada en diferentes partes de su programa con información diferente, estos se agregan en la forma (elemento1=\<valor>, elemento2=\<valor>, ..) una anotación puede tener tantos elementos como desee.
+
+Esta misma sintaxis aplica para clases y miembros solo recuerde que las anotaciones se aplicaran a la declaración inmediatamente despumes, por lo que considere eso al escribir su código.
+
+### Obteniendo las anotaciones de una Clase
+
+Primero veamos como obtener una anotación de una clase, para hacer esto necesitara del objeto _Class_ de dicha clase y llamar al método _.getAnnotation_ pasándole como argumento el objeto _Class_ de la anotación que deseamos consultar, como se ve a continuación.
+
+```
+Class c = ClaseConAnotacion.getClass();
+Anotacion a = (Anotacion) c.getAnnotacion(Anotacion.getClass());
+```
+
+Notara que se ocupa hacer un _casting_ del resultado de _.getAnnotation_ al tipo de anotación que desea consultar, recuerde hacer esto o no podrá acceder a los elementos de la anotación.
+
+El el caso de que la clase/miembro/método no contenga la anotación indicada se regresa un objeto nulo.
+
+### Consultando los elementos de la anotación
+
+El obtener la anotación tiene dos usos principales, ya sea ver que exista y actuar en forma acorde y consultar la información en los elementos que contiene, esto ultimo es muy útil si hay alguna forma de información relacionada con esa clase/método/miembro que desee tener a la mano en tiempo de ejecución, como saber en que miembro almacenar un campo de base de datos o que URL va a manejar una clase Servlet.
+
+Como puede ver en el ejemplo de código anterior, la declarar una anotación puede especificar la información de los miembros como se ve a continuación
+
+```
+@Anotacion(elemento="informacion del elemento", orden=1)
+```
+
+Entre los paréntesis pusimos que valor debe contener cada elemento, ¿Como los recuperamos?, una vez que tenga el objeto anotación adecuado basta con llamar el elemento deseado como se ve a continuación.
+
+```
+anotacion.elemento(); // regresa el contenido de elemento
+anotacion.orden(); // regresa el valor de orden
+```
+
+Aquí hay dos detalles que enfatizar, primero los elementos de las anotaciones no siguen la usual convención de _get/set_ de los objetos Java ya que no se deben usar como objetos Java regulares.
+
+Y segundo hacer el _casting_ al tipo de anotación adecuado es vital si desea acceder a los elementos, ya que si no lo hace el objeto resultante sera tipo _Annotation_ y no podra acceder a los elementos, le enviara un error al compilar.
+
+### Creando su propia anotación
+
+Ahora que sabemos como usar las anotaciones es hora de crear una a la medida que podamos usar para indicar lo que necesitemos y almacenar la información que deseemos .
+
+Aquí es donde notara que las anotaciones no son como clases e interfaces usuales, ya que tienen sus propias convenciones, como puede ver en el siguiente ejemplo.
+
+```
+// Indicamos en que contexto existira la anotacion
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Anotacion {
+    public String uso() default ""; // elemento uso
+    public int orden() default 0; // elemento orden
+}
+```
+
+Para empezar debe usar la anotación _@Retention_ para indicarle al compilador donde mantener esa anotación, el elemento _RetentionPolicy_ indicara eso y puede tener los valores _SOURCE_ para indicar que la anotación es solo para el código fuente, _CLASS_ para que solo el compilador la vea y _RUNTIME_ para que se mantenga durante la ejecución del programa.
+
+El siguiente detalle que notara es que se declara como _@interface_, no hay mucho que decir sobre esto, esa es sintaxis que se usa.
+
+Por ultimo notara que los elementos no se declaran como funciones, con () al frente en lugar y la opción de especificar un valor por defecto.
+
+### Ejemplo
+
+Ok, suficiente de teoría, veamos un ejemplo que use todo lo que mencionamos, crearemos una anotación nueva con elementos, la aplicaremos a varias clases y en tiempo de ejecución recuperaremos esa información, no es tan complicado como suena, pero si usa varias clases, aquí están.
+
+**Anotacion.java**
+
+```
+package mx.hashblog.ejemploAnotaciones.anotaciones;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+// Indicamos en que contexto existira la anotacion
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Anotacion {
+    public String uso() default ""; // elemento uso y su valor por defecto
+    public int orden() default 0; // elemento orden y su valor por defecto
+}
+```
+
+**Datos.java**
+
+```
+package mx.hashblog.ejemploAnotaciones.clases;
+
+import mx.hashblog.ejemploAnotaciones.anotaciones.Anotacion;
+
+@Anotacion(uso="Clase para datos", orden=1)
+public class Datos {
+    private Integer campo;
+    private String texto;
+    private Double decimal;
+
+    /**
+     * @return the campo
+     */
+    public Integer getCampo() {
+        return campo;
+    }
+
+    /**
+     * @param campo the campo to set
+     */
+    public void setCampo(Integer campo) {
+        this.campo = campo;
+    }
+
+    /**
+     * @return the texto
+     */
+    public String getTexto() {
+        return texto;
+    }
+
+    /**
+     * @param texto the texto to set
+     */
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    /**
+     * @return the decimal
+     */
+    public Double getDecimal() {
+        return decimal;
+    }
+
+    /**
+     * @param decimal the decimal to set
+     */
+    public void setDecimal(Double decimal) {
+        this.decimal = decimal;
+    }
+}
+```
+
+**Empleados.java**
+
+```
+package mx.hashblog.ejemploAnotaciones.clases;
+
+import mx.hashblog.ejemploAnotaciones.anotaciones.Anotacion;
+
+@Anotacion(uso="Clase para empleados", orden=2)
+public class Empleados {
+    private String nombre;
+    private Integer numeroEmpleado;
+    private String posicion;    
+}
+```
+
+**ManejoDatos.java**
+
+```
+package mx.hashblog.ejemploAnotaciones.clases;
+
+import mx.hashblog.ejemploAnotaciones.anotaciones.Anotacion;
+
+@Anotacion(uso="Clase para manejar datos", orden=3)
+public class ManejoDatos {
+    public void calcular(Datos dato) {
+        
+    }
+    
+    public void reporteEmpleado(Empleados empleado){        
+    }    
+}
+```
+
+**EjemploAnotaciones.java**
+
+```
+package mx.hashblog.ejemploAnotaciones;
+
+import java.util.ArrayList;
+import mx.hashblog.ejemploAnotaciones.anotaciones.Anotacion;
+import mx.hashblog.ejemploAnotaciones.clases.Datos;
+import mx.hashblog.ejemploAnotaciones.clases.Empleados;
+import mx.hashblog.ejemploAnotaciones.clases.ManejoDatos;
+
+public class EjemploAnotaciones {
+    static public void main(String[] args){
+        System.out.println("Obtenemos los objetos class de nuestras clases");
+        Class claseDatos = Datos.class;
+        Class claseEmpleados = Empleados.class;
+        Class claseManejoDatos = ManejoDatos.class;
+        
+        ArrayList<Class> clases = new ArrayList<>();
+        
+        clases.add(claseManejoDatos);
+        clases.add(claseEmpleados);
+        clases.add(claseDatos);
+        
+        for(Class clase : clases){
+            System.out.println("Obteniendo anotacion de la clase: " + clase.getName() );
+            Anotacion anotacion = (Anotacion) clase.getAnnotation( Anotacion.class );
+            
+            System.out.println("Obtenemos los datos que pusimos en las anotaciones");   
+            System.out.println("Clase: " + clase.getName());
+            System.out.println("Uso  : " + anotacion.uso());
+            System.out.println("Orden  : " + anotacion.orden());
+            System.out.println("");            
+        }
+    }
+}
+```
+
+Que cuando lo ejecute le dará la siguiente salida:
+
+```
+Obtenemos los objetos class de nuestras clases
+ Obteniendo anotacion de la clase: mx.hashblog.ejemploAnotaciones.clases.ManejoDatos
+ Obtenemos los datos que pusimos en las anotaciones
+ Clase: mx.hashblog.ejemploAnotaciones.clases.ManejoDatos
+ Uso  : Clase para manejar datos
+ Orden  : 3
+ Obteniendo anotacion de la clase: mx.hashblog.ejemploAnotaciones.clases.Empleados
+ Obtenemos los datos que pusimos en las anotaciones
+ Clase: mx.hashblog.ejemploAnotaciones.clases.Empleados
+ Uso  : Clase para empleados
+ Orden  : 2
+ Obteniendo anotacion de la clase: mx.hashblog.ejemploAnotaciones.clases.Datos
+ Obtenemos los datos que pusimos en las anotaciones
+ Clase: mx.hashblog.ejemploAnotaciones.clases.Datos
+ Uso  : Clase para datos
+ Orden  : 1
+```
+
+En el ejemplo puede ver varias cosas, primero como obtener las anotaciones vía el objeto Class, después como consultar los elementos y que el contenido de esos elementos podemos tratarlo como cualquier valor en Java, presentándolo en pantalla y comparándolo.
+
+El código del ejemplo puede encontrarlo aquí:\
+[https://gitlab.com/ticomWebcomic/anotaciones](https://gitlab.com/ticomWebcomic/anotaciones)
+
+Esta entrada es tal vez mas teoretica de lo normal, pero creame el poder almacenar información que puede consultar en tiempo de ejecución dentro de las clases y métodos es una herramienta que le deja hacer cosas muy interesante ;).
+
+Espero que esta entrada le fuera de utilidad, nos vemos en la próxima y si desean cooperar con la causa
