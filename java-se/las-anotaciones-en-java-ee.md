@@ -1109,3 +1109,52 @@ Interceptores de Yakarta, 2.0. [https://jakarta.ee/specifications/interceptors/2
 Jakarta Managed Beans. [https://jakarta.ee/specifications/managedbeans/2.0/](https://jakarta.ee/specifications/managedbeans/2.0/)
 
 RFC 2119. [http://www.faqs.org/rfcs/rfc2119.html](http://www.faqs.org/rfcs/rfc2119.html)
+
+## El concepto de Java Annotations y su funcionamiento
+
+Todos usamos en el día a día **Java Annotations** .Sin embargo no siempre entendemos como el lenguaje Java las procesa. Es decir estamos **más que acostumbrados a usar @Ejb o @Entity** para la capa de persistencia o para la gestión de servicios . Ahora bien **¿Cómo son procesadas o cómo son construidas?**. Vamos a ver un ejemplo sencillo de crear una anotación y procesarla con Java. El primer paso es definir la anotación con las propiedades que dispone.
+
+```
+```
+
+### Java Annotations y Anotaciones
+
+Lo primero que nos sorprend**e es que las propias anotaciones Java llevan aplicadas anotaciones.** Podemos ver @Target y @Retention. @Target nos indica en que lugares se puede aplicar **esta anotación** . En nuestro caso tanto en clases como en propiedades (Type,Field).La anotacion **Retention  valora si la anotación se chequea en tiempo de ejecucion.**&#x55;na vez definido esto usamos @interface  y le asignamos un nombre. **El último paso es añadir propiedades a la anotación por si permite parametrizaciones.**
+
+<figure><img src="https://www.arquitecturajava.com/wp-content/uploads/javaanotationdeclaracion-300x137.png" alt="" height="137" width="300"><figcaption></figcaption></figure>
+
+En nuestro caso la anotación permite un parámetro de mayusculas true/false. Vamos a ver ahora como se aplica la anotación a una clase normal como es la clase Libro.
+
+```
+```
+
+Hemos aplicado la anotación sobre una clase . Nuestra anotación nos informa si tenemos que procesar los objetos e imprimir la información en mayusculas o minúsculas por pantalla. Nos queda construir un programa Java que sea capaz de procesar las anotaciones . Para ello haremos uso del [API de Reflection](https://www.arquitecturajava.com/el-concepto-java-reflection/). Veamos el código:
+
+```
+```
+
+El código es complejo de entender pero vamos a ver si podemos explicarlo paso a paso
+
+1. Recorremos la lista de Objetos
+2. Por cada Objeto leemos las propiedades (campos) que tiene “getDeclaredFields()”
+3. El siguiente paso es comprobar si el campo dispone de la anotaccion Imprimible getAnnotation(Imprimible.class)
+4. Si esa anotacion existe , comprobamos si la propiedad mayuscula esta a true o false
+5. Imprimimos por consola los datos
+
+Un diagrama lo deja un poco más claro:
+
+<figure><img src="https://www.arquitecturajava.com/wp-content/uploads/javaannotations.png" alt="" height="439" width="738"><figcaption></figcaption></figure>
+
+Por último nos queda ejecutar e imprimir la información en pantalla:
+
+<figure><img src="https://www.arquitecturajava.com/wp-content/uploads/javannotationsresultado.jpeg" alt="" height="109" width="128"><figcaption></figcaption></figure>
+
+Hemos creado nuestras propias Java Annotations. Este tipo de enfoque puede ser útil cuando queremos diseñar nuestros propios frameworks.
+
+
+
+{% file src="../.gitbook/assets/Java Override y encapsulación.pdf" %}
+
+{% file src="../.gitbook/assets/Java Generic Repository y JPA.pdf" %}
+
+{% file src="../.gitbook/assets/Java Diamond Operator y Genéricos.pdf" %}
