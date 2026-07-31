@@ -105,6 +105,7 @@
   * [Las anotaciones en Java EE](java-se/las-anotaciones-en-java-ee.md)
   * [Java Override y encapsulación](java-se/java-override-y-encapsulacion.md)
   * [¿Para qué sirve @Override en Java?](java-se/para-que-sirve-override-en-java.md)
+  * [Spring Boot ¿Qué es y cómo funciona?](java-se/spring-boot-que-es-y-como-funciona.md)
 * [JavaEE](javaee/README.md)
   * [JakartaEE](javaee/jakartaee.md)
   * [JmoordbFaces](javaee/jmoordbfaces.md)
