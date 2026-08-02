@@ -101,7 +101,7 @@ Si intentamos compilar la aplicación para probarla, veremos que nos muestra est
 Programación
 
 _Error al cargar el driver JDBC de MySQL: com.mysql.jdbc.Driver_\
-&#xNAN;_&#x45;rror al conectar con el servidor MySQL/MariaDB: No suitable driver found for jdbc:mysql://localhost:3306/lista\_compra_
+_&#x45;rror al conectar con el servidor MySQL/MariaDB: No suitable driver found for jdbc:mysql://localhost:3306/lista\_compra_
 
 
 
