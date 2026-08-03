@@ -591,9 +591,9 @@ No te preocupes si no entiendes partes del código. Lo iremos viendo todo a lo l
 
 ## 2. El MVC en JavaServer Faces
 
+{% file src="../../.gitbook/assets/sesion02-traspas.pdf" %}
 
 
-{% file src="/broken/files/hn8B65LsSnZFDjgWUT8F" %}
 
 * [Modelo-Vista-Controlador](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion02-apuntes.html#Modelo-Vista-Controlador)
   * [Vista](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion02-apuntes.html#Vista)
