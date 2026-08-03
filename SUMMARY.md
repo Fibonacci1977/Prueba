@@ -129,6 +129,7 @@
   * [DropWizards](frameworks/dropwizards.md)
   * [Vaadin](frameworks/vaadin.md)
   * [Google Web Toolkit](frameworks/google-web-toolkit.md)
+  * [EJB](frameworks/ejb.md)
 * [IDE](ide/README.md)
   * [Eclipse](ide/eclipse.md)
   * [Netbeans](ide/netbeans.md)
