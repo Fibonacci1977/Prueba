@@ -28,7 +28,7 @@ Las aplicaciones RIA (_Rich Internet Applications_) proporcionan una interacció
 
 
 
-{% file src="/broken/files/rGzTSDc2JGXMucByIwK3" %}
+{% file src="../../.gitbook/assets/wholesite (1).pdf" %}
 
 ## 1. Introducción a JavaServer Faces
 
