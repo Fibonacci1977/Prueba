@@ -226,8 +226,33 @@ Icefaces:
 
 Al igual que JSP, las vistas JSF se construyen mediante etiquetas específicas que declaran elementos y componentes. Un ejemplo de página JSF es el siguiente:
 
-| 12345678910111213141516171819202122232425 | `<?xml` `version="1.0"` `encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""`[`http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd`](http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd)`"><html` `xmlns="`[`http://www.w3.org/1999/xhtml`](http://www.w3.org/1999/xhtml)`"      xmlns:h="`[`http://java.sun.com/jsf/html`](http://java.sun.com/jsf/html)`">   <h:head>      <title>Welcome</title>   </h:head>   <h:body>      <h:form>         <h3>Please enter your name and password.</h3>         <table>            <tr>               <td>Name:</td>               <td><h:inputText` `value="#{user.name}"/></td>            </tr>            <tr>               <td>Password:</td>               <td><h:inputSecret` `value="#{user.password}"/></td>            </tr>         </table>         <p><h:commandButton` `value="Login"` `action="welcome"/></p>      </h:form>   </h:body></html>` |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+   <h:head>
+      <title>Welcome</title>
+   </h:head>
+   <h:body>
+      <h:form>
+         <h3>Please enter your name and password.</h3>
+         <table>
+            <tr>
+               <td>Name:</td>
+               <td><h:inputText value="#{user.name}"/></td>
+            </tr>
+            <tr>
+               <td>Password:</td>
+               <td><h:inputSecret value="#{user.password}"/></td>
+            </tr>
+         </table>
+         <p><h:commandButton value="Login" action="welcome"/></p>
+      </h:form>
+   </h:body>
+</html>
+```
 
 El ejemplo muestra una pantalla de login en la se pide al usuario el nombre y la contraseña. El aspecto de la página en el navegador es el siguiente:
 
@@ -330,8 +355,52 @@ La plantilla la definimos en el fichero resources/templates/principal.xhtml. Es 
 
 La página se define en el fichero templates/principal.xhtml:
 
-| 1234567891011121314151617181920212223242526272829303132333435363738394041424344 | `<?xml` `version='1.0'` `encoding='UTF-8'` `?><!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Transitional//EN"  "`[`http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd`](http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd)`"><html` `xmlns="`[`http://www.w3.org/1999/xhtml`](http://www.w3.org/1999/xhtml)`"      xmlns:ui="`[`http://java.sun.com/jsf/facelets`](http://java.sun.com/jsf/facelets)`"      xmlns:h="`[`http://java.sun.com/jsf/html`](http://java.sun.com/jsf/html)`">` `<h:head>        <meta` `http-equiv="Content-Type"` `content="text/html; charset=UTF-8"` `/>        <link` `href="./resources/css/default.css"` `rel="stylesheet"` `type="text/css"` `/>        <link` `href="./resources/css/cssLayout.css"` `rel="stylesheet"` `type="text/css"` `/>        <title>          <ui:insert` `name="pageTitle">JSF Twitter</ui:insert>        </title>    </h:head>` `<h:body>` `<div` `id="top">            <ui:insert` `name="top">                <h1>JSF Twitter</h1>            </ui:insert>        </div>        <div>            <div` `id="left">                <ui:insert` `name="left">                    <ui:include` `src="/resources/components/leftMenu.xhtml"></ui:include>                </ui:insert>            </div>            <div` `id="content"` `class="left_content">                <ui:insert` `name="content">                    Aquí va el contenido. Si no hay contenido, se mostrará este texto por defecto                </ui:insert>            </div>        </div>        <div` `class="clearboth"></div>        <div` `id="bottom">            &copy; Experto en Desarrollo de Aplicaciones y Servicios con Java Enterprise        </div>` `</h:body>` `</html>` |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```hxml
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC 
+  "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>
+          <ui:insert name="pageTitle">JSF Twitter</ui:insert>
+        </title>
+    </h:head>
+ 
+    <h:body>
+ 
+        <div id="top">
+            <ui:insert name="top">
+                <h1>JSF Twitter</h1>
+            </ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <ui:include src="/resources/components/leftMenu.xhtml"></ui:include>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">
+                    Aquí va el contenido. Si no hay contenido, se mostrará este texto por defecto
+                </ui:insert>
+            </div>
+        </div>
+        <div class="clearboth"></div>
+        <div id="bottom">
+            &copy; Experto en Desarrollo de Aplicaciones y Servicios con Java Enterprise
+        </div>
+ 
+    </h:body>
+ 
+</html>
+```
 
 Ya tenemos definida nuestra plantilla con sus cuatro elementos: cabecera, menú, contenido y pie
 
@@ -344,30 +413,134 @@ Ambas maneras son permitidas por Facelets. Sin embargo, el uso de la etiqueta ui
 
 El siguiente fichero resources/components/leftMenu.xhtml contiene el menú de la aplicación. Utiliza la directiva \<ui:composition> para definir un bloque de código que es insertado desde otra página con la directiva \<ui:include>. Dentro utilizamos el componente RichFaces \<rich:panel> para definir un panel con el título _Menú_
 
-| 123456789101112131415161718192021222324252627282930 | `<?xml` `version='1.0'` `encoding='UTF-8'` `?><!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Transitional//EN"  "`[`http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd`](http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd)`"><html` `xmlns="`[`http://www.w3.org/1999/xhtml`](http://www.w3.org/1999/xhtml)`"    xmlns:h="`[`http://java.sun.com/jsf/html`](http://java.sun.com/jsf/html)`"    xmlns:ui="`[`http://java.sun.com/jsf/facelets`](http://java.sun.com/jsf/facelets)`"    xmlns:f="`[`http://java.sun.com/jsf/core`](http://java.sun.com/jsf/core)`"    xmlns:rich="`[`http://richfaces.org/rich`](http://richfaces.org/rich)`">` `<ui:composition>      <div` `class="left_menu">        <div>          <div` `class="foto_usuario">            <img` `src="#{user.profile_image_url}"` `/><br/>            user.name}<br/>(#{user.screenName})          </div>          <div` `class="clearboth"></div>        </div>        <div>          <ul>            <li>Tweets: #{user.tweets}</li>            <li>Siguiendo a: #{user.following}</li>            <li>Seguidores: #{user.followers}</li>          </ul>        </div>      </div>    </ui:composition>` `</html>` |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```hxml
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC 
+  "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich">
+     
+    <ui:composition>
+      <div class="left_menu">
+        <div>
+          <div class="foto_usuario">
+            <img src="#{user.profile_image_url}" /><br/>
+            user.name}<br/>(#{user.screenName})
+          </div>
+          <div class="clearboth"></div>
+        </div>
+        <div>
+          <ul>
+            <li>Tweets: #{user.tweets}</li>
+            <li>Siguiendo a: #{user.following}</li>
+            <li>Seguidores: #{user.followers}</li>
+          </ul>
+        </div>
+      </div>
+    </ui:composition>
+ 
+</html>
+```
 
 Por último, definimos el fichero principal timeline.xhtml: que incluye la plantilla con la instrucción \<ui:composition> y el atributo template en el que se indica la ruta de la plantilla. Con la directiva \<ui:define> definimos el contenido del panel principal, utilizando el atributo name con un valor que debe emparejar con el mismo atributo de la directiva \<ui:insert> en el que se coloca.
 
-| 123456789101112131415161718192021222324252627282930313233343536373839404142 | `<?xml` `version='1.0'` `encoding='UTF-8'` `?><!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Transitional//EN"  "`[`http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd`](http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd)`"><html` `xmlns="`[`http://www.w3.org/1999/xhtml`](http://www.w3.org/1999/xhtml)`"    xmlns:ui="`[`http://java.sun.com/jsf/facelets`](http://java.sun.com/jsf/facelets)`"    xmlns:h="`[`http://java.sun.com/jsf/html`](http://java.sun.com/jsf/html)`"    xmlns:rich="`[`http://richfaces.org/rich`](http://richfaces.org/rich)`"    xmlns:c="`[`http://java.sun.com/jsp/jstl/core`](http://java.sun.com/jsp/jstl/core)`">` `<body>    <ui:composition` `template="./resources/templates/twitterTemplate.xhtml">      <ui:define` `name="content">        <h:form>          <div>            <h:commandButton                action="#{timelineBean.getPrevPage()}"                value="Más recientes"` `/>            <ui:repeat                var="tweet"                value="#{timelineBean.getTweets()}"                offset="#{timelineBean.currentPage}"                size="#{timelineBean.perPage}">              <div` `class="tweet">                <div` `class="tweet-wrapper">                  <div` `class="userpic">                    <img` `src="#{tweet.user.profile_image_url}"` `/>                  </div>                  <div>#{tweet.user.name} (@#{tweet.user.screenName})</div>                  <div>#{tweet.text}</div>                </div>              </div>            </ui:repeat>          </div>          <h:commandButton              action="#{timelineBean.getNextPage()}"              value="Siguiente página"` `/>        </h:form>      </ui:define>    </ui:composition>  </body></html>` |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```xml
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC 
+  "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+ 
+  <body>
+    <ui:composition template="./resources/templates/twitterTemplate.xhtml">
+      <ui:define name="content">
+        <h:form>
+          <div>
+            <h:commandButton
+                action="#{timelineBean.getPrevPage()}"
+                value="Más recientes" />
+            <ui:repeat
+                var="tweet"
+                value="#{timelineBean.getTweets()}"
+                offset="#{timelineBean.currentPage}"
+                size="#{timelineBean.perPage}">
+              <div class="tweet">
+                <div class="tweet-wrapper">
+                  <div class="userpic">
+                    <img src="#{tweet.user.profile_image_url}" />
+                  </div>
+                  <div>#{tweet.user.name} (@#{tweet.user.screenName})</div>
+                  <div>#{tweet.text}</div>
+                </div>
+              </div>
+            </ui:repeat>
+          </div>
+          <h:commandButton
+              action="#{timelineBean.getNextPage()}"
+              value="Siguiente página" />
+        </h:form>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>
+```
 
 Se utiliza una hoja de estilo CSS en la que se define el tamaño de fuente del título y del pie de página y las dimensiones y separación del menú y la zona principal. Lo hacemos en el fichero resources/css/detault.css:
 
-| 12345678910111213141516171819 | `body {    background-color: #ffffff;    font-size: 12px;    font-family: Verdana, Arial, sans-serif;    color: #000000;     margin: 10px;}` `h1` `{    font-family: Verdana, Arial, sans-serif;    border-bottom: 1px` `solid` `#AFAFAF;    font-size:  16px;    font-weight: bold;    margin: 0px;    padding: 0px;    color: #D20005;}` `/* RESTO DEL CSS*/` |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```css
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Verdana, Arial, sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
+ 
+h1 {
+    font-family: Verdana, Arial, sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+ 
+/* RESTO DEL CSS*/
+```
 
 Para acceder a la página debemos utilizar el prefijo faces accediendo a _http://localhost:8080/jsf-ejemplos/faces/timeline.xhtml_.
 
 También podemos definir un fichero index.jsp en la raíz de la aplicación web que haga una redirección a la página anterior utilizando la directiva jsp:forward:
 
-| 1234567 | `<!doctype html public "-//w3c//dtd html 4.0 transitional//en"><html><head></head><body>   <jsp:forward` `page="/faces/timeline.xhtml"` `/></body></html>` |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head></head>
+<body>
+   <jsp:forward page="/faces/timeline.xhtml" />
+</body>
+</html>
+```
 
 Debemos incluir el fichero index.jsp en el primer lugar de la lista de ficheros de bienvenida en WEB-INF/web.xml:
 
-| 123456 | `...<welcome-file-list>   <welcome-file>index.jsp</welcome-file>   <welcome-file>faces/timeline.xhtml</welcome-file></welcome-file-list>...` |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+```xml
+...
+<welcome-file-list>
+   <welcome-file>index.jsp</welcome-file>
+   <welcome-file>faces/timeline.xhtml</welcome-file>
+</welcome-file-list>
+...
+```
 
 ### Creando un primer proyecto JSF
 
@@ -379,8 +552,158 @@ Para crear nuestro primer proyecto JSF, lo primero que haremos será crear un pr
 
 Posteriormente, tendremos que editar el fichero pom.xml para añadir las rutas del repositorio de RichFaces, así como las dependencias con sus librerías y las de JSR 303
 
-| 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150 | `<project` `xmlns="`[`http://maven.apache.org/POM/4.0.0`](http://maven.apache.org/POM/4.0.0)`"    xmlns:xsi="`[`http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)`"    xsi:schemaLocation="`[`http://maven.apache.org/POM/4.0.0`](http://maven.apache.org/POM/4.0.0)    [`http://maven.apache.org/xsd/maven-4.0.0.xsd`](http://maven.apache.org/xsd/maven-4.0.0.xsd)`">  <modelVersion>4.0.0</modelVersion>` `<groupId>es.ua.jtech.jsf</groupId>  <artifactId>ModJSF</artifactId>  <version>1.0-SNAPSHOT</version>  <packaging>war</packaging>` `<name>ModJSF</name>` `<!-- AÑADIR REPOSITORIOS DE JSF -->  <repositories>    <repository>      <id>richfaces</id>      <name>Richfaces repository</name>      <layout>default</layout>      <url>`[`https://repository.jboss.org/nexus/content/groups/public-jboss/`](https://repository.jboss.org/nexus/content/groups/public-jboss/)`</url>      <snapshots>        <enabled>false</enabled>      </snapshots>    </repository>  </repositories>` `<properties>    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  </properties>` `<dependencies>    <!-- DEPENDENCIAS RICHFACES -->    <dependency>      <groupId>org.richfaces.core</groupId>      <artifactId>richfaces-core-impl</artifactId>      <version>4.2.0.Final</version>    </dependency>    <dependency>      <groupId>org.richfaces.ui</groupId>      <artifactId>richfaces-components-ui</artifactId>      <version>4.2.0.Final</version>    </dependency>    <dependency>      <groupId>org.richfaces.core</groupId>      <artifactId>richfaces-core-api</artifactId>      <version>4.2.0.Final</version>    </dependency>    <dependency>      <groupId>org.richfaces.ui</groupId>      <artifactId>richfaces-components-api</artifactId>      <version>4.2.0.Final</version>    </dependency>    <dependency>      <groupId>com.sun.faces</groupId>      <artifactId>jsf-api</artifactId>      <version>2.1.1-b04</version>    </dependency>    <dependency>      <groupId>com.sun.faces</groupId>      <artifactId>jsf-impl</artifactId>      <version>2.1.1-b04</version>    </dependency>` `<dependency>      <groupId>javax.servlet</groupId>      <artifactId>jstl</artifactId>      <version>1.1.2</version>    </dependency>    <dependency>      <groupId>taglibs</groupId>      <artifactId>standard</artifactId>      <version>1.1.2</version>    </dependency>        <!-- DEPENDENCIAS SCRIBE -->    <dependency>      <groupId>org.scribe</groupId>      <artifactId>scribe</artifactId>      <version>1.3.2</version>    </dependency>    <dependency>      <groupId>javax.servlet</groupId>      <artifactId>javax.servlet-api</artifactId>      <version>3.1-b02</version>            <scope>provided</scope>    </dependency>` `<!-- DEPENDENCIAS JSR 303 -->    <dependency>      <groupId>org.hibernate</groupId>      <artifactId>hibernate-validator</artifactId>      <version>4.3.0.Final</version>    </dependency>    <dependency>      <groupId>com.google.code.gson</groupId>      <artifactId>gson</artifactId>      <version>2.2.2</version>    </dependency>  </dependencies>` `<build>    <plugins>      <plugin>        <groupId>org.apache.maven.plugins</groupId>        <artifactId>maven-compiler-plugin</artifactId>        <version>2.3.2</version>          <configuration>            <source>1.6</source>            <target>1.6</target>            <compilerArguments>              <endorseddirs>${endorsed.dir}</endorseddirs>            </compilerArguments>          </configuration>      </plugin>      <plugin>        <groupId>org.apache.maven.plugins</groupId>        <artifactId>maven-war-plugin</artifactId>        <version>2.1.1</version>        <configuration>          <failOnMissingWebXml>false</failOnMissingWebXml>        </configuration>      </plugin>      <plugin>        <groupId>org.apache.maven.plugins</groupId>        <artifactId>maven-dependency-plugin</artifactId>        <version>2.1</version>        <executions>          <execution>            <phase>validate</phase>              <goals>                <goal>copy</goal>            </goals>            <configuration>              <outputDirectory>${endorsed.dir}</outputDirectory>              <silent>true</silent>              <artifactItems>                <artifactItem>                  <groupId>javax</groupId>                  <artifactId>javaee-endorsed-api</artifactId>                  <version>6.0</version>                  <type>jar</type>                </artifactItem>              </artifactItems>            </configuration>          </execution>        </executions>      </plugin>    </plugins>  </build></project>` |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+    http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>es.ua.jtech.jsf</groupId>
+  <artifactId>ModJSF</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+ 
+  <name>ModJSF</name>
+     
+  <!-- AÑADIR REPOSITORIOS DE JSF -->
+  <repositories>
+    <repository>
+      <id>richfaces</id>
+      <name>Richfaces repository</name>
+      <layout>default</layout>
+      <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+ 
+  <properties>
+    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+ 
+  <dependencies>
+    <!-- DEPENDENCIAS RICHFACES -->
+    <dependency>
+      <groupId>org.richfaces.core</groupId>
+      <artifactId>richfaces-core-impl</artifactId>
+      <version>4.2.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.richfaces.ui</groupId>
+      <artifactId>richfaces-components-ui</artifactId>
+      <version>4.2.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.richfaces.core</groupId>
+      <artifactId>richfaces-core-api</artifactId>
+      <version>4.2.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.richfaces.ui</groupId>
+      <artifactId>richfaces-components-api</artifactId>
+      <version>4.2.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-api</artifactId>
+      <version>2.1.1-b04</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-impl</artifactId>
+      <version>2.1.1-b04</version>
+    </dependency>
+         
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+        <!-- DEPENDENCIAS SCRIBE -->
+    <dependency>
+      <groupId>org.scribe</groupId>
+      <artifactId>scribe</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1-b02</version>
+            <scope>provided</scope>
+    </dependency>
+         
+    <!-- DEPENDENCIAS JSR 303 -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>4.3.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.2.2</version>
+    </dependency>
+  </dependencies>
+ 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+            <compilerArguments>
+              <endorseddirs>${endorsed.dir}</endorseddirs>
+            </compilerArguments>
+          </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+              <goals>
+                <goal>copy</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${endorsed.dir}</outputDirectory>
+              <silent>true</silent>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>javax</groupId>
+                  <artifactId>javaee-endorsed-api</artifactId>
+                  <version>6.0</version>
+                  <type>jar</type>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
 
 Una vez hecho esto, editaremos las propiedades del proyecto, y nos iremos al apartado Frameworks. Añadiremos JavaServer Faces 2.1 y aceptaremos
 
@@ -408,8 +731,19 @@ Contienen el conjunto de clases que realizan la implementación del framework y 
 
 Las librerías dependen de la implementación específica de JSF. Por ejemplo, en el caso de la implementación de RichFaces (_RichFaces 4.2_) la lista de librerías es la siguiente:
 
-| 1234567891011 | `cssparser-0.9.5.jarehcache-1.6.0.jarguava-r05.jarjsf-api-2.0.3-b03.jarjsf-impl-2.0.3-b03.jarjstl-1.2.jarrichfaces-components-api-4.0.0.20101110-M4.jarrichfaces-components-ui-4.0.0.20101110-M4.jarrichfaces-core-api-4.0.0.20101110-M4.jarrichfaces-core-impl-4.0.0.20101110-M4.jarsac-1.3.jar` |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```
+cssparser-0.9.5.jar
+ehcache-1.6.0.jar
+guava-r05.jar
+jsf-api-2.0.3-b03.jar
+jsf-impl-2.0.3-b03.jar
+jstl-1.2.jar
+richfaces-components-api-4.0.0.20101110-M4.jar
+richfaces-components-ui-4.0.0.20101110-M4.jar
+richfaces-core-api-4.0.0.20101110-M4.jar
+richfaces-core-impl-4.0.0.20101110-M4.jar
+sac-1.3.jar
+```
 
 Vemos que existen librerías de apoyo (_cssparser_, _ehcache_, _guava_ y _sac_) y librerías propias de JSF.
 
@@ -421,8 +755,34 @@ Los componentes adicionales los proporcionan las distintas librerías de compone
 
 La aplicación ejemplo contendrá una única página JSF, que permite al usuario escribir en un campo y que muestra lo que va escribiendo a su derecha. La página (la llamaremos sample.xhtml) es la siguiente:
 
-| 1234567891011121314151617181920212223242526 | `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""`[`http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd`](http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd)`"><html` `xmlns="`[`http://www.w3.org/1999/xhtml`](http://www.w3.org/1999/xhtml)`"   xmlns:h="`[`http://java.sun.com/jsf/html`](http://java.sun.com/jsf/html)`"   xmlns:f="`[`http://java.sun.com/jsf/core`](http://java.sun.com/jsf/core)`"   xmlns:ui="`[`http://java.sun.com/jsf/facelets`](http://java.sun.com/jsf/facelets)`"   xmlns:a4j="`[`http://richfaces.org/a4j`](http://richfaces.org/a4j)`">` `<h:head>   <title>RichFaces Sample</title>   <meta` `http-equiv="content-type"` `content="text/xhtml; charset=UTF-8"` `/></h:head>` `<h:body>   <h:form` `prependId="false">      <h:outputLabel` `value="Name:"` `for="nameInput"` `/>      <h:inputText` `id="nameInput"` `value="#{richBean.name}">         <a4j:ajax` `event="keyup"` `render="output"` `/>      </h:inputText>      <h:panelGroup` `id="output">         <h:outputText` `value="Hello #{richBean.name}!"            rendered="#{not empty richBean.name}"` `/>      </h:panelGroup>   </h:form></h:body></html>` |
-| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```hxml
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j">
+ 
+<h:head>
+   <title>RichFaces Sample</title>
+   <meta http-equiv="content-type" content="text/xhtml; charset=UTF-8" />
+</h:head>
+ 
+<h:body>
+   <h:form prependId="false">
+      <h:outputLabel value="Name:" for="nameInput" />
+      <h:inputText id="nameInput" value="#{richBean.name}">
+         <a4j:ajax event="keyup" render="output" />
+      </h:inputText>
+      <h:panelGroup id="output">
+         <h:outputText value="Hello #{richBean.name}!"
+            rendered="#{not empty richBean.name}" />
+      </h:panelGroup>
+   </h:form>
+</h:body>
+</html>
+```
 
 Destacamos lo siguiente:
 
@@ -437,8 +797,36 @@ El motor de JSF es el servlet que procesa las peticiones de los navegadores y re
 
 En concreto, el fichero WEB-INF/web.xml de la aplicación ejemplo es el siguiente:
 
-| 12345678910111213141516171819202122232425262728 | `<?xml` `version="1.0"` `encoding="UTF-8"?><web-app` `version="3.0"  xmlns="`[`http://java.sun.com/xml/ns/javaee`](http://java.sun.com/xml/ns/javaee)`"  xmlns:xsi="`[`http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)`"  xsi:schemaLocation="`[`http://java.sun.com/xml/ns/javaee`](http://java.sun.com/xml/ns/javaee)  [`http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd`](http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd)`">    <context-param>        <param-name>javax.faces.PROJECT_STAGE</param-name>        <param-value>Development</param-value>    </context-param>    <servlet>        <servlet-name>Faces Servlet</servlet-name>        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>        <load-on-startup>1</load-on-startup>    </servlet>    <servlet-mapping>        <servlet-name>Faces Servlet</servlet-name>        <url-pattern>/faces/*</url-pattern>    </servlet-mapping>    <session-config>        <session-timeout>            30        </session-timeout>    </session-config>    <welcome-file-list>        <welcome-file>faces/index.xhtml</welcome-file>    </welcome-file-list></web-app>` |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+</web-app>
+```
 
 Podemos destacar los siguientes elementos:
 
@@ -465,8 +853,33 @@ A partir JSF 2.0 se hace todavía más sencillo la definición de un bean gestio
 
 El nombre por defecto que se utilizará en las páginas JSF será el de la clase del bean gestionado, cambiando la primera letra mayúscula por una minúscula. Es posible definir un nombre distinto utilizando el atributo name de la anotación @ManagedBean.
 
-| 12345678910111213141516171819202122232425 | `package` `es.ua.jtech.jsf.ejemplo;` `import` `java.io.Serializable;` `import` `javax.faces.bean.ManagedBean;import` `javax.faces.bean.ViewScoped;` `@ManagedBean@ViewScopedpublic` `class` `RichBean implements` `Serializable {   private` `static` `final` `long` `serialVersionUID = -2403138958014741653L;   private` `String name;` `public` `RichBean() {      name = "John";   }` `public` `String getName() {       return` `name;   }` `public` `void` `setName(String name) {       this.name = name;   }}` |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+package es.ua.jtech.jsf.ejemplo;
+ 
+import java.io.Serializable;
+ 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+ 
+@ManagedBean
+@ViewScoped
+public class RichBean implements Serializable {
+   private static final long serialVersionUID = -2403138958014741653L;
+   private String name;
+ 
+   public RichBean() {
+      name = "John";
+   }
+ 
+   public String getName() {
+       return name;
+   }
+ 
+   public void setName(String name) {
+       this.name = name;
+   }
+}
+```
 
 #### Probando la aplicación
 
@@ -977,6 +1390,8 @@ En El fichero XML, los beans se definen de la siguiente manera:
 
 A modo de resumen, así declararemos un bean en el fichero xml:&#x20;
 
+<figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+
 En cualquiera de los tres casos vistos, hay que tener en cuenta que el ámbito de la propiedad no puede ser inferior al del bean contenedor.
 
 | Cuando nuestro bean tiene el ámbito... | ...su propiedades pueden ser beans de los ámbitos |
@@ -1101,13 +1516,37 @@ Otro caso de navegación que podemos incluir es from-action, que combinado con e
 
 Estos casos de navegación son exclusivos de JSF2, y nos permiten hacer comparaciones simples haciendo uso del lenguaje de expresiones para determinar la siguiente vista.
 
-| 1234567891011121314151617 | `<navigation-rule>  <from-view-id>login.xhtml</from-view-id>    <navigation-case>      <from-outcome>success</from-outcome>      <if>#{user.powerUser}</if>      <to-view-id>/index_power.xhtlm</to-view-id>    </navigation-case>    <navigation-case>      <from-outcome>success</from-outcome>      <if>#{user.vipUser}</if>      <to-view-id>/index_vip.xhtlm</to-view-id>    </navigation-case>    <navigation-case>      <from-outcome>success</from-outcome>      <to-view-id>/index_user.xhtlm</to-view-id>    </navigation-case></navigation-rule>` |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```java
+<navigation-rule>
+  <from-view-id>login.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>success</from-outcome>
+      <if>#{user.powerUser}</if>
+      <to-view-id>/index_power.xhtlm</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>success</from-outcome>
+      <if>#{user.vipUser}</if>
+      <to-view-id>/index_vip.xhtlm</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/index_user.xhtlm</to-view-id>
+    </navigation-case>
+</navigation-rule>
+```
 
 Obviamente, sería equivalente al siguiente código java:
 
-| 1234567 | `if(user.isPowerUser()){  return` `"powerUser";} else` `if(user.isVipUser()){  return` `"vipUser";}` `return` `"user"` |
-| ------- | ---------------------------------------------------------------------------------------------------------------------- |
+```java
+if(user.isPowerUser()){
+  return "powerUser";
+} else if(user.isVipUser()){
+  return "vipUser";
+}
+ 
+return "user"
+```
 
 Sin embargo, el empleo de reglas condicionales en este caso nos permite dotar al controlador de login de una única responsabilidad: validar al usuario.
 
@@ -1115,8 +1554,14 @@ Sin embargo, el empleo de reglas condicionales en este caso nos permite dotar al
 
 El elemento to-view-id puede ser una expresión EL, que se evaluará en tiempo de ejecución.
 
-| 123456 | `<navigation-rule>  <from-view-id>/main.xhtml</from-view-id>  <navigation-case>    <to-view-id>#{quizBean.nextViewID}</to-view-id>  </navigation-case></navigation-rule>` |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<navigation-rule>
+  <from-view-id>/main.xhtml</from-view-id>
+  <navigation-case>
+    <to-view-id>#{quizBean.nextViewID}</to-view-id>
+  </navigation-case>
+</navigation-rule>
+```
 
 Esta regla es exclusiva de JSF2
 
@@ -1132,8 +1577,10 @@ Como hemos visto en la navegación dinámica, las acciones se definen en beans g
 
 Por ejemplo, en la página selec-curso se define llama a la acción grabarDatosCursos del bean selecCursosController asociándola a un \<h:commandButton>:
 
-| 12 | `<h:commandButton` `value="Enviar"   action="#{selecCursosController.grabarDatosCursos}"/>` |
-| -- | ------------------------------------------------------------------------------------------- |
+```java
+<h:commandButton value="Enviar"
+   action="#{selecCursosController.grabarDatosCursos}"/>
+```
 
 El método grabarDatosCursos se ejecuta, realizando la lógica de negocio, y devuelve una cadena que determina en el fichero faces-config.xml la siguiente vista a mostrar.
 
@@ -1143,8 +1590,30 @@ En el controlador se guarda la relación con el bean en el que se recogen los da
 
 Fichero **jtech.jsf.controlador.SelecCursosController.java**
 
-| 12345678910111213141516171819202122 | `@ManagedBean@SessionScopedpublic` `class` `SelecCursosController {  @ManagedProperty(value="#{selecCursosBean}")  private` `SelecCursosBean datosCursos;` `public` `SelecCursosBean getDatosCursos() {    return` `datosCursos;  }` `public` `void` `setDatosCursos(SelecCursosBean datosCursos) {    this.datosCursos = datosCursos;  }` `public` `String grabarDatosCursos() {    EstudianteBO estudianteBO = new` `EstudianteBO();    String email = datosCursos.getEmail();    String[] cursosId = datosCursos.getCursosId();    estudianteBO.grabarAsignaturas(email, cursosId);    return` `"OK";  }}` |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+@ManagedBean
+@SessionScoped
+public class SelecCursosController {
+  @ManagedProperty(value="#{selecCursosBean}")
+  private SelecCursosBean datosCursos;
+ 
+  public SelecCursosBean getDatosCursos() {
+    return datosCursos;
+  }
+ 
+  public void setDatosCursos(SelecCursosBean datosCursos) {
+    this.datosCursos = datosCursos;
+  }
+ 
+  public String grabarDatosCursos() {
+    EstudianteBO estudianteBO = new EstudianteBO();
+    String email = datosCursos.getEmail();
+    String[] cursosId = datosCursos.getCursosId();
+    estudianteBO.grabarAsignaturas(email, cursosId);
+    return "OK";
+  }
+}
+```
 
 Vemos en el método grabarDatosCursos() la forma típica de proceder del controlador. Se obtiene el objeto de negocio con el método de negocio al que se quiere llamar y se realiza la llamada, pasándole los parámetros introducidos por el usuario. En nuestro caso, realizamos una llamada a un método grabarAsignaturas que realiza la matrícula del estudiante a esas asignaturas.
 
@@ -1156,8 +1625,10 @@ Además de lanzar la lógica de negocio requerida por la selección del usuario,
 
 Recordemos que la definición de la acción en la página JSF es:
 
-| 12 | `<h:commandButton` `value="Enviar"   action="#{selecCursosController.grabarDatosCursos}"/>` |
-| -- | ------------------------------------------------------------------------------------------- |
+```java
+<h:commandButton value="Enviar"
+   action="#{selecCursosController.grabarDatosCursos}"/>
+```
 
 JSF obliga a que todas las acciones devuelvan una cadena. Esa cadena es el valor que termina guardándose en el atributo action y será evaluado en las reglas de navegación.
 
@@ -1181,22 +1652,28 @@ Por último, el **controlador** se define mediante métodos de los beans ligados
 
 Las expresiones JSF EL son muy similares a las vistas en JSP. Son expresiones evaluables utilizadas en los atributos de las etiquetas JSF, normalmente el atributo value. Su sintaxis es #{...}. Por ejemplo, la siguiente expresión se utiliza en el atributo value de un \<h:outputText> para definir un valor que se mostrará en la página HTML:
 
-| 1 | `<h:outputText value="El resultado de 1+2+3 es #{1+2+3}"` |
-| - | --------------------------------------------------------- |
+```java
+<h:outputText value="El resultado de 1+2+3 es #{1+2+3}"
+```
 
 La diferencia fundamental con JSP es que las expresiones JSF se incluyen tal cual en los componentes JSF. Cuando JSF obtiene el árbol de componentes asociado a la petición, las expresiones EL no se evalúan, sino que se incluyen en los componentes. De hecho, JSF convierte el texto de la expresión EL en un objeto de tipo javax.el.ValueExpression que se asocia a la propiedad correspondiente del componente. En el caso anterior, la expresión #{1+2+3} se convertiría en un objeto de tipo ValueExpression y se asociaría al atributo value del outputText.
 
 Los métodos del API JSF que se utilizan para definir y obtener la expresión EL asociada a un atributo de un componente se definen precisamente en la clase UIComponent. Esta es una clase abstracta a partir de la que se construyen todos los componentes específicos. Son los siguientes métodos:
 
-| 12 | `ValueExpression getValueExpression(String nombrePropiedad)void` `setValueExpression(String nombrePropiedad, ValueExpression expresionEL)` |
-| -- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+```java
+ValueExpression getValueExpression(String nombrePropiedad) 
+void setValueExpression(String nombrePropiedad, ValueExpression expresionEL)
+```
 
 La evaluación de las expresiones se realiza en la fase _Apply request values_ cuando JSF llama al método decode del componente.
 
 El uso más frecuente de las expresiones EL es el _binding_ de una propiedad de un bean a una propiedad del componente. Por ejemplo:
 
-| 123 | `<h:outputText   value="El total del pedido es: #{pedido.importe}"   style="#{pedido.cssStyle}"` |
-| --- | ------------------------------------------------------------------------------------------------ |
+```java
+<h:outputText 
+   value="El total del pedido es: #{pedido.importe}"
+   style="#{pedido.cssStyle}"
+```
 
 En esta expresión se está ligando la propiedad importe del bean pedido con la propiedad value del outputText. Además, se está definiendo el estilo CSS del texto de salida de forma dinámica, ligando la propiedad style del componente con la propiedad cssStyle del bean.
 
@@ -1204,13 +1681,24 @@ Cuando ligamos una propiedad de un bean a un componente, la expresión EL puede 
 
 Ejemplos de expresiones JSF EL correctas:
 
-| 12345678 | `#{foo.bar}#{foo[bar]}#{foo["bar"]}#{foo[3]}#{foo[3].bar}#{foo.bar[3]}#{customer.status == 'VIP'}#{(page1.city.farenheitTemp - 32) * 5 / 9}` |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+#{foo.bar}
+#{foo[bar]}
+#{foo["bar"]}
+#{foo[3]}
+#{foo[3].bar}
+#{foo.bar[3]}
+#{customer.status == 'VIP'}
+#{(page1.city.farenheitTemp - 32) * 5 / 9}
+```
 
 En el caso de las expresiones con semántica _setValue_, la sintaxis está restringida a expresiones del tipo:
 
-| 123 | `#{expr-a.value-b}#{expr-a[value-b]]#{value-b}` |
-| --- | ----------------------------------------------- |
+```java
+#{expr-a.value-b}
+#{expr-a[value-b]]
+#{value-b}
+```
 
 Siendo expr-a una expresión EL que se evalúa a un objeto de tipo Map, List o un JavaBean y value-b un identificador.
 
@@ -1234,8 +1722,10 @@ Veamos algunos ejemplos de utilización de estas variables.
 
 Aquí se accede a la propiedad valid del primer hijo, del primer hijo de la raíz del árbol de componentes.
 
-| 12 | `FacesContext.getCurrentInstance().getExternalContext()   .getSessionMap().put("variable Name", value);` |
-| -- | -------------------------------------------------------------------------------------------------------- |
+```java
+FacesContext.getCurrentInstance().getExternalContext()
+   .getSessionMap().put("variable Name", value);
+```
 
 Este código se debe ejecutar en el bean (en un evento o una acción) para actualizar una determinada variable de la sesión JSF.
 
@@ -1258,15 +1748,29 @@ El componente \<h:dataTable> permite generar una tabla HTML a partir de una list
 
 La forma más sencilla de utilizarlo es la siguiente:
 
-| 1234567891011 | `<h:dataTable` `value="#{selecCursosBB.cursos}"` `var="curso">   <h:column>      <h:outputText` `value="#{curso.nombre}"` `/>   </h:column>   <h:column>      <h:outputText` `value="#{curso.profesor}"/>   </h:column>   <h:column>      <h:outputText` `value="#{curso.creditos}"/>   </h:column></h:dataTable>` |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```java
+<h:dataTable value="#{selecCursosBB.cursos}" var="curso">
+   <h:column>
+      <h:outputText value="#{curso.nombre}" />
+   </h:column>
+   <h:column>
+      <h:outputText value="#{curso.profesor}"/>
+   </h:column>
+   <h:column>
+      <h:outputText value="#{curso.creditos}"/>
+   </h:column>
+</h:dataTable>
+```
 
 La propiedad cursos contiene una lista de cursos que se muestran en la tabla. La variable curso definida en el atributo var toma el valor de cada uno de los cursos de la lista y se utiliza para construir las filas de la tabla. La etiqueta \<h:column> define cada una de las columnas de la tabla, y en ella se utiliza la variable curso para acceder a las distintas propiedades que queremos mostrar en la tabla.
 
 Supongamos que la lista cursos ha sido inicializada así:
 
-| 123 | `cursos.add(new` `Curso("JSP","Miguel Ángel Lozano",2));cursos.add(new` `Curso("JSF", "Domingo Gallardo", 1));cursos.add(new` `Curso("Struts", "Otto Colomina", 1));` |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+cursos.add(new Curso("JSP","Miguel Ángel Lozano",2));
+cursos.add(new Curso("JSF", "Domingo Gallardo", 1));
+cursos.add(new Curso("Struts", "Otto Colomina", 1));
+```
 
 La tabla resultante será:
 
@@ -1278,8 +1782,28 @@ La tabla resultante será:
 
 Para definir una cabecera en la tabla hay que utilizar la etiqueta \<f:facet name="header"> en la columna, y generar el contenido de la cabecera con un \<h:outputText/>:
 
-| 1234567891011121314151617181920 | `<h:dataTable` `value="#{selecCursosBB.cursos}"` `var="curso">   <h:column>      <f:facet` `name="header">         <h:outputText` `value="Curso"/>      </f:facet>      <h:outputText` `value="#{curso.nombre}"` `/>   </h:column>   <h:column>      <f:facet` `name="header">         <h:outputText` `value="Profesor"/>      </f:facet>      <h:outputText` `value="#{curso.profesor}"/>   </h:column>   <h:column>      <f:facet` `name="header">         <h:outputText` `value="Créditos"/>      </f:facet>      <h:outputText` `value="#{curso.creditos}"/>   </h:column></h:dataTable>` |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:dataTable value="#{selecCursosBB.cursos}" var="curso">
+   <h:column>
+      <f:facet name="header">
+         <h:outputText value="Curso"/>
+      </f:facet>
+      <h:outputText value="#{curso.nombre}" />
+   </h:column>
+   <h:column>
+      <f:facet name="header">
+         <h:outputText value="Profesor"/>
+      </f:facet>
+      <h:outputText value="#{curso.profesor}"/>
+   </h:column>
+   <h:column>
+      <f:facet name="header">
+         <h:outputText value="Créditos"/>
+      </f:facet>
+      <h:outputText value="#{curso.creditos}"/>
+   </h:column>
+</h:dataTable>
+```
 
 La tabla resultante será:
 
@@ -1296,8 +1820,16 @@ En la etiqueta también se definen atributos para generar clases CSS que permite
 
 Una de las novedades de JSF 2 es el uso del tag ui:repeat, para ser usado en lugar de h:dataTable. El funcionamiento es similar en el sentido de que ambos iteran sobre un conjunto de datos. La diferencia radica en que ui:repeat no genera una estructura de tabla, sino que tenemos que definirla nosotros:
 
-| 12345678 | `<table>   <ui:repeat` `value="#{tableData.names}"` `var="name">   <tr>      <td>#{name.last},</td>      <td>#{name.first}</td>   </tr>   </ui:repeat></table>` |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<table>
+   <ui:repeat value="#{tableData.names}" var="name">
+   <tr>
+      <td>#{name.last},</td>
+      <td>#{name.first}</td>
+   </tr>
+   </ui:repeat>
+</table>
+```
 
 Pese a que puede ser un poco más tedioso ya que tenemos que declarar nosotros las etiquetas para darle un aspecto tabular, este tag nos permite que mostremos la información en la forma que nosotros queramos con DIVs, listas o el aspecto que más nos interese.
 
@@ -1309,8 +1841,9 @@ Además, el tag ui:repeat expone algunos atributos que pueden ser muy interesant
 
 Así, si quisiéramos mostrar los elementos 10, 12, 14, 16, 18 de una colección, usaríamos:
 
-| 1 | `<ui:repeat` `... offset="10"` `step="2"` `size="5">` |
-| - | ----------------------------------------------------- |
+```java
+<ui:repeat ... offset="10" step="2" size="5">
+```
 
 El atributo varStatus determina una variable con información del estado de la iteración. La variable declarada tendrá las siguientes propiedades:
 
@@ -1319,14 +1852,23 @@ El atributo varStatus determina una variable con información del estado de la i
 
 La propiedad index puede usarse para numerar filas:
 
-| 123456789 | `<table>   <ui:repeat` `value="#{tableData.names}"` `var="name"` `varStatus="status">   <tr>      <td>#{status.index + 1}</td>      <td>#{name.last},</td>      <td>#{name.first}</td>   </tr>   </ui:repeat></table>` |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<table>
+   <ui:repeat value="#{tableData.names}" var="name" varStatus="status">
+   <tr>
+      <td>#{status.index + 1}</td>
+      <td>#{name.last},</td>
+      <td>#{name.first}</td>
+   </tr>
+   </ui:repeat>
+</table>
+```
 
 #### Componentes HTML \<h:>
 
 Veamos una rápida descripción de todas las posibles etiquetas con el prefijo \<h:>
 
-<table><thead><tr><th>Etiqueta</th><th>Descripción</th><th></th></tr></thead><tbody><tr><td><strong>&#x3C;h:column></strong></td><td>Se utiliza dentro de una etiqueta &#x3C;h:dataTable> para representar una columna de datos tabulares. Podemos añadirle una etiqueta &#x3C;f:facet name="header"> o &#x3C;f:facet name="footer">.</td><td></td></tr><tr><td><p><strong>Ejemplo:</strong></p><pre><code>&#x3C;h:dataTable value="#{reportController.currentReports}" var="report">
+<table><thead><tr><th>Etiqueta</th><th>Descripción</th><th></th></tr></thead><tbody><tr><td><strong>&#x3C;h:column></strong></td><td>Se utiliza dentro de una etiqueta &#x3C;h:dataTable> para representar una columna de datos tabulares. Podemos añadirle una etiqueta &#x3C;f:facet name="header"> o &#x3C;f:facet name="footer">.</td><td></td></tr><tr><td><p><strong>Ejemplo:</strong></p><pre class="language-java"><code class="lang-java">&#x3C;h:dataTable value="#{reportController.currentReports}" var="report">
   &#x3C;h:column rendered="#{reportController.showDate}">
     &#x3C;f:facet name="header">
       &#x3C;h:outputText value="Date" />
@@ -1506,20 +2048,62 @@ Las otras etiquetas del núcleo de JSF son las etiquetas _core custom actions_ c
 
 En el ejemplo anterior hemos utilizado la etiqueta \<f:selectItem> para añadir elementos hijos al componente \<h:selectManyCheckbox>. Cada hijo define una etiqueta y un valor. Las etiquetas se muestran en pantalla y el valor es la cadena que se guarda en el array cursosId del bean gestionado por el componente selecCursosBean.
 
-| 1234567 | `<h:selectManyCheckbox   value="#{selecCursosBean.cursoIds}">   <f:selectItem` `itemValue="JSP"` `itemLabel="Servlets y JSP"` `/>   <f:selectItem` `itemValue="Struts"` `itemLabel="Struts"` `/>   <f:selectItem` `itemValue="JSF"` `itemLabel="JSF"` `/>   <f:selectItem` `itemValue="JPA"` `itemLabel="JPA"` `/></h:selectManyCheckbox>` |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-
-Otra etiqueta muy útil es \<f:setPropertyActionListener>. Junto con las etiquetas \<h:commandLink> y \<h:commandButton> permite definir alguna propiedad del bean que ejecutar una acción antes de que la acción se lance. De esta forma podemos simular un paso de parámetros a la acción.
+```java
+<h:selectManyCheckbox
+   value="#{selecCursosBean.cursoIds}">
+   <f:selectItem itemValue="JSP" itemLabel="Servlets y JSP" />
+   <f:selectItem itemValue="Struts" itemLabel="Struts" />
+   <f:selectItem itemValue="JSF" itemLabel="JSF" />
+   <f:selectItem itemValue="JPA" itemLabel="JPA" />
+</h:selectManyCheckbox>
+```
 
 Por ejemplo (tomado del blog de [BalusC](http://balusc.blogspot.com/2006/06/communication-in-jsf.html)), si queremos definir las propiedades propertyName1 y propertyName2 en el bean antes de que se llame a la acción action podemos hacerlo de cualquiera de estas formas::
 
-| 123456789101112131415 | `<h:form>   <h:commandLink` `value="Click here"` `action="#{myBean.action}">      <f:setPropertyActionListener` `target="#{myBean.propertyName1}"                                   value="propertyValue1"` `/>      <f:setPropertyActionListener` `target="#{myBean.propertyName2}"                                   value="propertyValue2"` `/>   </h:commandLink>` `<h:commandButton` `value="Press here"` `action="#{myBean.action}">      <f:setPropertyActionListener` `target="#{myBean.propertyName1}"                                   value="propertyValue1"` `/>      <f:setPropertyActionListener` `target="#{myBean.propertyName2}"                                   value="propertyValue2"` `/>   </h:commandButton></h:form>` |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:form>
+   <h:commandLink value="Click here" action="#{myBean.action}">
+      <f:setPropertyActionListener target="#{myBean.propertyName1}"
+                                   value="propertyValue1" />
+      <f:setPropertyActionListener target="#{myBean.propertyName2}"
+                                   value="propertyValue2" />
+   </h:commandLink>
+ 
+   <h:commandButton value="Press here" action="#{myBean.action}">
+      <f:setPropertyActionListener target="#{myBean.propertyName1}"
+                                   value="propertyValue1" />
+      <f:setPropertyActionListener target="#{myBean.propertyName2}"
+                                   value="propertyValue2" />
+   </h:commandButton>
+</h:form>
+```
 
 En el bean debemos definir las propiedades con al menos sus setters:
 
-| 12345678910111213141516171819202122 | `public` `class` `MyBean {` `private` `String propertyName1;   private` `String propertyName2;` `// Actions` `public` `void` `action() {      System.out.println("propertyName1: "` `+ propertyName1);      System.out.println("propertyName2: "` `+ propertyName2);   }` `// Setters` `public` `void` `setPropertyName1(String propertyName1) {      this.propertyName1 = propertyName1;   }` `public` `void` `setPropertyName2(String propertyName2) {      this.propertyName2 = propertyName2;   }}` |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+public class MyBean {
+ 
+   private String propertyName1;
+   private String propertyName2;
+ 
+   // Actions
+ 
+   public void action() {
+      System.out.println("propertyName1: " + propertyName1);
+      System.out.println("propertyName2: " + propertyName2);
+   }
+ 
+   // Setters
+ 
+   public void setPropertyName1(String propertyName1) {
+      this.propertyName1 = propertyName1;
+   }
+ 
+   public void setPropertyName2(String propertyName2) {
+      this.propertyName2 = propertyName2;
+   }
+}
+```
 
 A continuación vemos una rápida descripción de otras etiquetas de la librería _Core custom actions_ de JSF. Al igual que en las etiquetas HTML se incluyen ejemplos de su utilización.
 
@@ -1692,7 +2276,97 @@ A continuación vemos una rápida descripción de otras etiquetas de la librerí
 <table><thead><tr><th>Etiqueta</th><th>Descripción</th><th></th></tr></thead><tbody><tr><td><strong>&#x3C;f:ajax></strong></td><td>Dota de comportamiento AJAX a los componentes.</td><td></td></tr><tr><td><p><strong>Ejemplo:</strong></p><pre><code>&#x3C;h:inputSecret id="passInput" value="#{loginController.password}">
   &#x3C;f:ajax event="keyup" render="passError"/>
 &#x3C;/h:inputSecret>
-</code></pre></td><td></td><td></td></tr></tbody></table>
+</code></pre></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
+
+## Ejercicios sesión 2 - MVC
+
+* [Login de usuario (1 punto)](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion02-ejercicios.html#Login+de+usuario+%281+punto%29)
+* [Guardando el usuario recién logueado (1 punto)](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion02-ejercicios.html#Guardando+el+usuario+reci%C3%A9n+logueado+%281+punto%29)
+* [Logout del usuario](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion02-ejercicios.html#Logout+del+usuario)
+
+### Login de usuario (1 punto)
+
+Vamos a añadir una pequeña regla de navegación a nuestra aplicación, que consistirá en el login del usuario.
+
+Crearemos un controlador al que llamaremos es.ua.jtech.jsf.AccessController. Éste deberá tener un método llamado doLogin, que comprobará que tanto el login como el password sean la palabra 'admin'. En caso de que no sea así, vuelve a la página de registro y muestra en ella un mensaje de error.
+
+Pista: En la solución que se os dará, el mensaje de error aparecerá en la cabecera de esta manera:
+
+```java
+<h:panelGroup
+     layout="block"
+     rendered="#{accessController.loginError}"
+     style="color:#B94A48; background-color: #F2DEDE; border: 1px solid #B94A48; padding: 5px">
+    <h:outputText value="#{accessController.errorMsg}" />
+</h:panelGroup>
+```
+
+### Guardando el usuario recién logueado (1 punto)
+
+Cuando hayamos realizado el login, deberemos almacenar la información del usuario en algún lado. Para ello, nos crearemos un _managed bean_, que tendrá el siguiente esqueleto:
+
+```java
+package es.ua.jtech.jsf.model;
+ 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.bean.ManagedBean;
+ 
+@ManagedBean(name="user")
+//DETERMINAR ÁMBITO
+public class UserBean implements Serializable {
+   private String name;
+   private List<TaskBean> tasks = null;
+     
+   public UserBean(){
+     tasks = new ArrayList<TaskBean>();
+   }
+     
+   public void setTasks(List<TaskBean> tasks) {
+     this.tasks = tasks;
+   }
+     
+   public void addTask(TaskBean t){
+      ...
+   }
+     
+   public void removeTask(int index){
+     ...
+   }
+     
+    //GETTERS Y SETTERS
+     
+}
+```
+
+Por su parte, el objeto TaskBean tendrá la forma:
+
+```java
+package es.ua.jtech.jsf.model;
+ 
+import java.io.Serializable;
+ 
+public class TaskBean implements Serializable {
+   int id=-1;
+   String title;
+   String description;
+ 
+   //GETTERS & SETTERS
+}
+```
+
+
+
+Como aún no tenemos la lógica de la parte de las tareas realizada, una vez hagamos login se nos redirigirá a una vista donde tengamos un mensaje que diga "Bienvenido _admin_", y un commandLink para poder hacer logout
+
+Deberemos crear una regla de navegación en el fichero faces-config.xml que nos lleve de la página de login a esta que acabamos de crear.
+
+### Logout del usuario
+
+En el ejercicio anterior, hemos hecho el login del usuario y lo hemos llevado a una página donde la única posibilidad es hacer logout. Así, ahora lo que tendremos que hacer será un método doLogout en el AccessController. Éste se encargará de invalidar la sesión y redirigirnos a la página de login nuevamente.
+
+Como los logouts suelen poder hacerse en distintos puntos de una aplicación, la regla de navegación que insertemos aquí deberá hacer uso de _wildcards_ en la etiqueta from-view-id
 
 ### Sesiones
 
