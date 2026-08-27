@@ -1,5 +1,365 @@
 # Componentes Enterprise
 
+## Modelo de componentes EJB
+
+Enterprise Java Beans (EJB) es una plataforma para construir aplicaciones de negocio portables, reutilizables y escalables usando el lenguaje de programación Java.
+
+Desde el punto de vista del desarrollador, un EJB es una porción de código que se ejecuta en un contenedor EJB, que no es más que un ambiente especializado (runtime) que provee determinados componentes de servicio.
+
+Los EJBs pueden ser vistos como componentes, desde el punto de vista que encapsulan comportamiento y permite reutilizar porciones de código, pero también pueden ser vistos como un framework, ya que, desplegados en un contenedor, proveen servicios para el desarrollo de aplicaciones empresariales, servicios que son invisibles para el programador y no ensucian la lógica de negocio con funcionalidades trasversales al modelo de dominio.
+
+En la especificación 3.0, los EJB no son más que POJOs (clases planas comunes y corrientes de Java) con algunos poderes especiales implícitos, que se activan en tiempo de ejecución (runtime) cuando son ejecutados en un contenedor de EJBs.
+
+#### Objetivos
+
+* Conocer los tipos de EJBs que existen dentro de la versión 3.0.
+* Entender la tecnología de los EJB y conocer su funcionalidad y características.
+
+#### Componentes EJB
+
+Con la tecnología Enterprise JavaBeans es posible desarrollar componentes (enterprise beans) que luego podemos reutilizar y ensamblar en distintas aplicaciones que implementemos en la empresa.
+
+Por ejemplo, podríamos desarrollar un bean Cliente que represente un cliente en una base de datos. Dicho vean Cliente podríamos usarlo, posteriormente, en un programa de agenda o en una aplicación de comercio electrónico o virtualmente en cualquier programa en el que se necesite representar un cliente.
+
+Con esta tecnología, podemos separar las capas, llegando incluso a ser posible que el desarrollador del bean y el ensamblador de la aplicación no fueran la misma persona, o ni siquiera trabajaran en la misma empresa.
+
+El desarrollo basado en componentes promete un paso más en el camino de la programación orientada a objetos.
+
+Con la programación orientada a objetos podemos reutilizar clases, pero con componentes es posible reutilizar un mayor nivel de funcionalidades e incluso es posible modificar estas funcionalidades y adaptarlas a cada entorno de trabajo particular sin tocar el código del componente desarrollado.
+
+El contenedor de componentes se denomina contenedor EJB y es algo así como el sistema operativo en el que éstos residen.
+
+Cuando se utilizan componentes en un marco de trabajo, debemos prestar atención tanto al desarrollo de los beans como a los descriptores de despliegue que comunican nuestro trabajo con el contenedor.
+
+Debemos recordar que un descriptor de despliegue ofrece la información del componente a nuestro contenedor EJB y a nuestro entorno de trabajo (bases de datos, arquitectura de la aplicación, etc.).
+
+El despliegue se define de forma declarativa, mediante un fichero XML (descriptor del despliegue, deployment descriptor) en el que se definen todas las características del bean o con anotaciones.
+
+El funcionamiento de los componentes EJB se basa fundamentalmente en el trabajo del contenedor EJB.
+
+El contenedor EJB es un programa Java que trabaja en el servidor y que contiene todas las clases y objetos necesarios para el correcto funcionamiento de los EJBs.
+
+Los servicios que ofrece un contenedor de EJBs son los siguientes:
+
+* Integración: Proveen una forma de acoplar en tiempo de ejecución diferentes componentes, mediante la simple configuración de anotaciones xml. La integración es un servicio que proveen los beans de sesión y los MDBs.
+* Pooling: El contenedor de EJBs crea para componentes EJB un pool de instancias que es compartido por los diferentes clientes. Aunque cada cliente visualiza el entorno como si recibiera siempre instancias diferentes de los EJB, el contenedor está constantemente reutilizando objetos para optimizar memoria. El pooling es un servicio que se aplica a los Stateless Session Beans y a los MDBs.
+* Thread-safely: El programador puede escribir componentes del lado del servidor como si estuviera trabajando en una aplicación sencilla con un solo thread (hilo). El contenedor se encarga de que los EJBs tengan el soporte adecuado para una aplicación multi-usuario (como son en general las aplicaciones empresariales) de forma transparente, asegurando el acceso seguro, consistente y alto rendimiento. Se aplican a los beans de sesión y a los MDBs.
+* Administración de Estados: El contenedor de EJBs almacena y maneja el estado de un Stateful Session Bean de forma transparente, lo que significa que el programador puede mantener el estado de los miembros de una clase como si estuviera desarrollando una aplicación de escritorio ordinaria. El contenedor manipula los detalles de las sesiones.
+* Mensajería: Mediante los MDBs es posible desacoplar por completo dos componentes para que se comuniquen de forma asincrónica, sin reparar demasiado en los mecanismos de la JMS API que los MDBs encapsulan.
+* Transacciones: EJB soporta el manejo de transacciones declarativas que permiten agregar comportamiento transaccional a un componente simplemente usando anotaciones xml de configuración. Esto significa que cuando un método de un EJB (Session Bean o MDB) se completa normalmente, el contenedor se encargará de finalizar la transacción y validar los cambios que se realizaron en los datos de forma permanente. Si algo fallara durante la ejecución del método (una excepción o cualquier otro problema), la transacción haría un rollback y es como si el método jamás se hubiera invocado.
+* Seguridad: EJB soporta integración con la Java Authentication and Authorization Service (JAAS) API, haciendo casi transparente el manejo transversal de la seguridad. Se aplica a todos los Session Beans.
+* Interceptors: EJB introduce un framework liviano y simple para AOP (programación orientada a aspectos). No es tan robusto y completo como otros, pero es lo suficientemente útil para que sea utilizado por los demás servicios del contenedor para brindarnos de forma invisible los crosscutting concerns de seguridad, transacciones, thread-safely.
+* Acceso Remoto: Es posible acceder de forma remota a distintos EJBs de forma sencilla, simplemente mediante la Inyección de Dependencia. El procedimiento para inyectar un componente local o uno remoto es exactamente el mismo, abstrayéndonos de las complicaciones específicas de RMI o similares. Este servicio aplica únicamente a los Session Beans.
+* Web Services: Un Stateless Session Bean puede publicar sus métodos como servicios web mediante una sencilla anotación.
+* Persistencia: EJB 3 provee la especificación JPA para el mapeo de objetos llamados Entidades a tablas o POJOs.
+
+Aquí tenemos un gráfico que mostraría la representación de EJB dentro de un módulo web.
+
+<div align="center"><img src="https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb1.jpg?w=723" alt="ejb1"></div>
+
+#### Tipos de beans
+
+Existen tres tipos de beans definidos, cada uno implementa unas características diferentes y permiten ser combinados entre si.
+
+#### Beans de Sesión (Session Beans)
+
+En una aplicación típica, dividida en grandes capas (presentación, lógica de negocio, persistencia y base de datos), los Beans de Sesión viven en la lógica de negocio.
+
+Hay dos grandes tipos de Beans de Sesión:
+
+* Stateless (sin estado)
+* Stateful (con estado)
+
+Stateless no conserva el estado de ninguno de sus atributos de la invocación de un método a otro.
+
+Stateful conserva el estado a lo largo de toda una sesión. Los Beans de Sesión Stateless son los únicos que pueden exponerse como servicios web.
+
+Los beans de sesión son invocados por el cliente con el propósito de ejecutar operaciones de negocio específicas, como por ejemplo podría ser mostrar todos los datos de una determinada tabla.
+
+El nombre sesión implica que la instancia del bean estará disponible durante una unidad de trabajo (unit of work) y no sobrevivirá a una caída del servidor.
+
+Un bean de sesión sirve para modelar cualquier funcionalidad lógica de una aplicación y se utilizan para realizar acciones y representar propiedades de objetos.
+
+#### Message-Driven Beans (MDBs)
+
+Viven en la lógica de negocio y los servicios que proveen son parecidos a los Beans de Sesión, con la diferencia de que los MDBs son usados para invocar métodos de forma asincrónica.
+
+Cuando se produce la invocación de un método de un MDB desde un cliente, la llamada no bloquea el código del cliente y el mismo puede seguir con su ejecución, sin tener que esperar indefinidamente por la respuesta del servidor.
+
+Los MDBs encapsulan el popular servicio de mensajería de Java, Java Message Service (JMS).
+
+Los MDBs también procesan lógica de negocio, pero un cliente nunca invoca a un método de un MDB directamente.
+
+El sistema de mensajería asincrónica propone la utilización de una capa intermedia en la comunicación entre el creador y el consumidor del mensaje.
+
+En EJB 3, esta capa se llama MOM (Message-oriented Middleware). Básicamente, MOM es un software que permite funcionar como servidor de mensajería, reteniendo los mensajes del productor y enviándolos posteriormente al consumidor en el momento en que esté disponible para recibirlo.
+
+#### Beans de Entidad (Entities)
+
+Las entidades viven en la capa de persistencia y son los EJBs que manejan Java Persistence API (JPA), también parte de la especificación de EJB 3.0.
+
+Las entidades son POJOs con cierta información metadata que permite a la capa de persistencia mapear los atributos de la clase a las tablas de la base de datos y sus relaciones.
+
+Existen dos tipos BMP y CMP según se gestione la persistencia por parte del bean o del contenedor.
+
+Los EJB de entidad están directamente relacionados con los datos de la aplicación, son objetos que mantienen en memoria los datos que maneja la aplicación, las entidades que disponen de persistencia.
+
+Los Beans de Entidad normalmente mapean (mantienen una relación en memoria) las tablas de una base de datos relacional, aunque también es posible que mantengan la persistencia de los datos en ficheros, como por ejemplo un xml.
+
+En cualquiera de los casos el objetivo de un Bean de Entidad es almacenar los datos en memoria desde una fuente persistente y mantener una sincronización total entre el estado de los datos entre la memoria y la fuente de datos.
+
+Por esta razón se dice que los Beans de Entidad son los EJB que sobreviven a caídas del sistema, ya que en caso de un fallo del sistema, los datos que hay en memoria estarían guardados en el dispositivo persistente, como por ejemplo la base de datos, con lo cual, cuando se reinicie el servidor se recuperarán sin ningún problema.
+
+#### Anotaciones de un bean
+
+Para poder configurar correctamente un vean, debemos indicar al contenedor de EJB qué servicios debe proveer a nuestro Bean, y para ello disponemos de los descriptores de despliegue o de las anotaciones en las clases bean.
+
+#### Anotaciones básicas para los Session Beans
+
+Vamos a visualizar las anotaciones básicas para los Session Beans.
+
+#### @Stateful
+
+Indica que el Bean de Sesión es con estado. Sus atributos son:
+
+* name: por defecto es el nombre de la clase pero se puede especificar otro nombre diferente.
+* mappedName: Indica si deseamos que el contenedor maneje el objeto de forma específica. Si incluimos esta opción nuestra aplicación podría no ser portable y no funcione en otro servidor de aplicaciones.
+* description: Indica la descripción de la anotación.
+
+#### @Stateless
+
+Indica que el Bean de Sesión es sin estado. Sus atributos son:
+
+* name: Por defecto el nombre de la clase pero se puede especificar otra diferente.
+* mappedName: Si deseamos que el contenedor maneje el objeto de manera específica. Al igual que @StateFul esta opción podría hacer que nuestra aplicación no sea portable y no funcione en otro servidor de aplicaciones.
+* Description: descripción de la anotación.
+
+#### @Init
+
+Especifica que el método se corresponde con un método create de un EJBHome o EJBLocalHome de EJB 2.1.
+
+Sólo se podrá llamar una única vez a este método. Sus atributos son:
+
+* Value: indica el nombre del correspondiente método create de la interfaz home adaptada. Sólo se debe utilizar cuando se utiliza el bean anotado con un bean con estado de la especificación 2.1 o anterior y que disponga de más de un método create.
+
+#### @Remove
+
+Indica que el contenedor debe llamar al método cuando quiera destruir la instancia del Bean. Sus atributos son:
+
+* retainIfException: indica si el Bean debe mantenerse activo si se produce una excepción. Por defecto su valor es false.
+
+#### @Local
+
+Indica que la interfaz es local.
+
+#### @Remote
+
+Indica que la interfaz es remota.
+
+#### @PostActivate
+
+Invocado después de que el Bean sea activado por el contenedor.
+
+#### @PrePassivate
+
+Invocado antes de que el Bean esté en estado passivate.
+
+Normalmente las anotaciones más empleadas en las aplicaciones serán @Stateless y @Stateful, para indicar el tipo de EJB que estemos utilizando. El resto de anotaciones se utilizarán en casos más particulares.
+
+#### Role de EJB dentro de las aplicaciones JEE
+
+La especificación Enterprise JavaBeans está escrita para diferentes públicos, pero podría resumirse en dos niveles diferentes:
+
+#### El desarrollador del cliente
+
+Un cliente es cualquier usuario de un Enterprise JavaBean y podría ser cualquier aplicación Java del lado del cliente, un servlet o incluso otro EJB.
+
+Un programador del lado del cliente que diseña una aplicación Web o utilice un servlet para establecer la comunicación con un EJB, necesita comprender como se accede a los EJB y como se utilizan.
+
+En proyectos de grandes dimensiones, es bastante probable que el programador Web y el programador EJB sean personas distintas.
+
+El programador cliente tiene menos preocupaciones que un desarrollador bean en cuanto al uso de EJB.
+
+Necesitan saber como encontrar o crear un bean, como utilizar sus métodos y cómo liberar sus recursos.
+
+Un cliente siempre utiliza el mismo procedimiento para la creación de objetos, búsquedas e invocación de métodos, independientemente de como se implemente un EJB determinado.
+
+El cliente no necesita preocuparse sobre la implementación del EJB, solamente debe tener en cuenta las acciones o propiedades del bean para representar los elementos en las páginas.
+
+El desarrollador EJB
+
+La principal responsabilidad del programador de un bean será escribir la lógica de empresa y acciones o propiedades.
+
+Siempre que sea posible, la especificación Enterprise JavaBeans intenta abstraer a los programadores de un bean de cualquier tarea de nivel de sistema.
+
+El programador de un bean debe estructurar su código de una forma determinada.
+
+No importa el tipo de EJB que se esté desarrollando, normalmente deben crearse archivos de clase primarios y un descriptor xml o bien, incluir anotaciones en las clases del bean.
+
+También podríamos tener clases Java adicionales que apoyen la operación del bean, clases de ayuda que implementen la lógica de negocio.
+
+Todos estos archivos estarían empaquetados en un JAR, ya hemos visto que es la unidad estándar de empaquetado de clases de Java.
+
+Podríamos tener muchos beans dentro de un único archivo JAR, pero cada archivo JAR contendría únicamente descriptor del bean xml.
+
+El descriptor de implementación debe situarse en un directorio especifico, de forma que el contenedor EJB sabría donde buscarlo.
+
+Este directorio se llama META- INF y no podemos cambiarle el nombre, sigue una especificación estándar.
+
+Aquí podemos visualizar la implementación del uso de un EJB dentro de un entorno de desarrollo, independientemente que sea realizada la llamada desde un navegador o desde una aplicación Java.
+
+<div align="center"><img src="https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb2.jpg?w=723" alt="ejb2"></div>
+
+#### Estructura de EJB
+
+Todo EJB está compuesto por dos capas.
+
+* Capa Interfaz
+
+La capa Interfaz es un contrato que indica a las clases que consuman el EJB los métodos y características de dicho EJB.
+
+Para poder trabajar con EJB, necesitamos tener una Interfaz que contenga los métodos que vamos a exponer a un cliente final.
+
+* Capa Implementación
+
+La capa de implementación es una clase que implementa la capa de Interfaz.
+
+Una clase que hereda directamente de la interfaz del EJB e implementa los métodos que se hayan incluido en el contrato.
+
+Por último, el cliente que consuma nuestro EJB, sabrá los métodos que contiene debido al contrato de nuestra interfaz. Nuestro código estará fuertemente tipado debido a que la clase EJB debe implementar todos los métodos de la interfaz y el cliente tendrá la seguridad que esos métodos no van a variar el «contrato».
+
+Vamos a visualizar una creación y una llamada a un EJB:
+
+Lo vamos a hacer creándonos un nuevo proyecto de Java ( Aplicación Java.
+
+![ejb3](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb3.jpg?w=723)
+
+Sobre nuestro nuevo proyecto y sobre el paquete creado, vamos a agregar una Interfaz que será el contrato.
+
+<div align="center"><img src="https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb4.jpg?w=723" alt="ejb4"></div>
+
+Llamaremos a nuestra Interfaz: InterfazEJB
+
+![ejb6](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb6.jpg?w=723)
+
+Simplemente vamos a escribir un código con un método que recibirá un tipo de dato String. Escribimos el siguiente código en la Interfaz.
+
+```
+ 
+package javaapplication1;
+public interface InterfazEJB {
+    public void GetMensaje(String nombre);
+}
+```
+
+A continuación, nos crearemos una clase sobre el mismo paquete que llamaremos ClaseEJB.
+
+![ejb7](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb7.jpg?w=723)
+
+Dicha clase se encargará de implementar la Interfaz de contrato EJB. Para poder trabajar con ello, debemos utilizar el espacio de nombres siguiente:
+
+```
+ 
+import javax.ejb.Stateless
+```
+
+Como podemos comprobar en la imagen, no reconoce la librería de los EJB, por lo que tendremos que incluirla manualmente para poder trabajar con dichas clases.
+
+&#x20;
+
+<div align="center"><img src="https://i0.wp.com/www.campus-learning.es/pluginfile.php/1858/mod_scorm/content/2/images/pic151.jpg" alt="" height="167" width="220"></div>
+
+En la carpeta Biblioteca de NetBeans, irán todas las librerías relacionadas con nuestro proyecto.
+
+Lo que vamos a realizar es agregar la librería que permite trabajar con EJB. Para ello, seleccionamos en el menú contextual: «Agregar archivo JAR/carpeta».
+
+![ejb9](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb9.jpg?w=723)
+
+Buscamos la librería de ejb en la carpeta dónde la hayamos situado. Dicha librería es proporcionada en la documentación del módulo.
+
+![ejb10](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb10.jpg?w=723)
+
+Una vez que ya tenemos la librería añadida, ahora es el momento de implementar la Interfaz sobre la ClaseEJB. Para ello escribimos el siguiente código:
+
+```
+ 
+public class ClaseEJB implements InterfazEJB {
+```
+
+Como vemos en la imagen, nos dará un fallo debido a que tenemos que implementar todos los métodos que contenga la Interfaz de la que estamos heredando.
+
+<div align="center"><img src="https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb11.jpg?w=723" alt="ejb11"></div>
+
+Para implementar los métodos, NetBeans ofrece una herramienta muy útil que «lee» todos los métodos de la Interfaz y los implementa dentro de nuestra clase.
+
+Si pulsamos sobre el símbolo de la bombilla de la izquierda del código, nos aparecerá una opción para Implementar los métodos. Seleccionamos dicha opción.
+
+![ejb12](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb12.jpg?w=723)
+
+Una vez que tenemos todos los métodos implementados, escribimos el siguiente código dentro de la clase llamada ClaseEJB.
+
+```
+ 
+package javaapplication1;
+import javax.ejb.Stateless;
+public class ClaseEJB implements InterfazEJB
+{
+    public void GetMensaje(String nombre) {
+        System.out.println("Primer EJB, Bienvenido a la tecnología " + nombre);
+    }
+}
+```
+
+Ahora nos quedará crearnos un cliente que consuma nuestro bean.
+
+Para ello, debemos agregar una nueva clase sobre el paquete creado y la llamaremos ClienteEJB.
+
+&#x20;
+
+![ejb13](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb13.jpg?w=723)
+
+<div align="center"><img src="https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb14.jpg?w=723" alt="ejb14"></div>
+
+Sobre dicho cliente escribiremos la implementación del consumo del Bean. Para indicar que estamos utilizando un contrato, utilizaremos la anotación @EJB para que el contenedor reconozca nuestra lógica de negocio.
+
+Escribimos el siguiente código dentro de la clase ClienteEJB:
+
+```
+ 
+package javaapplication1;
+import javax.ejb.EJB;
+public class ClienteEJB {
+@EJB
+private ClaseEJB BeanEJB;
+    void MetodoCliente()
+    {
+        BeanEJB = new ClaseEJB();
+        BeanEJB.GetMensaje("Usuario de EJB");
+    }
+}
+```
+
+Por último, nos quedará mostrar el resultado de la aplicación. Para ello, iremos a la clase inicial de los proyectos de J2SE llamada Main.java.
+
+En el código de arranque de la clase, crearemos el objeto cliente, que a su vez, llamará al método del Bean que seguirá el contrato de la Interfaz.
+
+Implementamos el siguiente código en Main.java:
+
+```
+ 
+package javaapplication1;
+public class Main {
+    public static void main(String[] args) {
+        ClienteEJB cliente = new ClienteEJB();
+        cliente.MetodoCliente();
+    }
+}
+```
+
+Como podemos comprobar cuando ejecutemos la aplicación (tecla F6), veremos el resultado de la llamada al Bean en la consola de NetBeans.
+
+![ejb15](https://migabeta.wordpress.com/wp-content/uploads/2017/02/ejb151.jpg?w=723)
+
 * [1. Introducción a los Componentes Enterprise JavaBeans](https://expertojavaua.github.io/expertojava.ua.es/experto/restringido/2015-16/ejb/ejb.html#sesion01)
   * [1.1. Acceso a la capa de negocio gestionado por el servidor de aplicaciones](https://expertojavaua.github.io/expertojava.ua.es/experto/restringido/2015-16/ejb/ejb.html#_acceso_a_la_capa_de_negocio_gestionado_por_el_servidor_de_aplicaciones)
     * [1.1.1. Seguridad en el acceso a la capa de negocio](https://expertojavaua.github.io/expertojava.ua.es/experto/restringido/2015-16/ejb/ejb.html#_seguridad_en_el_acceso_a_la_capa_de_negocio)
