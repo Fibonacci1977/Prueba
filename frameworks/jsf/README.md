@@ -3185,15 +3185,51 @@ Vamos a ver un ejemplo de programación con los distintos elementos del FacesCon
 
 En primer lugar, para poder trabajar con el FacesContext hay que obtener la instancia asociada a la petición actual. Para ello basta con llamar al método estático getCurrentInstance() de la clase FacesContext :
 
-| 1234 | `import` `javax.faces.context.FacesContext;...FacesContext context = FacesContext.getCurrentInstance();...` |
-| ---- | ----------------------------------------------------------------------------------------------------------- |
+```java
+import javax.faces.context.FacesContext;
+...
+FacesContext context = FacesContext.getCurrentInstance();
+...
+```
 
 Podemos hacer esta llamada en el método validate() de un Validator , en el método decode() de un Renderer , en un manejador de una acción o en cualquier otro punto en el que escribamos código que extiende el framework. Una vez obtenido el FacesContext asociado a la petición actual es posible acceder a sus elementos.
 
 Vamos a modificar el método validate que hemos implementado anteriormente para acceder al FacesContext y a uno de sus elementos más importantes: el árbol de componetes. El siguiente código consigue esto.
 
-| 1234567891011121314151617181920212223242526272829303132 | `package` `calculator.validator;...import` `javax.faces.component.UIComponentBase;import` `javax.faces.component.UIViewRoot;import` `javax.faces.context.FacesContext;` `public` `class` `PairNumberValidator implements` `Validator {  public` `void` `validate(FacesContext arg0,      UIComponent component, Object value)      throws` `ValidatorException {    FacesContext context = FacesContext.getCurrentInstance();    UIViewRoot viewRoot = context.getViewRoot();    String ids = getComponentIds(viewRoot);    FacesMessage message = new` `FacesMessage("Componentes: "+ ids);    context.addMessage(null,message);    ...  }`  `// Obtiene los identificadores y tipos de un componente y de sus hijos.  // Se llama a si misma de forma recursiva  private` `String getComponentIds(UIComponentBase component) {    String ids = "";    ids += component.getFamily() + " ("` `+ component.getId() + ") ";    Iterator it = component.getFacetsAndChildren();    while` `(it.hasNext()) {      UIComponentBase childComponent = (UIComponentBase) it.next();      ids += getComponentIds(childComponent);    }    return` `ids;  }}` |
-| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+package calculator.validator;
+...
+import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
+ 
+public class PairNumberValidator implements Validator {
+  public void validate(FacesContext arg0, 
+      UIComponent component, Object value)
+      throws ValidatorException {
+    FacesContext context = FacesContext.getCurrentInstance();
+    UIViewRoot viewRoot = context.getViewRoot();
+    String ids = getComponentIds(viewRoot);
+    FacesMessage message = new FacesMessage("Componentes: "+ ids);
+    context.addMessage(null,message);
+    ...
+  }
+ 
+ 
+  // Obtiene los identificadores y tipos de un componente y de sus hijos.
+  // Se llama a si misma de forma recursiva
+  private String getComponentIds(UIComponentBase component) {
+    String ids = "";
+    ids += component.getFamily() + " (" + component.getId() + ") ";
+    Iterator it = component.getFacetsAndChildren();
+    while (it.hasNext()) {
+      UIComponentBase childComponent = (UIComponentBase) it.next();
+      ids += getComponentIds(childComponent);
+    }
+    return ids;
+  }
+}
+```
 
 Una vez obtenido el FacesContext , lo usamos para conseguir el UIViewRoot de la petición, el componente raíz del árbol de componentes asociado a la petición JSF. Una vez obtenido, llamamos al método getComponentIds() , un método que está implementado más adelante que recorre recursivamente el árbol de componentes y devuelve una cadena con todos los tipos de componente y su identificador.
 
@@ -3243,13 +3279,45 @@ Los componentes JSF pueden renderizarse ellos mismos o delegar el renderizado a 
 
 Mediante el atributo binding de una etiqueta es posible ligar un componente con una propiedad de un bean. Después, en cualquier llamada a código de la aplicación, es posible acceder a esa propiedad y consultar o modificar el componente. Por ejemplo, en el siguiente código ligamos el generado por la etiqueta \<h:inputText> con la propiedad inputText del bean todoController :
 
-| 123456789101112 | `<h:panelGroup>   <h:inputText` `binding="#{todoController.inputText}"                size="30"/><br/>   <h:commandLink` `value="Añadir projecto"                actionListener="#{todoController.addNewProject}"                immediate="true"/></h:panelGroup>...<h:selectOneMenu` `id="project"` `required="true"  value="#{todo.project}">  <f:selectItems` `value="#{todoController.projects}"` `/></h:selectOneMenu>` |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:panelGroup>
+   <h:inputText binding="#{todoController.inputText}"
+                size="30"/><br/>
+   <h:commandLink value="Añadir projecto"
+                actionListener="#{todoController.addNewProject}"
+                immediate="true"/>
+</h:panelGroup>
+...
+<h:selectOneMenu id="project" required="true"
+  value="#{todo.project}">
+  <f:selectItems value="#{todoController.projects}" />
+</h:selectOneMenu>
+```
 
 Después, en el código del método addNewProject del bean podemos acceder al valor introducido por el usuario en el inputText , utilizando el objeto UIInput que habíamos ligado con la etiqueta binding y que JSF ha guardado en la propiedad del bean:
 
-| 1234567891011121314151617181920 | `public` `class` `TodoController {  ...  private` `UIInput inputText;  ...` `public` `UIInput getInputText() {    return` `inputText;  }` `public` `void` `setInputText(UIInput inputText) {    this.inputText = inputText;  }` `public` `void` `addNewProject(ActionEvent event) {    String newProject = (String)inputText.getSubmittedValue();    inputText.setSubmittedValue(null);    projects.add(newProject);  }  ...}` |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```java
+public class TodoController {
+  ...
+  private UIInput inputText;
+  ...
+    
+  public UIInput getInputText() {
+    return inputText;
+  }
+ 
+  public void setInputText(UIInput inputText) {
+    this.inputText = inputText;
+  }
+    
+  public void addNewProject(ActionEvent event) {
+    String newProject = (String)inputText.getSubmittedValue();
+    inputText.setSubmittedValue(null);
+    projects.add(newProject);
+  }
+  ...
+}
+```
 
 Cuando ligamos un componente a una propiedad de un bean, debemos declarar la propiedad de la misma clase que el componente. La siguiente tabla muestra las clases Java de los componentes de cada una de las etiquetas básicas JSF que se transforman en código HTML (de ahí viene el prefijo h: ):
 
@@ -3285,8 +3353,12 @@ En el programa ejemplo de la sesión de ejercicios se utilizan algunos de estos 
 
 En todas estas etiquetas se pueden añadir elementos propios del HTML que se trasladarán tal cual cuando se realice el renderizado. Por ejemplo, en todos los elementos es posible asignar un código Javascript a eventos gestionados por el HTML, como onclick , ondblclick , onmouseover , etc. En principio, el código que se introduce en esos atributos no tiene ninguna implicación en el ciclo de vida JSF. Sin embargo, algunas implementaciones de renders HTML incorporan algunas funcionalidades interesantes. Por ejemplo, aunque no es estándar, en la mayoría de implementaciones de JSF, si el Javascript del atributo onclick de un \<h:command> devuelve false no se lanza la petición asociada al comando. Así hemos implementado en el ejemplo la típica ventana de diálogo para confirmar un borrado:
 
-| 1234 | `<h:commandLink` `value="delete"` `action="#{todoController.delete}"   onclick="if (!confirm('¿Seguro que quieres borrar #{todo.title}?')) return false">   ...</h:commandLink>` |
-| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:commandLink value="delete" action="#{todoController.delete}"
+   onclick="if (!confirm('¿Seguro que quieres borrar #{todo.title}?')) return false">
+   ...
+</h:commandLink>
+```
 
 ### Gestión de eventos
 
@@ -3305,13 +3377,27 @@ Los lanzan los "editable value holders" (h:inputText, h:selectOneRadio, h:select
 
 Es útil porque en muchos casos, los valores / contenidos de un componente dependen de los valores de otro. Un ejemplo clásico son las combinaciones de menús país/provincia. O, como en el siguiente ejemplo, uno que establece el idioma de la aplicación en función del elemento seleccionado
 
-| 123456789 | `<h:selectOneMenu    value="#{form.country}"    onchange="submit()"    valueChangeListener="#{form.countryChanged}">  <f:selectItems` `value="#{form.countries}"    var="loc"    itemLabel="#{loc.displayCountry}"    itemValue="#{loc.country}"/></h:selectOneMenu>` |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:selectOneMenu
+    value="#{form.country}"
+    onchange="submit()"
+    valueChangeListener="#{form.countryChanged}">
+  <f:selectItems value="#{form.countries}"
+    var="loc"
+    itemLabel="#{loc.displayCountry}"
+    itemValue="#{loc.country}"/>
+</h:selectOneMenu>
+```
 
 Aquí, forzamos que el formulario se envíe una vez se ha seleccionado un país, y se lance el método countryChanged del Bean Gestionado Form. Éste cambiará el Locale de la aplicación en función del país
 
-| 12345 | `public` `void` `countryChanged(ValueChangeEvent event) {  for` `(Locale loc : countries)    if` `(loc.getCountry().equals(event.getNewValue()))      FacesContext.getCurrentInstance().getViewRoot().setLocale(loc);}` |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+public void countryChanged(ValueChangeEvent event) { 
+  for (Locale loc : countries)
+    if (loc.getCountry().equals(event.getNewValue()))
+      FacesContext.getCurrentInstance().getViewRoot().setLocale(loc);
+}
+```
 
 Cabe destacar los métodos del objeto javax.faces.event.ValueChangeEvent:
 
@@ -3323,8 +3409,11 @@ Cabe destacar los métodos del objeto javax.faces.event.ValueChangeEvent:
 
 Los action events son los que lanzan botones y enlaces. Se disparan durante la "Invoke Application phase", cerca del final del ciclo de vida de la aplicación. Se añaden de la siguiente manera:
 
-| 123 | `<h:commandLink` `actionListener="#{bean.linkActivated}">  ...</h:commandLink>` |
-| --- | ------------------------------------------------------------------------------- |
+```java
+<h:commandLink actionListener="#{bean.linkActivated}">
+  ...
+</h:commandLink>
+```
 
 Es importante diferenciar entre actionListener y action. Una acción implica cierta lógica de negocio y participa en la navegación, mientras los actionListeners no participan en la navegación. Normalmente trabajan junto con las acciones cuando una acción necesita realizar ciertas acciones sobre la interfaz de usuario.
 
@@ -3334,20 +3423,36 @@ JSF siempre invoca a los actionListeners antes que a las acciones.
 
 Éstos tags son análogos a los atributos que acabamos de ver. Por ejemplo, en el caso del menú visto anteriormente, también podríamos presentarlo de la siguiente manera:
 
-| 1234 | `<h:selectOneMenu` `value="#{form.country}"` `onchange="submit()">  <f:valueChangeListener` `type="org.expertojee.CountryListener"/>  <f:selectItems` `value="#{form.countryNames}"/></h:selectOneMenu>` |
-| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:selectOneMenu value="#{form.country}" onchange="submit()">
+  <f:valueChangeListener type="org.expertojee.CountryListener"/>
+  <f:selectItems value="#{form.countryNames}"/>
+</h:selectOneMenu>
+```
 
 Los tags tienen una ventaja sobre los atributos, y es que permiten asociar varios listeners al mismo componente.
 
 Vemos que hay una diferencia importante: mientras que en el atributo asociábamos un método, en el tag estamos vinculando una clase Java. Ésta debe implementar la interfaz ValueChangeListener:
 
-| 123456789 | `public` `class` `CountryListener implements` `ValueChangeListener {  public` `void` `processValueChange(ValueChangeEvent event) {    FacesContext context = FacesContext.getCurrentInstance();    if` `("ES".equals(event.getNewValue()))      context.getViewRoot().setLocale(Locale.ES);    else      context.getViewRoot().setLocale(Locale.EN);    }}` |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+public class CountryListener implements ValueChangeListener { 
+  public void processValueChange(ValueChangeEvent event) {
+    FacesContext context = FacesContext.getCurrentInstance(); 
+    if ("ES".equals(event.getNewValue()))
+      context.getViewRoot().setLocale(Locale.ES); 
+    else
+      context.getViewRoot().setLocale(Locale.EN);
+    }
+}
+```
 
 Para el caso de los action listeners, deben implementar la interfaz ActionListener y se presenta de forma idéntica al caso anterior:
 
-| 123 | `<h:commandButton` `image="logo-experto.jpg"` `action="#{ation.navigate}">  <f:actionListener` `type="org.expertojee.ClickListener"/></h:commandButton>` |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:commandButton image="logo-experto.jpg" action="#{ation.navigate}">
+  <f:actionListener type="org.expertojee.ClickListener"/>
+</h:commandButton>
+```
 
 #### Pasando información desde la interfaz al componente: el tag f:setPropertyActionListener
 
@@ -3355,13 +3460,34 @@ Hasta la especificación 1.2 de JSF podíamos pasar datos de la interfaz a un co
 
 Con el tag f:setPropertyActionListener, conseguimos setear una propiedad en nuestro bean gestionado. Un ejemplo sencillo sería un menú de cambio de idioma:
 
-| 123456789 | `<h:commandLink` `immediate="true"` `action="#{localeChanger.changeLocale}">  <f:setPropertyActionListener` `target="#{localeChanger.languageCode}"` `value="es"/>  <h:graphicImage` `library="images"` `name="es_flag.gif"` `style="border: 0px"/></h:commandLink>` `<h:commandLink` `immediate="true"` `action="#{localeChanger.changeLocale}">  <f:setPropertyActionListener` `target="#{localeChanger.languageCode}"` `value="en"/>  <h:graphicImage` `library="images"` `name="en_flag.gif"` `style="border: 0px"/></h:commandLink>` |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:commandLink immediate="true" action="#{localeChanger.changeLocale}">
+  <f:setPropertyActionListener target="#{localeChanger.languageCode}" value="es"/>
+  <h:graphicImage library="images" name="es_flag.gif" style="border: 0px"/>
+</h:commandLink>
+ 
+<h:commandLink immediate="true" action="#{localeChanger.changeLocale}">
+  <f:setPropertyActionListener target="#{localeChanger.languageCode}" value="en"/>
+  <h:graphicImage library="images" name="en_flag.gif" style="border: 0px"/>
+</h:commandLink>
+```
 
 En el código anterior, le decimos a JSF que establezca la propiedad languageCode del bean localeChanger a los valores _es_ o _en_.
 
-| 123456789101112 | `public` `class` `LocaleChanger {  private` `String languageCode;` `public` `String changeLocale() {    FacesContext context = FacesContext.getCurrentInstance();    context.getViewRoot().setLocale(new` `Locale(languageCode)); return` `null;  }` `public` `void` `setLanguageCode(String newValue) {    languageCode = newValue;  }}` |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+public class LocaleChanger { 
+  private String languageCode;
+ 
+  public String changeLocale() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    context.getViewRoot().setLocale(new Locale(languageCode)); return null;
+  }
+   
+  public void setLanguageCode(String newValue) {
+    languageCode = newValue; 
+  }
+}
+```
 
 #### Phase Events
 
@@ -3369,13 +3495,19 @@ Las implementaciones de JSF lanzan eventos antes y después de cada una de las f
 
 Al contrario que los vistos anteriormente, los phase listeners tienen que asociarse a la raíz de la vista, mediante el tag f:phaseListener
 
-| 1 | `<f:phaseListener` `type="es.ua.jtech.PhaseTracker"/>` |
-| - | ------------------------------------------------------ |
+```java
+<f:phaseListener type="es.ua.jtech.PhaseTracker"/>
+```
 
 Además, podemos declarar phase listeners globales en el fichero faces-config.xml.
 
-| 12345 | `<faces-config>  <lifecycle>    <phase-listener>es.ua.jtech.PhaseTracker</phase-listener>  </lifecycle></faces-config>` |
-| ----- | ----------------------------------------------------------------------------------------------------------------------- |
+```java
+<faces-config>
+  <lifecycle>
+    <phase-listener>es.ua.jtech.PhaseTracker</phase-listener>
+  </lifecycle>
+</faces-config>
+```
 
 Nuestros phase listeners deberán implementar la interfaz javax.faces.event.PhaseListener, que define los siguientes tres métodos:
 
@@ -3394,8 +3526,11 @@ Imaginémonos un listener cuyo getPhaseId() devolviese PhaseId.APPLY\_REQUEST\_V
 
 De manera alternativa, podemos envolver una vista JSF en un tag f:view con atributos beforePhase y/o afterPhase. Estos atributos deben apuntar a métodos del tipo void listener(javax.faces.event.PhaseEvent):
 
-| 123 | `<f:view` `beforePhase="#{backingBean.beforeListener}">  ...</f:view>` |
-| --- | ---------------------------------------------------------------------- |
+```java
+<f:view beforePhase="#{backingBean.beforeListener}">
+  ...
+</f:view>
+```
 
 Los phase listeners constituyen un mecanismo muy útil para el debugging de nuestras aplicaciones.
 
@@ -3419,22 +3554,32 @@ Hay cuatro maneras por las cuales una clase puede recibir system events:
 
 La primera de ellas es mediante el tag f:event. Ésta constituye la manera más adecuada para realizar un _listening_ de eventos a nivel de componente o vista
 
-| 123 | `<h:inputText` `value="#{...}">  <f:event` `name="postValidate"` `listener="#{bean.method}"/></h:inputText>` |
-| --- | ------------------------------------------------------------------------------------------------------------ |
+```java
+<h:inputText value="#{...}">
+  <f:event name="postValidate" listener="#{bean.method}"/>
+</h:inputText>
+```
 
 El método debe tener la forma public void listener(ComponentSystemEvent) throws AbortProcessingException.
 
 La segunda manera es utilizando una anotación para una clase del tipo UIComponent o Renderer:
 
-| 1 | `@ListenerFor(systemEventClass=PreRenderViewEvent.class)` |
-| - | --------------------------------------------------------- |
+```java
+@ListenerFor(systemEventClass=PreRenderViewEvent.class)
+```
 
 Este mecanismo es muy útil para el desarrollo de componentes, aunque esta materia queda fuera del objetivo de este curso.
 
 En tercer lugar, podemos declararlos en el fichero de configuración faces-config.xml.Este mecanismo es últil para instalar un listener para los eventos de la aplicación
 
-| 123456 | `<application>  <system-event-listener>    <system-event-listener-class>listenerClass</system-event-listener-class>    <system-event-class>eventClass</system-event-class>  </system-event-listener></application>` |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<application> 
+  <system-event-listener>
+    <system-event-listener-class>listenerClass</system-event-listener-class>
+    <system-event-class>eventClass</system-event-class>
+  </system-event-listener>
+</application>
+```
 
 Por último, podemos llamar al método subscribeToEvent de las clases UIComponent o Application. Este método está destinado a desarrolladores de _frameworks_, quedando también fuera del objeto del curso.
 
@@ -3442,13 +3587,42 @@ Por último, podemos llamar al método subscribeToEvent de las clases UIComponen
 
 JSF no provee de ningún mecanismo para la validación de un grupo de componentes. Por ejemplo, si usamos tres campos distintos para la introducción de una fecha, la única manera de comprobar su validez es, por ejemplo, mediante un evento PostValidateEvent.
 
-| 1234567 | `<h:panelGrid` `id="date"` `columns="2">  <f:event` `type="postValidate"` `listener="#{bb.validateDate}"/>  Día: <h:inputText` `id="day"` `value="#{bb.day}"` `size="2"` `required="true"/>  Mes: <h:inputText` `id="month"` `value="#{bb.month}"` `size="2"` `required="true"/>  Año: <h:inputText` `id="year"` `value="#{bb.year}"` `size="4"` `required="true"/></h:panelGrid><h:message` `for="date"` `styleClass="errorMessage"/>` |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<h:panelGrid id="date" columns="2">
+  <f:event type="postValidate" listener="#{bb.validateDate}"/>
+  Día: <h:inputText id="day" value="#{bb.day}" size="2" required="true"/>
+  Mes: <h:inputText id="month" value="#{bb.month}" size="2" required="true"/>
+  Año: <h:inputText id="year" value="#{bb.year}" size="4" required="true"/> 
+</h:panelGrid>
+<h:message for="date" styleClass="errorMessage"/>
+```
 
 En nuestro listener: obtendremos los valores introducidos por el usuario y verificaremos que se corresponden con una fecha válida. Sino, añadiremos un mensaje de error al componente e invocaremos al método renderResponse:
 
-| 12345678910111213141516171819202122 | `public` `void` `validateDate(ComponentSystemEvent event) {  UIComponent source = event.getComponent();  UIInput dayInput = (UIInput) source.findComponent("day");  UIInput monthInput = (UIInput) source.findComponent("month");  UIInput yearInput = (UIInput) source.findComponent("year");` `int` `d = ((Integer) dayInput.getLocalValue()).intValue();  int` `m = ((Integer) monthInput.getLocalValue()).intValue();  int` `y = ((Integer) yearInput.getLocalValue()).intValue();` `if` `(!isValidDate(d, m, y)) {    FacesMessage message = es.ua.jtech.util.Messages.getMessage(      "es.ua.jtech.messages",      "invalidDate",      null    );    message.setSeverity(FacesMessage.SEVERITY_ERROR);    FacesContext context = FacesContext.getCurrentInstance();    context.addMessage(source.getClientId(), message);    context.renderResponse();  }}` |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```java
+public void validateDate(ComponentSystemEvent event) { 
+  UIComponent source = event.getComponent();
+  UIInput dayInput = (UIInput) source.findComponent("day"); 
+  UIInput monthInput = (UIInput) source.findComponent("month"); 
+  UIInput yearInput = (UIInput) source.findComponent("year"); 
+ 
+  int d = ((Integer) dayInput.getLocalValue()).intValue();
+  int m = ((Integer) monthInput.getLocalValue()).intValue(); 
+  int y = ((Integer) yearInput.getLocalValue()).intValue(); 
+ 
+  if (!isValidDate(d, m, y)) {
+    FacesMessage message = es.ua.jtech.util.Messages.getMessage(
+      "es.ua.jtech.messages", 
+      "invalidDate", 
+      null
+    );
+    message.setSeverity(FacesMessage.SEVERITY_ERROR); 
+    FacesContext context = FacesContext.getCurrentInstance();
+    context.addMessage(source.getClientId(), message);
+    context.renderResponse();
+  } 
+}
+```
 
 Otros ejemplos de validaciones de este tipo y que nos encontramos prácticamente a diario podrían ser, por ejemplo, la verificación de la segunda contraseña introducida en el caso de un registro o, verificar que una provincia seleccionada se corresponde con el país seleccionado previamente.
 
@@ -3456,17 +3630,691 @@ Otros ejemplos de validaciones de este tipo y que nos encontramos prácticamente
 
 A veces, tenemos la necesidad de ser notificados antes de renderizar una vista, por ejemplo, para cargar datos, realizar cambios sobre algún componente o incluso navegar a otra vista. Por ejemplo: si nos queremos asegurar de que un usuario está loqueado antes de mostrar una página, podemos envolver la vista en un tag f:view y añadir un _listener_:
 
-| 123456789 | `<f:view>  <f:event` `type="preRenderView"` `listener="#{user.checkLogin}"/>  <h:head>    <title>...</title>  </h:head>  <h:body>    ...  </h:body></f:view>` |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+<f:view>
+  <f:event type="preRenderView" listener="#{user.checkLogin}"/>
+  <h:head>
+    <title>...</title> 
+  </h:head>
+  <h:body> 
+    ...
+  </h:body>
+</f:view>
+```
 
 En el listener, verificaremos si el usuario está loqueado. En caso contrario, le redirigiremos a la página de login:
 
-| 12345678910 | `public` `void` `checkLogin(ComponentSystemEvent event) {  if` `(!loggedIn) {    FacesContext context = FacesContext.getCurrentInstance();    ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler)context.      getApplication().      getNavigationHandler();` `handler.performNavigation("login");  }}` |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+public void checkLogin(ComponentSystemEvent event) { 
+  if (!loggedIn) {
+    FacesContext context = FacesContext.getCurrentInstance();
+    ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler)context.
+      getApplication().
+      getNavigationHandler();
+       
+    handler.performNavigation("login");
+  }
+}
+```
 
-&#x20;Last Published: 12/07/2023 13:00:46Copyright © 2012-2013 Dept. Ciencia de la Computación e IA
+## Ejercicios sesión 3 - Funcionamiento y arquitectura de JSF
 
-### Sesiones
+* [Conversores y validadores](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion03-ejercicios.html#Conversores+y+validadores)
+
+### Conversores y validadores
+
+En esta sesión, vamos a aplicar los conocimientos adquiridos en la creación de una página de registro de usuario. Ésta tendrá un aspecto similar al del siguiente mockup:
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/mockup-register.png" alt="" width="600">
+
+La vista deberá llamarse register.xhtml, y utilizar la misma plantilla que la página de login (0.25 puntos).
+
+Crearemos una clase es.ua.jtech.jsf.RegisterController, que tendrá los siguientes atributos (0.25 puntos):
+
+* DniBean dni.
+* String login.
+* String pass.
+* String pass2
+
+Para la clase DniBean, deberemos crear sus conversores y validadores (0.5 puntos)
+
+Los campos del formulario deberán tener las siguientes restricciones, que deberás controlar aplicando las anotaciones de JSR303 en la medida que sea posible (0.5 puntos)
+
+* Todos los campos son obligatorios
+* login: longitud mínima, 4 caracteres; longitud máxima: 12 caracteres
+* pass: longitud mínima, 6 caracteres; longitud máxima: 12 caracteres
+
+Además, introduciremos dos eventos _postValidate_ en nuestra vista (0.75 puntos):
+
+* El primero de ellos se encargará de verificar que los passwords introducidos coinciden
+* El segundo, se encargará de verificar que no existe ningún usuario registrado con ese login. Como no tenemos base de datos, con verificar que el login no es _admin_ será suficiente
+
+El botón de registro llamará a un método doRegister del controlador, que nos "registrará" al usuario y lo dará de alta en sesión, llevándolo a su página de tareas (0.25 puntos).
+
+Por último, nuestra aplicación deberá ser capaz de mostrar cada mensaje de error al lado del campo que lo haya ocasionado (0.5 puntos). Para resaltar un poco más el error, le daremos el siguiente estilo: color:#B94A48; font-weight: bolder
+
+## 4. Internacionalización. Menajes Flash. RichFaces: una librería de componentes profesional
+
+* [Mensajes e internacionalización](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Mensajes+e+internacionalizaci%C3%B3n)
+  * [Mensajes con partes variables](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Mensajes+con+partes+variables)
+  * [Añadiendo un segundo idioma](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#A%C3%B1adiendo+un+segundo+idioma)
+  * [Cambiando de idioma](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Cambiando+de+idioma)
+* [Mensajes Flash](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Mensajes+Flash)
+* [Introducción a RichFaces](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Introducci%C3%B3n+a+RichFaces)
+* [Skins](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Skins)
+* [Peticiones Ajax y ciclo de vida](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Peticiones+Ajax+y+ciclo+de+vida)
+  * [Componentes Ajax](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Componentes+Ajax)
+  * [Redibujado de componentes](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Redibujado+de+componentes)
+* [Algunos ejemplos de componentes](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Algunos+ejemplos+de+componentes)
+  * [Pick List](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Pick+List)
+  * [Panel modal](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Panel+modal)
+  * [Data Grid](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Data+Grid)
+  * [Google map](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Google+map)
+  * [Tab panel](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Tab+panel)
+* [Referencias](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-apuntes.html#Referencias)
+
+### Mensajes e internacionalización
+
+Cuando creamos una aplicación web, es una buena idea colocar todos los mensajes en una mima localización central. Este proceso hace que sea más facil, entre otras cosas, internacionalizar la aplicación a otros idiomas.
+
+Estos mensajes se guardarán en un fichero properties, guardando las cadenas de una forma ya conocida por todos a estas alturas del curso:
+
+```java
+login_nombre=Nombre de usuario: 
+login_password=Contraseña:
+```
+
+Este fichero se puede guardar donde sea, pero es muy importante que tenga la extensión .properties (ej: src/es/ua/jtech/i18n/messages.properties)
+
+Para indicar el fichero de recursos que vamos a emplear, podemos hacerlo de dos maneras. La más fácil es indicarlo en el fichero faces-config.xml, dentro del directorio WEB-INF, de la siguiente manera:
+
+```xml
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd" version="2.0">
+  <application>
+    <resource-bundle>
+      <base-name>es.ua.jtech.i18n.messages</base-name> 
+      <var>msgs</var>
+    </resource-bundle>
+  </application>
+  </faces-config>
+```
+
+En lugar de usar una declaración global del fichero de recursos, podemos añadir el elemento f:loadBundle a cada página JSF que necesite acceso a los recursos. Ejemplo:
+
+```java
+<f:loadBundle basename="es.ua.jtech.messages" var="msgs"/>
+```
+
+En cualquiera de los casos, los mensajes son accesibles a través de un mapa, con el nombre msgs.
+
+A partir de este momento, podremos usar expresiones como #{msgs.login\_nombre} para acceder a las cadenas de los mensajes.
+
+#### Mensajes con partes variables
+
+Muchas veces, los mensajes tienen partes variables que no se pueden rellenar a la hora de declarrar el fichero de recursos. Imaginemos por ejemplo un marcador de puntuación con la frase _Tienes **n** puntos_, donde _n_ es un valor devuelto por un bean. En este caso, en nuestro fichero de recursos haremos un String con un _placeholder_:
+
+```java
+tuPuntuacion=Tienes {0} puntos.
+```
+
+Los _placeholders_ se numeran partiendo del cero. En nuestra página JSF, usaremos el tag h:outputFormat, introduciendo como hijos tantos f:param como placeholders haya:
+
+```java
+<h:outputFormat value="#{msgs.tuPuntuacion}">
+   <f:param value="#{marcadorBean.puntos}"/>
+</h:outputFormat>
+```
+
+El tag h:outputFormat usa la clase MessageFormat de la librería estándar para formatear el mensaje.
+
+#### Añadiendo un segundo idioma
+
+Cuando localizamos un fichero de recursos, debemos añadir un sufijo de _locales_ al nombre del fichero: un guión bajo seguido del código de dos letras ISO-639 en minúsculas. Por ejemplo, las cadenas en inglés estarían en el fichero messages\_en.properties y las cadenas en alemán en el fichero messages\_de.properties.
+
+Como parte del soporte de internacionalización en Java, el fichero de recursos que coincida con el locale actual se cargará automáticamente. El fichero por defecto sin sufijo de locale se usará como alternativa si no hay un locale específico para un idioma dado
+
+#### Cambiando de idioma
+
+Ahora que ya sabemos que podemos tener un fichero de recursos por idioma y cómo introducir variables en determinados mensajes, tenemos que decidir cómo establecer el locale de nuestra aplicación. Tenemos tres opciones:
+
+1. Podemos dejar al navegador que escoja el locale. Estableceremos el locale por defecto y los idiomas soportados en el fichero WEB-INF/faces-config.xml:
+
+```java
+<faces-config>
+  <application>
+    <locale-config>
+      <default-locale>en</default-locale>
+      <supported-locale>de</supported-locale>
+    </locale-config>
+  </application>
+</faces-config>
+```
+
+Cuando el navegador se conecta a nuestra aplicación, normalemente incluye un valor Accept-Language en las cabeceras HTTP. La implementación de JSF lee este header y averigua la que mejor casa de entre la lista de idiomas soportados. Esta característica se puede probar fácilmente si cambias el idioma predeterminado en tu navegador web.
+
+2. También podemos establecer el idioma de manera programada. Esto se consigue llamando al método setLocale del objetoUIViewRoot.
+
+```java
+UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot(); 
+viewRoot.setLocale(new Locale("de"));
+```
+
+3. Por último, podemos establecer el idioma de una página determinada si usamos el elemento f:view con un atributo locale. Por ejemplo:
+
+```java
+<f:view locale="de">
+```
+
+Podemos convertirlo en algo dinámico si el atributo locale se vincula a una variable:
+
+```java
+<f:view locale="#{langController.lang}">
+```
+
+Esta última opción es muy útil en aquellas aplicaciones en que dejamos al usuario elegir un idioma determinado.
+
+Aviso
+
+***
+
+Si optamos por este último método, tendremos que meter toda nuestra página dentro de f:view
+
+### Mensajes Flash
+
+Desde JSF 2.0, se ha incluido un objeto _flash_, que puede declararse en una petición y ser usado en la siguiente. Este concepto se ha tomado prestado del _framework_ Ruby on Rails. Un uso común que se le da al objeto flash es para el paso de mensajes. Por ejemplo: un controlador puede poner un mensaje en el flash:
+
+```java
+ExternalContext.getFlash().put("message", "Campo actualizado correctamente");
+```
+
+El método ExternalContext.getFlash() devuelve un objeto de la clase Flash que implementa un Map\<String, Object>
+
+En nuestra página JSF, podemos referenciar el objeto flash mediante la variable flash. Por ejemplo, podemos mostrar el mensaje de la siguiente manera:
+
+```java
+#{flash.message}
+```
+
+Una vez el mensaje se ha renderizado y la vista ha sido enviada al cliente, la cadena se elimina automáticamente del flash.
+
+Si queremos mantener el valor del flash para más de una petición, podemos hacerlo invocándolo de la siguiente manera:
+
+```java
+#{flash.keep.message}
+```
+
+De esta manera, el valor de mensaje se añadirá nuevamente al flash, pudiendo ser utilizado en la próxima petición.
+
+### Introducción a RichFaces
+
+RichFaces surgió como un framework desarrollado por la compañía Exadel orientado a introducir Ajax en JSF. De hecho, su primer nombre fue Ajax2jsf y ahora algunas etiquetas tienen el prefijo a4j. Exadel lanzó el framework en marzo de 2006. A finales de año, el framework se dividió en 2 partes llamados _Rich Faces_, que define los componentes propiamente dichos, y _Ajax4jsf_, que define las etiquetas específicas que dan soporte a Ajax. La primera parte se hizo comercial y la segunda se convirtió en un proyecto opensource en Java.net.
+
+En marzo de 2007, JBoss (ahora parte de Red Hat) y Exadel firmaron un acuerdo por el que ambos frameworks serían distribuidos y utilizados por JBoss y serían gratuitos y opensource. En septiembre de 2007, JBoss y Exadel decidieron unirlos en un único producto llamado RichFaces. Esta decisión ha facilitado el mantenimiento de ambos productos y el lanzamiento de nuevas versiones.
+
+En la actualidad, RichFaces es una parte fundamental del framework Seam propuesto por JBoss. Este framework incluye un _stack_ de tecnólogías Java EE formado por JSF, JPA, EJB 3.0 y BPM (Business Pocess Management) además de plug-ins para Eclipse para facilitar su desarrollo.
+
+Entrando en algo de detalle sobre sus características técnicas, podemos decir que trabaja sobre JSF, ampliando su ciclo de vida y sus funcionalidades de conversión y de validación mediante la introducción de Ajax. Los componentes RichFaces llevan incluido soporte Ajax y un look-and-feel altamente customizable que puede ser fácilmente integrado en la aplicación JSF. Las características más importantes son:
+
+* Integración de Ajax en el ciclo de vida JSF. Mientras que otros frameworks sólo utilizan las funcionalidades de JSF de acceso a los beans gestionados, RichFaces utiliza la gestión de eventos de JSF para integrar Ajax. En concreto, hace posible la invocación de validadores y conversores en el lado del cliente cuando se utiliza Ajax en los manejadores de eventos de acción y eventos de cambio de valor.
+* Posibilidad de añadir capacidades de Ajax a las aplicaciones JSF existentes. El framework proporciona dos librerías de componentes: Core Ajax y UI. La librería de Core Ajax permite utilizar las funcionalidades de Ajax en las páginas existentes, de forma que no hay necesidad de escribir nada de código Javascript ni de reemplazar los componentes existentes con los nuevos componentes Ajax. RichFaces permite soporte de Ajax a nivel de página, en lugar del tradicional soporte a nivel de componente y ello hace posible definir los eventos en la página. Un evento invoca una petición Ajax al servidor, se ejecuta esta petición y se cambian ciertos valores del modelo y es posible indicar qué partes de la página (y del árbol de componentes) deben ser renderizados de nuevo.
+* Posiblidad de crear vistas complejas creadas a partir de un amplio conjunto de componentes listos para ser utilizados. Se extiende el núcleo de componentes JSF con una amplia librería de componentes con capacidades Ajax que incluyen también soporte para definir skins. Además, los componentes JSF están diseñados para poder ser utilizados con componentes de terceros en la misma página.
+* Soporte para la creación de componentes con Ajax incorporado. RichFaces pone a disposición de los desarrolladores el _Component Development Kit_ (CDK) utilizado para la creación de los componentes de la librería. El CDK incluye una herramienta de generación de código y una utilidad de templates con una sintaxis similar a JSP.
+* Los recursos se empaquetan junto con las clases Java de la aplicación. Además de sus funcionalidades básicas, las facilidades de Ajax de RichFaces proporcionan la posibilidad de gestionar tres tipos de recursos: imágenes, código Javascript y hojas de estilo CSS. El framework de recursos hace posible empaquetar estos recursos en ficheros Jar junto con el código de los componentes de la aplicación.
+* Facilidades para generar recursos en caliente. El framework de recursos puede generar imágenes, sonidos, hojas de cálculo Excel, etc. en caliente, a partir de datos proporcionados por el usuario.
+* **Skins**. RichFaces proporciona la posibilidad de configurar los componentes en base a skins que agrupan características visuales como fuentes o esquemas de color. Es posible también acceder a los parámetros del skin a partir del código Java y de la configuración de la página. RichFaces proporciona un conjunto de skins predefinidos, pero es posible ampliarlos con skins creados por nosotros.
+
+### Skins
+
+Una de las funcionalidades de RichFaces son los skins. Es posible modificar el aspecto de todos los componentes cambiando una única constante del framework. En concreto, el skin a utilizar en la aplicación se define en el fichero web.xml con el parámetro org.richfaces.SKIN:
+
+```java
+<context-param>
+   <param-name>org.richfaces.SKIN</param-name>
+   <param-value>wine</param-value>
+</context-param>
+```
+
+Los posibles valores de este parámetro son:
+
+```java
+DEFAULT
+plain
+emeraldTown
+blueSky
+wine
+japanCherry
+ruby
+classic
+deepMarine
+```
+
+Los skins definen el color y los fuentes tipográficos de los componentes aplicando valores a constantes que se aplican con hojas de estilo a las páginas HTML resultantes. Estas constantes están bastante bien pensadas, y dan coherencia al aspecto de todos los componentes. Por ejemplo, la constante headerGradientColor define el color de gradiente de todas las cabeceras y generalTextColor define el color por defecto del texto de todos los componentes.
+
+Para más información sobre las características de los skins, cómo utilizarlos y cómo definir nuevos, se puede consultar el [apartado sobre skins](http://docs.jboss.org/richfaces/latest_3_3_X/en/devguide/html/ArchitectureOverview.html) de la guía de desarrollo (versión 3.0).
+
+### Peticiones Ajax y ciclo de vida
+
+Una de las características fundamentales de RichFaces es la forma de tratar los eventos JavaScript y de incorporarlos en el ciclo de vida JSF.
+
+Con el soporte Ajax de JSF es posible lanzar peticiones Ajax al ciclo de vida JSF desde cualquier componente, no sólo desde los componentes \<command>. A diferencia de una petición JSF, una petición Ajax hace que el navegador redibuje todos los componentes de la página actual, sino sólo los que nos interesan.
+
+La figura siguiente muestra el ciclo de proceso de una petición Ajax:
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/tema04/richfaces-ciclo-vida.png" alt="" width="600">
+
+1. La página o el componente genera un evento JavaScript que es capturado por el motor de Ajax y por el manejador que definimos en la página.
+2. Se envía la petición al servidor, con todos los atributos existentes en la página, como una petición JSF normal.
+3. En el servidor se lanzan todas las fases del ciclo de vida JSF (conversión, validación, actualización del modelo y lanzamiento de acciones y el redibujado de la respuesta), pero la respuesta no se devuelve al navegador, sino al motor de Ajax.
+4. El motor de Ajax actualiza sólo aquellas partes de la página del navegador que le hemos indicando, modificándolas con las partes obtenidas en la respuesta JSF.
+
+#### Componentes Ajax
+
+Existen bastantes componentes RichFaces con distintos comportamientos. Los más usados para enviar peticiones Ajax son \<a4j:commandButton> y \<a4j:commandLink>, que envían una petición cuando el usuario pulsa un botón (similares a los h:command) y \<a4j:support> que se incluye en otro componente JSF y permite enviar una petición Ajax al servidor cuando sucede un determinado evento Javascript en el componente.
+
+El siguiente código muestra un ejemplo de uso de a4j:commandButton:
+
+```java
+<a4j:commandButton value="Enviar" action="#{bean.doAction}"/>
+```
+
+Vemos que es idéntico al componente h:commandButton. El atributo value define el texto que aparece en el botón. Y el atributo action apunta al método doAction del bean hace de controlador. La diferencia con el h:commandButton es la comentada anteriormente. En una petición estándar JSF la página resultante se devuelve al navegador y éste la vuelve a pintar por completo. En una petición Ajax, el servidor devuelve la página resultante al motor Ajax, y es éste el que decide lo que hay que pintar en la página.
+
+En el apartado siguiente explicaremos cómo decidir qué partes de la página se deben pintar de nuevo con la petición Ajax.
+
+Otro componente Ajax muy usado es \<a4j:support>. Se puede definir dentro de cualquier componente JSF y permite capturar los eventos Javascript HTML soportados por ese componente y generar una petición Ajax. Por ejemplo:
+
+```java
+<h:inputText value="#{user.name}">
+    <a4j:support event="onkeyup" action="#{bean.doAction}"/>
+</h:inputText>
+```
+
+En este caso se captura el evento Javascript onkeyup del \<h:inputText> y se envía la petición Ajax al servidor para ejecutar el método doAction del bean.
+
+Los eventos soportados por \<a4j:support> son los posibles eventos javascript del componente padre:
+
+* **onblur**: evento generado cuando el elemento pierde el foco.
+* **onchange**: evento generado cuando el elemento pierdo el foco y se ha modificado su valor.
+* **onclick**: evento generado cuando se hace un click con el ratón sobre el elemento.
+* **ondblclick**: evento generado cuando se hace un doble click con el ratón sobre el elemento.
+* **onfocus**: evento generado cuando el elemento recibe el foco.
+* **onkeydown**: evento generado cuando se pulsa una tecla sobre el elemento.
+* **onkeypress**: evento generado cuando se pulsa y se suelta una tecla sobre el elemento.
+* **onkeyup**: evento generado cuando se suelta una tecla sobre el elemento.
+* **onmousedown**: evento generado cuando se pulsa el ratón sobre el elemento.
+* **onmousemove**: evento generado cuando se mueve el ratón dentro del elemento.
+* **onmouseout**: evento generado cuando se saca el ratón fuera del elemento.
+* **onmouseover**: evento generado cuando se entra con el ratón dentro del elemento.
+* **onmouseup**: evento generado cuando el botón del ratón se suelta dentro del elemento.
+* **onselect**: evento generado cuando se selecciona texto dentro del elemento.
+
+Además de los dos componentes vistos anteriormente, RichFaces proporciona otros componentes que generan eventos Ajax. En la [guía de desarrollo de RichFaces](http://www.jboss.org/richfaces/docs.html) se encuentra una explicación detallada de su uso.
+
+* **\<a4j:ajaxListener>**: se utiliza dentro de otro componente Ajax para declarar manejadores de eventos de JSF igual que \<f:actionListener> o \<f:valueChangeListener>.
+* **\<a4j:keepAlive>**: permite mantener el estado de los beans entre distintas peticiones.
+* **\<a4j:actionparam>**: combina la funcionalidad de \<f:param> y \<f:actionListener>.
+* **\<a4j:form>**: es muy similar al mismo componente de la librería HTML de JSF, proporcionando además las funcionalidades de generación de enlaces y la posibilidad de petición Ajax por defecto.
+* **\<a4j:htmlCommandLink>**: es muy similar al mismo componente JSF HTML, pero resuelve algunos de sus problemas cuando se usa con Ajax.
+* **\<a4j:jsFunction>**: permite obtener datos del en el servidor en forma de objetos JSON y lanzar una función Javascript con ellos.
+* **\<a4j:include>**: se usa para incluir código HTML en las páginas.
+* **\<a4j:loadBundle>**: se usa para cargar un conjunto de recursos.
+* **\<a4j:log>**: abre una ventana con la información del evento Javascript producido en el cliente.
+* **\<a4j:mediaOutput>**: permite generar imágenes, vídeo, sonidos y otros recursos en caliente (_on-the-fly_).
+* **\<a4j:outputPanel>**: similar al componente JSF HTML, pero incluyendo facilidades para su uso con Ajax como la posibilidad de insertar elementos no presentes en el árbol de componentes o la posibilidad de guardar el estado de elementos.
+* **\<a4j:poll>**: permite enviar eventos Ajax periódicos al servidor.
+* **\<a4j:push>**: permite enviar peticiones Ajax periódicas al servidor, para simular un comportamiento _push_.
+* **\<a4j:region>**: define el área que es redibujada después de la petición Ajax.
+
+#### Redibujado de componentes
+
+Por ejemplo, uno de los atributos más importantes es reRender, con el que se puede conseguir que JSF sólo renderice una parte de la página actual, la indicada por el valor del atributo. En el siguiente caso, se indica que sólo se debe volver a pintar el bloque marcado con el identificador miBloque, correspondiente a un h:panelGrid:
+
+```java
+...
+<a4j:commandButton value="Actualizar" reRender="miBloque"/>
+...
+<h:panelGrid id="miBloque">
+...
+</h:panelGrid>
+...
+```
+
+Vemos que en el ejemplo no se define ningún evento de acción, sino que únicamente se envía la petición JSF para que se ejecute el ciclo de vida con la vista actual y se renderice únicamente el panelGrid identificado por miBloque. Si queremos actualizar más de un componente bastaría con denominarlo con el identificador miBloque, o ponerle otra identificador y añadirlo al atributo reRender:
+
+```java
+<a4j:commandButton value="Actualizar" reRender="miBloque1, miBloque2"/>
+
+```
+
+Hay que tener cuidado cuando se utiliza el atributo reRender para redibujar un componente que ya tiene el atributo rendered. En el caso en que esa condición devuelva falso, no es posible hacer el redibujado, ya que JSF no incluye el componente en la página resultante y el módulo de Ajax no puede localizarlo para redibujar el DOM. Una forma de solucionar el problema es incluir el componente en un \<a4j:outputPanel layout="none">. El atributo ajaxRendered del outputPanel hace que el área de la página sea redibujada, incluso si no se apunta a ella explícitamente, cuando se produzca cualquier petición Ajax. Por ejemplo, el siguiente código redibuja los mensajes de error:
+
+```java
+...
+<a4j:outputPanel ajaxRendered="true">
+   <h:messages />
+</a4j:outputPanel>
+...
+```
+
+Es posible desactivar este comportamiento con el atributo limitToList
+
+```java
+...
+<h:form>
+   <h:inputText value="#{person.name}">
+      <a4j:support event="onkeyup" reRender="test" limitToList="true"/>
+   </h:inputText>
+   <h:outputText value="#{person.name}" id="test"/>
+</h:form>
+...
+```
+
+### Algunos ejemplos de componentes
+
+Ejemplos sacados de la demostración [RichFaces Showcase](http://jboss.org/richfaces/demos.html). La puedes consultar en [http://www.jtech.ua.es/richfaces-showcase](http://www.jtech.ua.es/richfaces-showcase)
+
+#### Pick List
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/tema04/pick-list.png" alt="" width="404">
+
+```java
+<rich:pickList>
+   <f:selectItem itemLabel="Option 1" itemValue="1"/>
+   <f:selectItem itemLabel="Option 2" itemValue="2"/>
+   <f:selectItem itemLabel="Option 3" itemValue="3"/>
+   <f:selectItem itemLabel="Option 4" itemValue="4"/>
+   <f:selectItem itemLabel="Option 5" itemValue="5"/>
+</rich:pickList>
+```
+
+#### Panel modal
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/tema04/panel-modal.png" alt="" width="389">
+
+```java
+<rich:modalPanel id="panel" width="350" height="100">
+   <f:facet name="header">
+      <h:panelGroup>
+         <h:outputText value="Modal Panel"></h:outputText>
+      </h:panelGroup>
+   </f:facet>
+   <f:facet name="controls">
+      <h:panelGroup>
+         <h:graphicImage value="/images/modal/close.png"
+            styleClass="hidelink" id="hidelink" />
+         <rich:componentControl for="panel" attachTo="hidelink"
+            operation="hide" event="onclick" />
+      </h:panelGroup>
+   </f:facet>
+   <h:outputText
+      value="This panel is called using Component Control Component"/>
+   <br />
+   <h:outputText
+      value="Closure link (X) works also through Component Control"/>
+</rich:modalPanel>
+<h:outputLink value="#" id="link">
+   Show Modal Panel 
+   <rich:componentControl for="panel" attachTo="link"
+                          operation="show" event="onclick" />
+</h:outputLink
+```
+
+#### Data Grid
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/tema04/data-grid.png" alt="" width="500">
+
+```java
+<rich:panel>
+   <f:facet name="header">
+      <h:outputText value="Car Store"></h:outputText>
+   </f:facet>
+   <h:form>
+      <rich:dataGrid value="#{dataTableScrollerBean.allCars}"
+         var="car" columns="3" elements="9" width="600px">
+         <rich:panel bodyClass="pbody">
+            <f:facet name="header">
+               <h:outputText value="#{car.make} #{car.model}">
+               </h:outputText>
+            </f:facet>
+            <h:panelGrid columns="2">
+               <h:outputText value="Price:" styleClass="label"/>
+               <h:outputText value="#{car.price}" />
+               <h:outputText value="Mileage:" styleClass="label"/>
+               <h:outputText value="#{car.mileage}" />
+               <h:outputText value="VIN:" styleClass="label"/>
+               <h:outputText value="#{car.vin}" />
+               <h:outputText value="Stock:" styleClass="label"/>
+               <h:outputText value="#{car.stock}" />
+            </h:panelGrid>
+         </rich:panel>
+         <f:facet name="footer">
+            <rich:datascroller></rich:datascroller>
+         </f:facet>
+      </rich:dataGrid>
+   </h:form>
+</rich:panel>
+```
+
+#### Google map
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/tema04/google-map.png" alt="" width="408">
+
+```java
+<rich:gmap 
+   gmapVar="map" zoom="16"  style="width:400px;height:400px"
+   gmapKey="ABQIAAAA5SzcCLDOLK2VPhx3P-poFxQDT1fstRCWND9TPh4
+            hnvi3n3eSLhQH-hQAsES9VPnDb0M9QRvXK83_Lw"
+   lat="38.38463"
+   lng="-0.51287"/>
+```
+
+#### Tab panel
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/tema04/tab-panel.png" alt="" width="361">
+
+```java
+<rich:tabPanel switchType="ajax" width="350" height="400">
+   <rich:tab label="Using Google Map API">
+      <h:panelGrid columns="2" columnClasses="optionList">
+         <h:outputText value="Controls:" />
+         <h:panelGroup>
+            <a href="javascript: void 0" onclick=
+    map.hideControls();>Hide</a>
+            <a href="javascript: void 0" onclick=
+    map.showControls();>Show</a>
+            <br/>
+         </h:panelGroup>
+ 
+         <h:outputText value="Zoom:" />
+         <rich:inputNumberSlider id="zoom" showInput="false"
+            minValue="1" maxValue="18" value="#{gmBean.zoom}"
+            onchange="map.setZoom(this.value)" />
+ 
+         <h:outputText value="Map Type:" />
+         <h:panelGroup>
+            <a href="javascript: void 0"
+               onclick=
+    map.setMapType(G_NORMAL_MAP);>Normal</a>
+            <a href="javascript: void 0"
+               onclick=
+    map.setMapType(G_SATELLITE_MAP);>Satellite</a>
+            <a href="javascript: void 0"
+               onclick=
+    map.setMapType(G_HYBRID_MAP);>Hybrid</a>
+            <br/>
+         </h:panelGroup>
+ 
+      </h:panelGrid>
+   </rich:tab>
+ 
+   <rich:tab label="Using Ajax with JSON">
+      <rich:dataGrid var="place" value="#{gmBean.point}" columns="2">
+         <h:graphicImage onclick="showPlace('#{place.id}')"
+            style="cursor:pointer" value="resource://#{place.pic}" />
+      </rich:dataGrid>
+   </rich:tab>
+</rich:tabPanel>
+```
+
+### Referencias
+
+* [Página principal de RichFaces en JBoss](http://jboss.org/jbossrichfaces/)
+* [Documentación de RichFaces](https://www.jboss.org/richfaces/docs.html)
+* [RichFaces](http://community.jboss.org/wiki/RichFacesWikiHomePage), documento sobre RichFaces en el Wiki de JBoss, con bastantes enlaces interesantes.
+* [Road map de versiones de RichFaces](http://community.jboss.org/wiki/RichFaces40ReleaseCenter)
+* [Servidor Hudson de RichFaces](https://hudson.jboss.org/hudson/view/Richfaces/)
+
+## Ejercicios sesión 4 - Proyecto en RichFaces
+
+* [Internacionalización de la aplicación (1 punto)](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-ejercicios.html#Internacionalizaci%C3%B3n+de+la+aplicaci%C3%B3n+%281+punto%29)
+* [CRUD de tareas (2 puntos)](https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/sesion04-ejercicios.html#CRUD+de+tareas+%282+puntos%29)
+
+El objetivo de esta sesión es introducir en nunuestro proyecyo JSF tradicionaluna serie de componentes de RichFaces. Además, introduciremos opciones para internacionalizar nuestra aplicación.
+
+### Internacionalización de la aplicación (1 punto)
+
+El objetivo consiste en modificar nuestra plantilla inicial para dar la opción de mostrar la aplicación en dos idiomas: Español e Inglés. El idioma soportado por defecto será el Español:
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/mockup-i18n.png" alt="" width="600">
+
+Es posible que en algún momento necesites obtener alguna cadena desde el código Java. Para ello, puedes servirte de la siguiente clase:
+
+```java
+package es.ua.jtech.jsf.i18n;
+ 
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
+import javax.faces.context.FacesContext;
+ 
+public class Messages {
+  public static String getMessage(String id){
+    final FacesContext context = FacesContext.getCurrentInstance();
+    final ResourceBundle msgs = context.getApplication().getResourceBundle(context, "msgs");
+         
+    return msgs.getString(id);
+  }
+     
+  public static String getMessage(String id, Object...args){
+    final FacesContext context = FacesContext.getCurrentInstance();
+    final ResourceBundle msgs = context.getApplication().getResourceBundle(context, "msgs");
+    final MessageFormat mf = new MessageFormat(msgs.getString(id));
+         
+    return mf.format(args);
+  }
+}
+```
+
+Vemos que tenemos sobrecargado el método getMessage. Con la segunda opción, se nos permite el uso de _placeholders_ en las cadenas. Un sitio donde es interesante usarlo es en la validación del login, para decir si éste se encuentra utilizado (en el properties: registerController\_checkLogin\_error=El alias {0} ya existe)
+
+```java
+if("admin".equals(loginStr)){
+    Object[] args = {loginStr};
+    final String msg = Messages.getMessage("registerController_checkLogin_error", args);
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+    FacesContext context = FacesContext.getCurrentInstance();
+    context.addMessage(loginInput.getClientId(context), message);
+    context.renderResponse();
+}
+```
+
+### CRUD de tareas (2 puntos)
+
+En esta sesión vamos a realizar el CRUD de tareas.
+
+Las pantallas a implementar serán las siguientes:
+
+El listado de tareas tendrá la siguiente forma:
+
+<br>
+
+Usaremos un componente rich:dataTable para este listado. Esta tabla deberá tener un máximo de 10 entradas y estar paginada con un rich:dataScroller.
+
+Para la creación de una nueva tarea, utilizaremos un componente rich:popUpPanel.
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/mockup-popup.png" alt="" width="600">
+
+Para editar la tarea, lo haremos en una página aparte. Ya que el formulario es exactamente igual que el de creación, vamos a intentar reutilizarlo en lugar de hacer uno nuevo:
+
+<img src="https://expertojavaua.github.io/www.jtech.ua.es/j2ee/publico/jsf-2012-13/imagenes/mockup-edit.png" alt="" width="600">
+
+A la hora de hacer nuestra plantilla de facelets, vamos a crear una plantilla que utilice la base de la plantilla anterior, y que inserte una tabla con dos columnas: una con el menú a la izquierda (fijo y por eso estará en la plantilla), y el contenido a la derecha.
+
+```java
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC 
+    "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <ui:define name="title">#{user.name}</ui:define>
+ 
+  <ui:define name="body">
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top">
+           <ui:insert name="leftContent">
+           <ui:include src="/menu.xhtml" />
+           </ui:insert>
+         </td>
+         <td width="10"></td>
+         <td valign="top">
+           <ui:insert name="mainContent">
+             main content
+           </ui:insert>
+         </td>
+       </tr>
+      </table>
+    </ui:define>
+</ui:composition>
+```
+
+En resumidas cuentas, haremos una plantilla sobre otra plantilla
+
+Para esta parte crearemos un controlador nuevo llamado TasksController. Por si os sirve de ayuda, el que se proporcionará en la solución tendrá el siguiente esqueleto:
+
+```java
+package es.ua.jtech.jsf.controller;
+ 
+import es.ua.jtech.jsf.model.TaskBean;
+import es.ua.jtech.jsf.model.UserBean;
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+ 
+@ManagedBean
+@SessionScoped
+public class TasksController implements Serializable {
+  @ManagedProperty(value="#{user}")
+  UserBean user;
+     
+  TaskBean task;
+     
+  int page=1;
+     
+  public String addTask(){
+    ...
+  }
+ 
+  public TaskBean getTask() {
+    ...
+  }
+     
+  public void removeTask(){
+    ...
+  }
+ 
+  //GETTERS Y SETTERS
+}
+```
+
+## Sesiones
 
 | Sesión                                                                           | Materiales                                                                                                                                                                                              |                                                                                                                                                                                                               |                                                                                                                                                                                                               |
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
