@@ -131,6 +131,7 @@
   * [Google Web Toolkit](frameworks/google-web-toolkit.md)
   * [EJB](frameworks/ejb/README.md)
     * [Componentes Enterprise](frameworks/ejb/componentes-enterprise.md)
+  * [JPA - Framework de persistencia](frameworks/jpa-framework-de-persistencia.md)
 * [IDE](ide/README.md)
   * [Eclipse](ide/eclipse.md)
   * [Netbeans](ide/netbeans.md)
