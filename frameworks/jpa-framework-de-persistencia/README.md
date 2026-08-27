@@ -137,7 +137,7 @@
 
 #### 1.1. Int <a href="#introduccion_a_jpa" id="introduccion_a_jpa"></a>
 
-{% file src="../.gitbook/assets/jpa01.pdf" %}
+{% file src="../../.gitbook/assets/jpa01.pdf" %}
 
 #### roducción a JPA <a href="#introduccion_a_jpa" id="introduccion_a_jpa"></a>
 
