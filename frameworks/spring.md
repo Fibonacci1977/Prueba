@@ -829,8 +829,41 @@ En cuanto a la necesidad de gestionar las excepciones, Spring opta por eliminarl
 
 JDBC sigue siendo un API muy usado para el acceso a datos, aunque es tedioso y repetitivo. Vamos a ver cómo soluciona Spring algunos problemas de JDBC, manteniendo las ventajas de poder trabajar "a bajo nivel" si así lo deseamos. Probablemente las ventajas quedarán más claras si primero vemos un ejemplo con JDBC "a secas" y luego vemos el mismo código usando las facilidades que nos da Spring. Por ejemplo, supongamos un método que comprueba que el login y el password de un usuario son correctos, buscándolo en la base de datos con JDBC:
 
-| 123456789101112131415161718192021222324252627282930313233 | `private` `String SQL ="select * from usuarios where login=? and password=?";` `public` `UsuarioTO login(String login, String password) throws` `DAOException {    Connection con=null;    try` `{        con = ds.getConnection();             PreparedStatement ps = con.prepareStatement(SQL);        ps.setString(1, login);        ps.setString(2, password);        ResultSet rs = ps.executeQuery();        if` `(rs.next()) {            UsuarioTO uto = new` `UsuarioTO();            uto.setLogin(rs.getString("login"));            uto.setPassword(rs.getString("password"));            uto.setFechaNac(rs.getDate("fechaNac"));            return` `uto;        }        else            return` `null;    } catch(SQLException sqle) {        throw` `new` `DAOException(sqle);    }    finally` `{        if` `(con!=null) {            try` `{                con.close();            }            catch(SQLException sqle2) {                throw` `new` `DAOException(sqle2);                               }        }    }}`        |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+private String SQL ="select * from usuarios where login=? and password=?";
+     
+public UsuarioTO login(String login, String password) throws DAOException {
+    Connection con=null;
+    try {
+        con = ds.getConnection();   
+           PreparedStatement ps = con.prepareStatement(SQL);
+        ps.setString(1, login);
+        ps.setString(2, password);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            UsuarioTO uto = new UsuarioTO();
+            uto.setLogin(rs.getString("login"));
+            uto.setPassword(rs.getString("password"));
+            uto.setFechaNac(rs.getDate("fechaNac"));
+            return uto;
+        }
+        else
+            return null;
+    } catch(SQLException sqle) {
+        throw new DAOException(sqle);
+    }
+    finally {
+        if (con!=null) {
+            try {
+                con.close();
+            }
+            catch(SQLException sqle2) {
+                throw new DAOException(sqle2);                    
+            }
+        }
+    }
+}        
+```
 
 Se destacan las líneas de código que hacen realmente el trabajo de buscar el registro y devolver la información. El resto es simplemente la infraestructura necesaria para poder hacer el trabajo y gestionar los errores, y que, curiosamente _ocupa más líneas que el código "importante"_. Evidentemente la gestión de errores se habría podido "simplificar" poniendo en la cabecera del método un throws SQLException, pero entonces ya estaríamos introduciendo dependencias del API JDBC en la capa de negocio.
 
@@ -842,36 +875,94 @@ Como ya hemos dicho, los _templates_ son clases que encapsulan el código de ges
 
 Lo primero que necesitamos es instanciar el _template_. El constructor de JdbcTemplate necesita un DataSource como parámetro. Como se vio en el tema anterior, los DataSource se pueden definir en el fichero XML de los beans, gracias al espacio de nombres jee:
 
-| 1 | `<jee:jndi-lookup` `id="ds"` `jndi-name="jdbc/MiDataSource"` `resource-ref="true"/>` |
-| - | ------------------------------------------------------------------------------------ |
+```java
+<jee:jndi-lookup id="ds" jndi-name="jdbc/MiDataSource" resource-ref="true"/>
+```
 
 Con lo que el DataSource se convierte en un bean de Spring llamado ds. La práctica habitual es inyectarlo en nuestro DAO y con él inicializar el _template_, que guardaremos en el DAO:
 
-| 12345678910111213141516 | `import` `org.springframework.jdbc.core.simple.JbcTemplate;import` `org.springframework.stereotype.Repository;//Resto de imports......` `@Repository("JDBC")public` `class` `UsuariosDAOJDBC implements` `IUsuariosDAO {    private` `JdbcTemplate jdbcTemplate;` `@Autowired    public` `void` `setDataSource(DataSource ds) {        this.jdbcTemplate = new` `JdbcTemplate(ds);    }` `...}`    |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+import org.springframework.jdbc.core.simple.JbcTemplate;
+import org.springframework.stereotype.Repository;
+//Resto de imports...
+...
+ 
+@Repository("JDBC")
+public class UsuariosDAOJDBC implements IUsuariosDAO {
+    private JdbcTemplate jdbcTemplate;
+     
+    @Autowired
+    public void setDataSource(DataSource ds) {
+        this.jdbcTemplate = new JdbcTemplate(ds);
+    }
+ 
+    ...
+}    
+```
 
 Recordemos que la anotación @Repository se usa para definir un DAO. Recordemos también que @Autowired inyecta la dependencia buscándola por tipo. En este caso no hay ambigüedad, ya que solo hemos definido un DataSource.
 
-SimpleJdbcTemplateAntes de Spring 3, la funcionalidad más "simple" de JDBC en Spring la implementaba SimpleJdbcTemplate, mientras que el API de JdbcTemplate era más complicado y por tanto solo recomendable para operaciones más complejas que las que vamos a ver aquí. A partir de la versión 3, SimpleJdbcTemplate está _deprecated_.
+SimpleJdbcTemplate
+
+***
+
+Antes de Spring 3, la funcionalidad más "simple" de JDBC en Spring la implementaba SimpleJdbcTemplate, mientras que el API de JdbcTemplate era más complicado y por tanto solo recomendable para operaciones más complejas que las que vamos a ver aquí. A partir de la versión 3, SimpleJdbcTemplate está _deprecated_.
+
+***
 
 #### Consultas de selección
 
 Normalmente en un SELECT se van recorriendo registros y nuestro DAO los va transformando en objetos Java que devolverá a la capa de negocio. En Spring, el trabajo de tomar los datos de un registro y empaquetarlos en un objeto lo hace RowMapper. Este es un interface, por lo que nuestro trabajo consistirá en escribir una clase que lo implemente. Realmente el único método estrictamente necesario es mapRow, que a partir de un registro debe devolver un objeto. En nuestro caso podría ser algo como:
 
-| 123456789101112 | `//esto podría también ser private y estar dentro del DAO //ya que solo lo necesitaremos dentro de él public` `class` `UsuarioTOMapper implements` `RowMapper<UsuarioTO> {` `public` `UsuarioTO mapRow(ResultSet rs, int` `numRow) throws` `SQLException {          UsuarioTO uto = new` `UsuarioTO();          uto.setLogin(rs.getString("login"));          uto.setPassword(rs.getString("password"));          uto.setFechaNac(rs.getDate("fechaNac"));          return` `uto;     }}` |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+//esto podría también ser private y estar dentro del DAO
+ //ya que solo lo necesitaremos dentro de él
+ public class UsuarioTOMapper implements RowMapper<UsuarioTO> {
+ 
+     public UsuarioTO mapRow(ResultSet rs, int numRow) throws SQLException {
+          UsuarioTO uto = new UsuarioTO();
+          uto.setLogin(rs.getString("login"));
+          uto.setPassword(rs.getString("password"));
+          uto.setFechaNac(rs.getDate("fechaNac"));
+          return uto;
+     }
+}
+```
 
 Ahora solo nos queda escribir en el DAO el código que hace el SELECT:
 
-| 123456789 | `private` `static` `final` `String LOGIN_SQL = "select * "` `+ "from usuarios where login=? and password=?";` `public` `UsuarioTO login(String login, String password) {    UsuarioTOMapper miMapper = new` `UsuarioTOMapper();` `return` `this.jdbcTemplate.queryForObject(LOGIN_SQL, miMapper,                                              login, password);}` |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+private static final String LOGIN_SQL = "select * " +
+ "from usuarios where login=? and password=?";
+ 
+public UsuarioTO login(String login, String password) {
+    UsuarioTOMapper miMapper = new UsuarioTOMapper();
+        
+    return this.jdbcTemplate.queryForObject(LOGIN_SQL, miMapper,
+                                              login, password);
+}
+```
 
 Como se ve, no hay que gestionar la conexión con la base de datos, preocuparse del Statement ni nada parecido. El _template_ se ocupa de estos detalles. El método queryForObject hace el SELECT y devuelve un UsuarioTO ayudado del _mapper_ que hemos definido antes. Simplemente hay que pasarle el SQL a ejecutar y los valores de los parámetros.
 
 Tampoco hay gestión de excepciones, porque Spring captura todas las SQLException de JDBC y las transforma en excepciones no comprobadas. Por supuesto, eso no quiere decir que no podamos capturarlas en el DAO si así lo deseamos. De hecho, en el código anterior hemos cometido en realidad un "descuido", ya que podría no haber ningún registro como resultado del SELECT. Para Spring esto es una excepción del tipo EmptyResultDataAccessException. Si queremos seguir la misma lógica que en el ejemplo con JDBC, deberíamos devolver null en este caso.
 
-| 1234567891011121314 | `private` `static` `final` `String LOGIN_SQL = "select * "` `+        "from usuarios where login=? and password=?";` `public` `UsuarioTO login(String login, String password) {   UsuarioTOMapper miMapper = new` `UsuarioTOMapper();` `try` `{       return` `this.jdbcTemplate.queryForObject(LOGIN_SQL, miMapper,                                                login, password);   }   catch(EmptyResultDataAccessException erdae) {       return` `null;   }}`   |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```java
+private static final String LOGIN_SQL = "select * " + 
+        "from usuarios where login=? and password=?";
+ 
+public UsuarioTO login(String login, String password) {
+   UsuarioTOMapper miMapper = new UsuarioTOMapper();
+        
+   try {
+       return this.jdbcTemplate.queryForObject(LOGIN_SQL, miMapper, 
+                                                login, password);
+   }
+   catch(EmptyResultDataAccessException erdae) {
+       return null;
+   }
+}   
+```
 
 La amplia variedad de excepciones de acceso a datos convierte a Spring en un _framework_ un poco "quisquilloso" en ciertos aspectos. En un queryForObject Spring espera obtener _un registro y sólo un registro_, de modo que se lanza una excepción si no hay resultados, como hemos visto, pero también si hay más de uno: IncorrectResultSizeDataAccessException. Esto tiene su lógica, ya que queryForObject solo se debe usar cuando esperamos como máximo un registro. Si el SELECT pudiera devolver más de un resultado, en lugar de llamar a queryForObject, emplearíamos **query**, que usa los mismos parámetros, pero devuelve una lista de objetos.
 
